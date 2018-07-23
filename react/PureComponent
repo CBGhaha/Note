@@ -1,0 +1,22 @@
+react 工作流程：
+  1：render函数执行 。。。 如果父组件返回的内容有子组件 那么执行子组件的render
+  2：render完毕之后 拿到了一个完整的 virtual DOM(虚拟dom)
+  3：与上次的virtual DOM 比较找到不同点
+  4：把不同点渲染到真实的dom
+
+render在何时会被执行？
+  Render在组件实例化和存在期时都会被执行
+  存在期包含：
+    - componentWillReceiveProps
+    - shouldComponentUpdate
+    - componentWillUpdate
+    - render
+    - componentDidUpdate
+
+哪些操作会重新执行render？
+  1：setState()，
+  2：父组件render()执行后，（不管此时props是否改变）
+
+哪些操作可以优化render()执行提升性能 ---（对于virtual DOM前后结果一致无需render()）
+  1： componentWillReceiveProps 判断 返回fasle
+  2:  PureComponent  -- react 自带会对props和nextProps进行 shallowEqual
