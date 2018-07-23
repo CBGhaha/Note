@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+//  js的reduce
+
+// var args=[1,3,4,3,5];
+// function sss(a,b){
+//   return a+b;
+// }
+var aaa=function(i){
+  console.log('我是第一个:',++i);
+  return (j)=>{
+    console.log('j:',j)
+  };
+}
+var ccc=function(i){
+  console.log(++i);
+  return i;
+}
+var funsArg=[aaa,ccc,ccc,ccc];
+
+
+
+function ddd(a,b){
+  return function(...arg){
+    return a(b(...arg))
+  }
+}
+function compose(..funcs){
+  if(funs.length===0){
+    return arg=>arg;
+  }
+  if(funs.length===1){
+    return funs[0]
+  }
+  return funcs.reduce(ddd);
+}
+compose(funsArg)(0);
+funsArg.reduce(ddd)(0);
+
+
+
+
+
+//数组的redece需要传入一个函数 该函数返回一个结果
+// reduce 会
+// console.log(args.reduce(sss));
+// var a= i=>j=>{
+//   console.log(i+j)
+// }
+// a(1)(2)
+
+</script>
