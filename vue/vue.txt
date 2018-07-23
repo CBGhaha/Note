@@ -1,0 +1,108 @@
+vue的数据绑定
+1.在元素中用{{a}}
+2.设置元素的属性: v-bind:src=''
+3.v-if='a'
+4.v-for='a in A'
+5.v-on:click="a($event)" 将事件触发dom传递给函数 
+						 click事件后面可以跟修饰符(.stop（阻止事件冒泡）.prevent（阻止默认事件）.capture（使用事件捕获）.self（target.event只能为自己）.once（只触发一次）)
+6.v-model='a'
+7.v-once 只绑定一次 数据跟新后 视图将不再跟新
+8.缩写：v-bind:src=''=>:src='' v-on:click='a'=>@click=''
+9.class的改变
+	:class="{A:a,B:b}" 这个对象可以本身就是data/computed属性  也可以只有value是data/computed属性
+	:style="{color:a,font-size:b}"
+10:v-if:控制元素是否渲染
+		v-if="a";
+		<div v-if="a > 0.5">
+		  >0.5
+		</div>
+		<div v-else-if='a==5'>
+		  0.5
+		</div>
+		<div v-else>
+		  <0.5
+		</div>	
+		在v-if和else的应用中vue会复用相同的元素 特别是input 所以可以给input添加一个特殊的:key 以区分他们
+11:v-show:控制元素是否隐藏 其实还是被渲染了
+12：v-for:遍历数组或对象
+		v-for="(item,index) in items"	
+		遍历数组时item为元素 index为索引
+		遍历对象时item为key index为value 还可以设置第三个参数 为索引
+		当引用子组件时  在2.2以上版必须为每一个子组件指定一个key
+		子组件之中的数据将由父传子 props来获得 父组件也可以根据子组件emit来获得子组件的数据
+13:$refs  引用子组件时为子组件指定一个ref="a" 在子组件中通过this.$refs.a访问子组件dom	 	
+Vue实例时传入对象包括 
+	data(数据)--对象/方法   在模块化中它是一个方法函数  返回一个数据对象
+	 模板(component) --对象   其中每一个属性的value也是一个对象，它有自己的template data methods等属性
+	 挂载元素(el) --字符串属性
+	 方法(methods) --对象   和计算属性一样 其中的每一个方法都是函数 在模板和视图调用方法时执行函数
+	 生命周期(mounted...) 
+	 计算属性(computed)--对象   每一个计算属性是一个方法 返回根据data中数据计算和演绎之后的数据 它自动根据data数据的改变而改变
+	 监听( watch)--对象   键为监听的数据名 值为函数 当数据发生变更时函数将会执行
+	 指令(directives)--对象 每一个指令又是一个对象 对象里是钩子函数  key是钩子  value是函数
+vue data数组的更新检测：push（） pop() shift() unshift() splice() sort() reverse() 会直接触发视图更新
+			但改变数组的某一个值或则单独改变数组的长度 vue无法检测到数组的变化 
+			第一种可以用（this/vue）.set(arr,index,newValue)
+			
+vue 也不能检测到对象数据属性被删除		
+
+组件:
+	 全局组件：	Vue.component('my-component', {
+			  template: '<div>A custom component!</div>'
+			})	
+	组件通讯：父传子:props:[]/{}  为数组时代表每个数据名   对象是 key为数据名 value为数据名类型
+			         子组件内部有prop属性 它是一个数组/对象 在数组中是父组件要传入的数据名  
+			         父组件内部有prop数组中的数据名属性  1.静态数据 属性A="I am the data";2.动态数据  v-bind绑定父组件的数据 :A="data"
+			         如果props里的数据名采用驼峰命名 myData 那父组件在传值时要采用串联式命名  my-data
+		         子传父:自定义事件 
+		    	子组件通过某些事件或钩子向父组件发送（this.$emit()）数据和状态
+		    	this.$emit("A",a,..);emit接收两个参数  
+		    		第一个参数为自定义事件的名字  在父组件中 ：@A="dosthing(e，...)" 监听这个事件并触发相关函数
+		    		第2~n个参数为传递给dosthing()的参数;
+		         组件的双向绑定：将props-bind 和$emit-on 相结合起来  2.3版本后可以用.sync来设定	在input中 对于非text的类型可手动设置双向绑定的数据触发机制 不在是value和input事件
+		    	
+vue的视图更新 ：vue的数据驱动视图更新是异步的 就是在一个组件中 
+			有一些事件操纵了数据的变化 ；不是一个事件发生后  函数执行视图马上更新  另一个函数也发生了视图又马上更新
+			而是些在同一个事件循环中的函数都执行完毕，数据变化彻底完成之后在进行视图的更新
+			$nextTick()
+			在一个事件循环中的数据变化后，DOM完成更新，立即执行nextTick(callback)内的回调。
+
+vue插槽：slot 在父组件调用子组件的时候 在子组件元素中需要写一些内容（dom）插入子组件  
+			 这些内容要和子组件本身的内容合并 如何合并？，内容存放的位置？
+			 需要子组件内部预先设置好一个插口 让内容插入插口的位置
+			 
+		render函数：
+		    可以js创建子组件  用于有些子组件的元素并不是固定的 比如并不知道到一个子标题组件h是几级
+		    所以这时子组件的元素是动态的 。
+		  render函数创建的子组件只能有一个一级元素 他的内容包含在这个一级元素中
+		  render函数语法：
+		  {render:function(createElement){
+		  		return createElement(
+		  			"h1",------------第一个参数 子组件一级元素的元素名
+		  			{	-------------可选参数  一级元素上绑定的 style css 事件 指令 自定义事件  HTML属性（元素自带   id） dom属性（v-html）
+		  				'class':{foo：ture},
+		  				style:{color:"red"},
+		  				attrs:{id:"foo"},
+		  				props
+		  			
+		  			
+		  			},
+		  			[   -------------一级元素中的内容 、可以是文本 可以是父级元素引用它时的包含内容（ this.$slots.default）也可以是再createElement()的子元素
+		  			
+		  			]
+		  		)
+		  }}
+Vue 自定义指令(directive)
+	钩子：	bind:第一次绑定时调用。只会调用一次。
+			inserted:在绑定元素插入父节点时调用，
+			updata；在包含指令的组件更新后调用
+	directive:{
+		"A":{
+		bind:function(el,binding){
+			el--指令绑定的元素 可用于直接操作dom
+			binding--一个对象包括value(向指令传入的值)
+		}
+		
+		}
+	
+	}
