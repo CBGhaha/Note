@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  var obj1={
+    name:'bang',
+    set realName(name){
+      this.name=name
+    },
+    get realName(){
+      return this.name
+    }
+  };
+  console.log(obj1.name);
+  obj1.realName='nameChanged';
+  console.log(obj1.name);
+
+  function Person(name){
+    this.name=name;
+    Object.defineProperty(this,'realName',{
+      get: ()=>{return this.name},
+      set: (name)=>{this.name=name}
+    })
+  }
+  let person =new Person('bang');
+  console.log(person)
+  console.log(person.name);
+  person.realName='nameChanged';
+  console.log(person.name);
+</script>

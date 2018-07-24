@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+class Person{
+  constructor(name){
+    this.name=name;
+  }
+  static personal(){
+    console.log('我是静态方法只能被类本身调用 不能被实例对象调用')
+  }
+  get realName(){
+    return this.name
+  }
+  set realName(name){
+    this.name=name+'haha'
+  }
+}
+let person1=new Person();
+//1: typrof检测 返回 function
+console.log(typeof Person);
+//2:每个class都有一个constructor方法 在实例化一个对象是默认执行 如果未显示定义 一个空的constructor方法会被添加
+
+//3:person1 instanceof Person 依然可以判断实例对象的类
+console.log(person1 instanceof Person);
+
+//4：类和函数不一样不存在变量提升 必须先声明定义再调用
+
+//5:类也可以使用表达式的方式定义
+let My=class{
+  constructor(){
+    this.name='bang'
+  }
+}
+let my1=new My();
+
+//6:类也可以设定 get set
+let person2=new Person('xixi');
+console.log(person2.name);
+person2.realName='bang';
+console.log(person2.name);
+
+//7：类的静态方法 在类的定义方法前加入static 则该方法只能被类本身调用 不能被他的实例对象调用
+Person.personal();
+person1.personal();
+
+</script>
