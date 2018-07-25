@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=0.5 width=device-width,maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <title></title>
+    <style media="screen">
+        *{margin: 0;padding: 0}
+        /* 媒体查询也可以获取当前设备的设备像素比 */
+        /* @media (-webkit-device-pixel-ratio: 3){} */
+        .box{
+          width: 320px;
+          height: 30px;
+          background: red
+        }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>
+<script type="text/javascript">
+//devicePixelRatio  设备像素比
+// 屏幕物理像素和设备独立像素的比
+// 普通屏一般为1 即屏幕物理像素和独立像素数量一致
+// 视网膜屏幕retina屏幕中为了显示效果更佳 一个独立像素可能是由几个物理像素组成的
+
+console.log( window.devicePixelRatio)
+
+
+</script>
