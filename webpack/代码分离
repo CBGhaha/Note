@@ -11,6 +11,7 @@ plugns:[
      name: 'common' // 指定公共 bundle 的名称。
    })
 ]
+//在webpack4中在optimization.splitChunks配置
 webpack会将公共模块单独打包
 
 3:动态导入
