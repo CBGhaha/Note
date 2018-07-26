@@ -1,0 +1,14 @@
+打包的一些公共库单独打包在vender.js
+我们希望打包后的vender在修改其他模块或懒加载模块时 hash值不变 缓存在用户浏览器
+
+plugns:[
+  new webpack.HashedModuleIdsPlugin(),
+  new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'//提取第三方库到vender
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    	name: 'manifest'//负责解析webpack打包的其他bundle文件，使其按要求进行加载和执行,将其单独打包出来
+  }),
+
+
+]

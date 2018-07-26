@@ -1,0 +1,25 @@
+webpack的代码分离有3种途径
+1：增加入口起点
+entry；{
+  app:__dirname+'/src/app.js',
++ other:__dirname+'/src/other.js',
+}
+
+2:防止重复
+plugns:[
+   new webpack.optimize.CommonsChunkPlugin({
+     name: 'common' // 指定公共 bundle 的名称。
+   })
+]
+webpack会将公共模块单独打包
+
+3:动态导入
+在output中加入chunkFileName
+output:{
+  chunkFileName:[name].[chunckhash].js
+}
+在文件中动态导入模块
+import ((/* webpackChunkName: item.name */someModulePath`)).then((module)=>{
+      ...
+})
+webpack会将动态导入的module单独打包  (按需加载其实就是异步动态导入 不过在配置路由时各个框架有自己不同的将按需加载模块加入路由的配置方法 比如react和vue)
