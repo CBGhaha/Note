@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+//let是es6的块级作用域 用let声明的变量只在代码块内有效
+// var 和 let的区别
+// 1:let创建块级作用域变量
+var i=100;
+let j=100;
+for(var i=0;i<5;i++){
+  //
+}
+for(let j=0;j<5;j++){
+  //
+}
+console.log(i,j);
+//2：let 不允许在同一作用域内重复声明变量
+try{
+  let a=1;
+  let a=2;
+}
+catch(err){
+
+}
+
+
+//3:let不能变量提升
+// console.log(a3);
+// console.log(b3);
+// let a3=1;
+// let b3=1;
+
+//4:在全局作用域内 声明let全部变量 不挂载在全局对象window上
+let a4=111;
+console.log(window.a4);
+</script>

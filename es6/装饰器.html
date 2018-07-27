@@ -26,8 +26,23 @@ class Person{
   }
 }
 let person1 =new Person('bang',25);
+person1.say('hahaha')
 
+/*************************************************/
 
+//redux的connect
+mapStateToProps=state=>({
+  a:state.a,
+  b:state.b
+})
+mapActionToProps=state=>({
+  aactionA:(...)=>{...},
+  aactionB:(...)=>{...},
+})
+export default connect(mapStateToProps,mapActionToProps)(comeReactComponentClass)
+// 其实可以这么写
+
+@connect(mapStateToProps,mapActionToProps)
 
 
 </script>
