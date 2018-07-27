@@ -9,12 +9,24 @@
   </body>
 </html>
 <script type="text/javascript">
-function Person(){
-
+function Person(name){
+  this.name=name
 }
 console.log(Person.prototype.constructor)//函数的person
+Person.prototype.say=function(){
+  console.log(this.name)
+}
+let person=new Person('p');
+person.say();
 
-let person=new Person();
-console.log(person.__proto__)
+console.log(person.__proto__===Person.prototype)
+
+function Human(name){
+  this.name=name
+}
+Human.prototype=person;
+var human=new Human('h');
+human.say();
+console.log(Human.__proto__===Person);
 
 </script>
