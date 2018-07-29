@@ -22,17 +22,19 @@
   console.log(obj1.name);
   obj1.realName='nameChanged';
   console.log(obj1.name);
+//ie8以下不兼容 ie8一下使用 Object.defineProperty
 
-  // function Person(name){
-  //   this.name=name;
-  //   Object.defineProperty(this,'realName',{
-  //     get: ()=>{return this.name},
-  //     set: (name)=>{this.name=name}
-  //   })
-  // }
-  // let person =new Person('bang');
-  // console.log(person)
-  // console.log(person.name);
-  // person.realName='nameChanged';
-  // console.log(person.name);
+
+  function Person(name){
+    this.name=name;
+    Object.defineProperty(this,'realName',{
+      get: ()=>{return this.name},
+      set: (name)=>{this.name=name}
+    })
+  }
+  let person =new Person('bang');
+  console.log(person)
+  console.log(person.name);
+  person.realName='nameChanged';
+  console.log(person.name);
 </script>
