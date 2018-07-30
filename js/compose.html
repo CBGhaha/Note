@@ -35,11 +35,11 @@ function ddd(a,b){
   }
 }
 function compose(..funcs){
-  if(funs.length===0){
+  if(funcs.length===0){
     return arg=>arg;
   }
-  if(funs.length===1){
-    return funs[0]
+  if(funcs.length===1){
+    return funcs[0]
   }
   return funcs.reduce(ddd);
 }
