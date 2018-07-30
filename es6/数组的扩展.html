@@ -18,7 +18,7 @@
     console.log(item);
     let index =arr.findIndex((a,index,arr)=>a.name===4);
     console.log(index);
-    //判断数组中是否存在元素 includes
+// 判断数组中是否存在元素 includes
     let arr2=[1,2,3,4,5,100];
     let itemExit=arr2.includes(100);
     console.log('item is exit:',itemExit);
@@ -26,4 +26,14 @@
   let arrA=[1,2,3,45,6,7,8];
   let res=arrA.filter((item)=>item>3);
   console.log(res)
+
+// 数组的entries()，keys() 和 values()这些方法用于遍历for of遍历数组
+let arrs=['a','b','c','d'];
+for(let [k,v] of arrs.entries()){
+  console.log(k,v)
+}
+
+
+
+
 </script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+// Set类似于数组 但是它的成员的值都是唯一的没有重复
+let set=new Set([1,2]);
+set.add(2);
+
+//set转变为数组
+console.log([...set]);
+
+// Set的属性和方法
+// size--Set实例的成员总数
+console.log(set.size)
+//set.add(.)--向实例中添加一个成员 返回set本身
+set.add(3);
+// set.delete(.)--删除某个成员 返回一个布尔值
+set.delete(3)
+// set.has(.)--判断实例中是否包含某成员 返回布尔值
+set.has(1)
+// set.clear()--清除所有成员，没有返回值
+
+//entries()，keys()， values()用于for of遍历
+for(var item of set){
+  console.log('item:',item)
+}
+set.clear()
+
+
+/***************************************************/
+//Map类似于Object但他可以使用非字符串为键
+
+let map=new Map([['a','aa'],['b','bb']]);
+let key1=[1,2,3];
+map.set(key1,1);//键为一个数组
+console.log(map.get(key1));
+
+//entries()，keys()， values()用于for of遍历
+for(let j of map.values()){
+  console.log(j)
+}
+//他也存在add、delete、has、clear四个方法
+
+
+// map转化为obj(所有的键为string)
+function strMapToObj(strMap) {
+  let obj = Object.create(null);
+  for (let [k,v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+//map转化为数组
+[...map]
+
+</script>
