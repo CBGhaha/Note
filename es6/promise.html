@@ -44,9 +44,18 @@ new Promise((resolve,reject)=>{
 /*****************************************************/
 //Promise.all([])
 //将一系列promise实例转化为一个promise实例 当所有的promise实例的状态为resolve 那么创建的promise的状态为resolve 否则为reject
-Promise.all([Promise.resolve(1),Promise.resolve(2),Promise.resolve(3)]).then((list)=>{
+Promise.all([
+  Promise.resolve(1).then((res)=>{console.log(res)}),
+  Promise.reject(2).then(res=>{console.log(res),err=>{console.log(err)}}),
+  Promise.resolve(3)
+]).then((list)=>{
   console.log(list)
-})
+}).catch(
+  err=>{
+    console.log(err)
+  }
+  // console.log(err)
+)
 
 
 
