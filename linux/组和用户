@@ -1,0 +1,8 @@
+查看本机的组名单 etc/group
+查看本机的用户名单：etc/passwd
+创建一个组：
+  groupadd name
+修改一个组：
+  groupmod  -g newid  -n newname name
+删除一个组:
+  groupdel name
