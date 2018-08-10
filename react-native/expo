@@ -1,0 +1,6 @@
+npm install -g creat-react-native-app
+creat-react-native-app my-app
+npm start
+
+
+手机下载expo客户端 用手机相机扫码
