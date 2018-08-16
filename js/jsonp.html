@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //jsonp解决跨域问题的原理是js的引用是不受浏览器同源限制的 所以可以请求不同域名不同端口的文件
+    //前端：1：定义一个函数 用于后台传入数据回调 接收数据，2：将这个函数名以query形式传递给后端 （localhost:3000/a?callback=haha）
+    //后端：2：处理好返回数据后 将数据传入函数并返回函数执行的string 
+    res.end(`haha(${resultData})`)//这里返回的是一个字符串 但是放到html的js标签里处理后 他就相当于执行的脚本了
+</script>
