@@ -10,7 +10,7 @@
 </html>
 <script type="text/javascript">
 
-
+const hasOwn = Object.prototype.hasOwnProperty
 function is(x, y) {
   if (x === y) {
     return x !== 0 || y !== 0 || 1 / x === 1 / y
@@ -18,7 +18,7 @@ function is(x, y) {
     return x !== x && y !== y
   }
 }
-shallowEqual(objA, objB) {
+function shallowEqual(objA, objB) {
   if (is(objA, objB)) return true
 
   if (typeof objA !== 'object' || objA === null ||
@@ -40,4 +40,5 @@ shallowEqual(objA, objB) {
 
   return true
 }
+console.log(shallowEqual({},{}))
 </script>

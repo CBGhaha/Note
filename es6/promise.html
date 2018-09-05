@@ -14,9 +14,12 @@ new Promise((resolve,reject)=>{
   // ...这里进行一些一步操作
   resolve(1111);
 }).then((res)=>{
-  console.log(res)
+  console.log(11)
+  return(res)
 }).catch((error)=>{
   console.log(error)
+}).then(r=>{
+  console.log(r)
 })
 
 // .catch是.then(,(error)=>{})的别名
@@ -56,10 +59,6 @@ Promise.all([
   }
   // console.log(err)
 )
-
-
-
-
 
 
 
