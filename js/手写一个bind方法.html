@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+Function.prototype.$bind=function(context){
+  context.fn=this;
+  let args=[];
+  for(var i=1;i<arguments.length;i++){
+    args.push(arguments[i])
+  }
+  return function(){
+    var dargs=[];
+    for(var i=0;i<args.length;i++){
+      dargs.push("args["+i+"]")
+    }
+    eval("context.fn("+dargs+")")
+    delete context.fn;
+  }
+}
+function a(age){
+  console.log("我是"+this.name+",我今年"+age+"岁")
+}
+var b=a.$bind({name:'bang'},{a:1222});
+b()
+</script>
