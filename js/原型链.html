@@ -21,6 +21,12 @@ Person.prototype.say=function(){
 console.log(Person.prototype.constructor===Person)
 
 
+//hasOwnProperty 判断一个对象的属性是来自自身还是原型对象
+var p1=new Person();
+console.log('name属性是否来自它本身:',p1.hasOwnProperty("name"))
+console.log('say属性是否来自它本身:',p1.hasOwnProperty("say"))
+
+
 //实例化一个对象的时候在函数内部的定义的属性是单独的 每次实例化的时候会执行一遍  在原型对象上定义的属性是共享的
 var person1=new Person()
 person1.say()

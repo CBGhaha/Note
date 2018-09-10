@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  //每个对象都有constructor 指向构造函数 实例对象这个constructor来自prototype 所以使用原型继承（手动改写实例对象的prototype） 那么这个对象的constructor会指向父构造函数
+  //对于构造函数的原型对象 原型对象的constructor指向构造函数
+function A(){
+  this.name='bang'
+}
+
+// 普通对象constructor来自于它的原型
+let a=new A();
+console.log(a.__proto__.constructor===a.constructor)
+
+// 非继承函数（未手动改写函数的原型 --原型继承）的原型对象的constructor 不来自原型对象的原型
+// 在创建有个构造函数的时候 会创建一个原型对象  里面有一个constructor 这个属性不是继承于原型对象的原型 而是在定义函数时手动绑定
+let prototypeObj=a.__proto__ ;
+console.log(prototypeObj)//可以看到prototypeObj自己有constructor属性 并不是来自__proto__
+              //原型对象的原型的constructor       //原型对象的constructor
+console.log(prototypeObj.__proto__.constructor===prototypeObj.constructor)
+</script>
