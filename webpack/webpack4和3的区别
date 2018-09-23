@@ -1,0 +1,9 @@
+1：ExtractTextPlugin不兼容webpack4 需要使用
+MiniCssExtractPlugin
+
+2：webpack4
+CommonsChunkPlugin
+使用optimization.splitChunks替代
+所以manifest 公共第三方库 都迁移到optimization配置
+
+3：可以指定mode为 'development|production' webpack会为相应环境配置基础工作

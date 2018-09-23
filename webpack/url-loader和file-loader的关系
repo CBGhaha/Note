@@ -1,0 +1,2 @@
+file-loader用来解析项目中引入的图片 根据我们的配置将图片打包到指定的文件夹 并将图片引用的地址正确指向实际地址
+url-loader 包含了file-loader 它会将你设定大小范围内的图片转化为字符串 dataUrl( base64) 将超出大小范围的图片 丢给file-url处理

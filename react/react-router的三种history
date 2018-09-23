@@ -1,0 +1,5 @@
+react-router有三种模式的history:
+  browserHistory //推荐使用的完美的url
+  hashHistory    //带#的url
+  memoryHistory //不会变动的history 点击跳转仍然会渲染页面但地址栏url不发生变动
+                        适合在测试和服务端渲染使用 可以设置一个初始入口 initialEntries：

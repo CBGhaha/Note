@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  // 数组的find 和findIndex
+    // 参数1：数组成员 参数2：成员索引 参数3：当前数组
+    // find:找到满足当前条件第一个元素返回 ，否则undefined;
+    // findIndex:找到满足当前条件第一个返回索引，否则-1
+    let arr=[{name:1},{name:2},{name:3},{name:4},{name:5}];
+    let item=arr.find((a,index,arr)=>a.name===2);
+    console.log(item);
+    let index =arr.findIndex((a,index,arr)=>a.name===4);
+    console.log(index);
+// 判断数组中是否存在元素 includes
+    let arr2=[1,2,3,4,5,100];
+    let itemExit=arr2.includes(100);
+    console.log('item is exit:',itemExit);
+// filter:找到符合条件的所有元素   返回组成的数组
+  let arrA=[1,2,3,45,6,7,8];
+  let res=arrA.filter((item)=>item>3);
+  console.log(res)
+
+// 数组的entries()，keys() 和 values()这些方法用于遍历for of遍历数组
+let arrs=['a','b','c','d'];
+for(let [k,v] of arrs.entries()){
+  console.log(k,v)
+}
+
+
+
+
+</script>

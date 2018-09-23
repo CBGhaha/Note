@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      #box1{
+        width: 100px;height: 100px;background: green
+      }
+      #box2{
+        width: 100px;height: 100px;background: blue
+      }
+      #dd{
+        width: 50px;height: 50px;background: red
+      }
+    </style>
+  </head>
+  <body>
+    <div id='box1'></div>
+    <div id='box2'>
+      <div id='dd'></div>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+// dom0级事件 dom0级事件只能在冒泡流中触发 q且每个dom元素只能绑定一个dom0级事件
+var box1=document.getElementById('box1');
+var box2=document.getElementById('box2');
+var dd=document.getElementById('dd');
+box1.onclick=function(e){
+  console.log(e.target)
+}
+
+//dom2级事件 在事件冒泡和事件捕获流中都可以设定 而且一个dom元素可以绑定多个dom2同一事件
+//第三个参数 false--事件冒泡  true--事件捕获 默认是false
+//一般都是采用冒泡流
+
+// 点击dd的时候也点击了box2 先捕获流 box2->dd再冒泡流dd->box2
+box2.addEventListener('click',function(e){
+  console.log(e.target)
+},false)
+box2.addEventListener('click',function(e){
+  console.log('我绑定的是捕获流的dom事件')
+},true)
+</script>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+// 每个函数都有一个原型对象  原型对象有一个constructor属性指向构造函数
+// 每个实例对象内都有一个指针指向他的原型对象 这个指针在 chrome firefox和 safri中是 __proto__
+// 访问一个对象的属性的时候 先在对象属相上面找 如果没有就在原型对象上找
+function Person(){
+  this.name='bang'
+}
+Person.prototype.say=function(){
+  console.log(this.name)
+}
+console.log(Person.prototype.constructor===Person)
+
+
+//hasOwnProperty 判断一个对象的属性是来自自身还是原型对象
+var p1=new Person();
+console.log('name属性是否来自它本身:',p1.hasOwnProperty("name"))
+console.log('say属性是否来自它本身:',p1.hasOwnProperty("say"))
+
+
+//实例化一个对象的时候在函数内部的定义的属性是单独的 每次实例化的时候会执行一遍  在原型对象上定义的属性是共享的
+var person1=new Person()
+person1.say()
+//当我们在原型对象上修改属性时这个修改会作用于所有
+Person.prototype.say=function(){
+  console.log("我修改了原型对象的say方法")
+}
+person1.say()
+
+//对实例对象来自原型对象的属性 重新赋值会覆盖原型对象的属性 但不会影响其他实例对象(例如number和string的更改 数组的concat)
+//对实例对象来自原型对象的属性进行修改 而不是重新赋值 （例如数组的push）会覆盖所有的实例
+
+/********************************继承************************************/
+function Human(){
+  this.name=['bang']
+}
+
+var human1=new Human()
+function Man(){
+
+}
+Man.prototype=human1;
+var man1=new Man();
+console.log(man1.name===human1.name)//这里访问的name属性 是访问的构造函数的原型对象
+console.log(man1 instanceof Man)
+console.log(man1.__proto__===human1)
+//原型链就是原型对象形成的链
+// man1.__proto__指向human1
+// human1.__proto__指向Human的原型对象
+// human的原型对象的__proto__指向Object的原型对象（可以认为human函数创建时  new Object()创建了原型对象）
+console.log(human1.__proto__.__proto__===Object.prototype)
+//Object的原型对象的__proto__指向null
+console.log(Object.prototype.__proto__)
+
+
+
+
+var object1 = new Object();
+console.log(object1.__proto__)
+</script>

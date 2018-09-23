@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+// Promise的出现改变回调函数的回调地狱（但本质上海市利用回调完成异步操作 但他使代码更）
+new Promise((resolve,reject)=>{
+  // ...这里进行一些一步操作
+  resolve(1111);
+}).then((res)=>{
+  console.log(11)
+  return(res)
+}).catch((error)=>{
+  console.log(error)
+}).then(r=>{
+  console.log(r)
+})
+
+// .catch是.then(,(error)=>{})的别名
+// 一般来说，不要在then方法里面定义 Reject 状态的回调函数（即then的第二个参数），总是使用catch方法。
+/*****************************************************/
+//Promise.resolve
+  //返回一个resolve 状态的 promise实例
+  let promise=Promise.resolve('Promise.resolve');
+  //返回一个resolve 状态的 promise实例
+  // 相当于
+  promise.then((res)=>{
+    console.log(res)
+  })
+  new Promise((resolve,reject)=>{
+    resolve(111)
+  })
+/*****************************************************/
+//Promise.reject
+  //返回一个reject 状态的 promise实例
+  Promise.reject('Promise.reject').catch((error)=>{
+
+  });
+
+
+/*****************************************************/
+//Promise.all([])
+//将一系列promise实例转化为一个promise实例 当所有的promise实例的状态为resolve 那么创建的promise的状态为resolve 否则为reject
+Promise.all([
+  Promise.resolve(1).then((res)=>{console.log(res)}),
+  Promise.reject(2).then(res=>{console.log(res),err=>{console.log(err)}}),
+  Promise.resolve(3)
+]).then((list)=>{
+  console.log(list)
+}).catch(
+  err=>{
+    console.log(err)
+  }
+  // console.log(err)
+)
+
+
+
+
+</script>

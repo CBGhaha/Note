@@ -1,0 +1,3 @@
+1:render中不能执行setState();可以在点击事件中setState
+2:尽量不要在render函数中创建新变量、新函数（派生数据）；并将其传递给子组件props
+  因为有些时候我们render了父组件 但并不需要重新执行子组件render 所以比较props和nextProps，如果没次新起变量（函数）在对比时势必每次不一样

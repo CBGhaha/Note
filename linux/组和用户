@@ -1,0 +1,15 @@
+查看本机的组名单 etc/group
+查看本机的用户名单：etc/passwd
+创建一个组：
+  groupadd name
+修改一个组：
+  groupmod  -g newid  -n newname name
+删除一个组:
+  groupdel name
+
+创建一个用户：
+  useradd  -g gid  -d home_dir  -u uid  用户名
+修改一个用户：
+  usermod  -g gid  -d home_dir  -u uid  -l  newname  用户名
+删除一个用户：
+  userdel  -r  用户名

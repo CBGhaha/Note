@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+//splice 会删除数组中的成员(修改原数组) 返回被删除的元素数组
+let arr=[1,2,3,4,5];
+let arr1=arr.splice(1,1);
+console.log(arr1);
+console.log(arr);
+// slice 截取数组 返回截取到的数组但不会修改原数组
+let arr2=[1,2,3,4,5];
+let arr3=arr2.slice(0,2);
+console.log(arr2);
+console.log(arr3);
+//concat 合并数组 返回新数组 不会对旧数组做操作
+let arr4=[1,2,3,4,5];
+let arr5=arr4.concat([6,7]);
+console.log(arr4);
+console.log(arr5)
+</script>

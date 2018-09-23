@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+// symbol主要应用场景是为对象创建独一无二的属性 防止不小心将对象已存在的属性修改覆盖
+
+// symbol es6加入的新的原始数据类型
+let a=Symbol('1');
+let b=Symbol("1");
+console.log(a);
+console.log(typeof a);
+console.log(a===b);
+//创建的Symbol类型数据的变量都是独一无二的
+// Symbol类型不能与其他变量运算 拼接
+
+/*******************    Symbol的类型转换       ***********************/
+// 1：Symbol可以显式转换为字符串类型
+  console.log(a.toString())
+// 2：Symbol可以隐式转换为boolean类型
+if(a){
+  console.log("symbol类型的a变量已经被我创建了")
+}
+
+/*******************    作为属性名的symbol       ***********************/
+let obj1=new Object();
+obj1[a]='chen';
+
+</script>

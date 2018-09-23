@@ -1,0 +1,42 @@
+js中object和arr的变量复制是引用关系复制
+var a=[1];
+var b=[1];
+a!=b;
+因为他们指向的是两个分别的数组 他们在内存中的地址不同；
+var a=[1];
+var b=a;
+a.push(2);
+console.log(b)====>[1,2];
+
+b复制了a对数组的引用关系
+修改了a b也会跟着修改
+
+
+下面说react的修改状态
+如果 state的某个属性是一个数组或对象
+this.state={
+  data:{
+    name:'test',
+    age:22
+  },
+  list:[1,2,3]
+}
+/*========================================================*/
+错误写法：
+let {data,list}=this.state;
+data.name='change';
+list.push(4);
+this.setState({
+  data,
+  list
+})
+/****************************/
+正确写法
+let {data}=this.state;
+this.setState({
+  data:Object.assgin({},data,{name:'change'}),
+  list:[...list,4]
+})
+这里相当于重新创建了一个object,array
+
+错误的写法 可能会导致在PureComponent和ComponentWillReceiveProps时造成props和nextProps永远===

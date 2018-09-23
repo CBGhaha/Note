@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+
+// 1:函数的调用
+function aaa(a,...arg){
+  console.log(arg);
+};
+aaa(1,2,3,45);
+function bbb(a,b){
+  console.log(a+b);
+};
+bbb(...[1,2]);
+// 2:copy数组 （深拷贝）
+let arr1=[1,2,3];
+let arr2=[...arr1];
+let arr3=[0,...arr1];
+console.log(arr2);
+console.log(arr3);
+//3:分拆字符串
+let str1='bang';
+let strArr=[...str1];
+console.log(strArr);
+
+
+
+
+</script>

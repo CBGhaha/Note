@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+// class的decorator
+function dec1(Class){
+  console.log("装饰器是一个函数");
+  console.log(Class);
+  Class.prototype.say(txt){
+    console.log('我给Person类增加了一个方法',txt)
+  }
+}
+
+@dec1
+class Person{
+  constructor(name,age){
+    this.name=name;
+    this.age=age;
+  }
+}
+let person1 =new Person('bang',25);
+person1.say('hahaha')
+
+/*************************************************/
+
+//redux的connect
+mapStateToProps=state=>({
+  a:state.a,
+  b:state.b
+})
+mapActionToProps=state=>({
+  aactionA:(...)=>{...},
+  aactionB:(...)=>{...},
+})
+export default connect(mapStateToProps,mapActionToProps)(comeReactComponentClass)
+// 其实可以这么写
+
+@connect(mapStateToProps,mapActionToProps)
+
+
+</script>

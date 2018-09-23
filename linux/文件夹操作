@@ -1,0 +1,4 @@
+1：创建文件夹：mkdir  目录
+2：删除文件夹：rm  -rf  filename
+3: 复制文件夹：cp -R dir1/dir2   dir3/dir4/newdir
+4: 移动文件夹：mv  dir1/dir2   dir3/dir4/newdir

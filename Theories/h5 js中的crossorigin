@@ -1,0 +1,3 @@
+html5 新规定 引入跨域脚本的js  能捕捉脚本报错有两个条件 ：
+  1：后台服务器必须通过Access-Controll-Allow-Origin跨域通过
+  2：当前script标签设置 crossorigin='anonymous'

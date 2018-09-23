@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+// js ==
+// 0 == ' '  // true
+// null == undefined // true
+// [1] == true // true
+//
+// js ===
+// +0 === -0 // true，但我们期待它返回false
+// NaN === NaN // false，我们期待它返回true
+ // Object.is()可以避免上述错误
+ console.log(Object.is(null,undefined))
+</script>

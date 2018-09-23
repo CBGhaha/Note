@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  Function.proptotype.$call=function(context){
+    //给新指定this的对象 加入一个方法 该方法为函数本身
+      context.fn=this;
+    //用数组记录下传过来的参数 （排除第一个绑定的this参数 ）
+      var args=[];
+      for(var i=1,i<arguments.length;i++){
+        args.push("arguments["+i+"]")
+      }
+    //用eval转换为js后执行
+      eval("context.fn("+args+"0");
+    //执行完后删除增加的原this对象的fn属性
+      delete context.fn;
+  }
+
+//整个思路是接受一个更改this指向的新对象 给新对象设定一个函数方法 方法为需要改变this指向的原函数 这时调用该方法时函数内部的this就指向了整个新对象
+//接着把记录的其他arguments 再传递给该方法执行
+</script>

@@ -1,0 +1,29 @@
+redux的流程
+Store
+Store 就是保存数据的地方，你可以把它看成一个容器。整个应用只能有一个 Store。
+Redux 提供createStore这个函数，用来生成 Store。
+let store =createStore(combineReducers(),applyMiddleware())
+
+store有三个方法
+store.getState()  //获取某个时刻的数据 state
+store.dispatch()  //发出action的方法
+store.subscribe() //监听store的变化函数一旦store发生变化就会执行
+
+Reducer
+一个纯函数 接受state和action
+根据传来的action的不同 更新store
+一个reducer只处理一个action
+redux有一个内置的combineReducers用于组合reducer
+
+redux的中间件
+中间件是为了处理不同类型的action的 由action到reducer有一层middleware
+使的redux可以处理函数 promise等类型的action
+
+
+middleware的可以实现的原理：
+是因为store会传递 store(dispath,getstore),next,action给中间件函数 这里reducer使用了函数柯里化的写法 其实这三个参数一次传递过来也没有问题
+所以可以在中间件函数中对action做出一定处理之后再调用 dispath或next
+(store)=>next=>action=>{
+  //do sth for action;
+  nect(...)|dispath(...)
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  async function a(){
+    try{
+        const data1 = await Promise.resolve(1);
+        const data2 = await Promise.resolve(2);
+        const data3 = await Promise.resolve(3);
+        console.log(data1,data2,data3)
+    }catch(err){
+
+    }
+  }
+  //只有当前await等待的 promise 兑现后，它后面的代码才会执行（或者抛出错误，后面代码都不执行，直接去到 catch 分支）
+  // 相比较promise async更加语义化
+  a()
+</script>
