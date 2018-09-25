@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    web worker
+  </body>
+</html>
+<script type="text/javascript">
+//worker运行的脚本必须和主线程的脚本同源 且必须来源于网络 不能是本地（file://）
+//worker无法获取window(所有 alert和confirm无法使用) 和document对象 但是可以获取navigator和location
+//
+var worker=new Worker('worker.js')
+worker.postMessage('hello word');
+worker.postMessage('seconed');
+worker.onmessage=function(event){
+  console.log(event.data);
+  // 为了节约系统资源 使用完成后关闭worker
+  worker.terminate()//主线程关闭worker
+}
+
+worker.onerror=function(e) {
+  console.log(e.filename,e.message)
+}
+</script>
