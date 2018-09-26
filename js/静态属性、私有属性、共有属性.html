@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+ // 静态属性、方法：无需实例化，即用new操作符实化对象，就可调用对象的方法和属性。
+      // 构造函数的静态、属性方法
+  function Person(){
+
+  }
+  Person.name='bang';
+  Person.say=function(){
+    console.log('hello')
+  }
+    //对象字面量的静态方法
+  var person={
+    say:()=>{
+      console.log('hello')
+    }
+  }
+//  私有属性
+  function Human(){
+    var name="bang",
+    this.saySelf(){
+      console.log(name)
+    }
+  }
+  new Human().saySelf()
+  // name 是私有属性 --外部不可改变 内部可以访问
+
+//目前class只有静态方法 没有静态属性  
+</script>

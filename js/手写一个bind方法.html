@@ -10,16 +10,21 @@
 </html>
 <script type="text/javascript">
 Function.prototype.$bind=function(context){
-  context.fn=this;
+  context.fn=this;//this指函数实例本身
   let args=[];
+  //记录bind第1个参数之后的参数
   for(var i=1;i<arguments.length;i++){
     args.push(arguments[i])
   }
+  //返回一个函数 该函数内执行函数实例 并将记录参数传入实例函数
   return function(){
     var dargs=[];
+    //用args记录的原因是因为 arguments关键字访问的不是bind函数的参数
     for(var i=0;i<args.length;i++){
       dargs.push("args["+i+"]")
     }
+    //eval 将字符串作为函数解析
+    //这里将 参数列表子集表达式 拼接成一个字符串
     eval("context.fn("+dargs+")")
     delete context.fn;
   }
@@ -27,6 +32,6 @@ Function.prototype.$bind=function(context){
 function a(age){
   console.log("我是"+this.name+",我今年"+age+"岁")
 }
-var b=a.$bind({name:'bang'},{a:1222});
+var b=a.$bind({name:'bang'},25);
 b()
 </script>
