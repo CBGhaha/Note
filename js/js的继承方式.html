@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+function Person(){
+  this.list=[1,2,3,4];
+}
+Person.prototype.do=function(){
+  console.log('do something')
+}
+//1:传统原型链继承
+      function P1(){
+      }
+      P1.prototype=new Person();
+      P1.prototype.say=function(){
+        console.log('hello')
+      }
+      //缺点  1：对于引用类型的属性（Array,Object） 被所有实例共享 所以修改时也会全部修改
+      //     2:无法向父构造函数传参
+
+//2:构造继承
+      function P2(){
+        Person.call(this);
+      }
+      P2.prototype.say=function(){
+        console.log('hello')
+      }
+      //缺点：1：只能继承父构造函数的实例属性 不能继承构造函数的原型属性
+      //     2: 无法实现函数复用
+
+//3:组合式继承
+      function  P3(){
+        Person.call(this);
+      }
+      P3.prototype=new Person();
+      //缺点 ：几乎完美的继承方式 但是还是有一点  在原型对象和实例属性上都调用父构造函数生成的实例属性有少许性能浪费
+
+//4:      
+</script>

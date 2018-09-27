@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+class Class1{
+  constructor(){
+    this.name='bang',
+    this.age=25
+  }
+}
+class Class2 extends Class1{
+  constructor(){
+    super()
+  }
+}
+let class1 =new Class2()
+console.log(class1.name)
+//class 的继承有两步  一 将子类的原型对象绑定为父类
+//                   二 将子类的原型对象的原型对象改写为父类的原型对象
+
+// 所以子类的原型对象即包含了父类 也包含了父类的原型 这样子类即继承了父类的静态方法 也继承了父组件定义的实例方法和属性
+</script>

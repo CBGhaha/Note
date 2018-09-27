@@ -19,7 +19,7 @@ Person.prototype.say=function(){
   console.log(this.name)
 }
 console.log(Person.prototype.constructor===Person)
-
+console.log(Person.__proto__)
 
 //hasOwnProperty 判断一个对象的属性是来自自身还是原型对象
 var p1=new Person();
