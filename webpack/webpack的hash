@@ -1,0 +1,4 @@
+webpack 有hash chunkhash 和contenthash
+hash 每次编译根据编译环境生成的hash 只要有任何文件改动就会生成新的hash
+chunkhash 每个chunk的hash 只有单个模块改变时才修改hash
+contenthash 在webpack中css视为js的一部分 所以修改css或js后会让js和css文件的hash同时修改 在extract-text-plugin中将css单独打包文件命名contenthash
