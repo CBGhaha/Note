@@ -1,0 +1,15 @@
+Progreassive Web App
+渐进式Web应用
+PWA的使用前提 安卓 safari 11.3 HTTPS
+PWA 的主要优点
+  1：缓存离线浏览
+  2：消息推送
+  3：添加设备桌面
+PWA 的主要技术点
+  1：Service Worker （可以理解为服务工厂 缓存-和资源请求过滤）
+  2：Manifest （应用清单）
+  3：Push Notification（推送通知）
+
+  一：Service Worker和web worker一样 也是一个单独的进程 独立于当前网页进程
+  二：manifest.json目前处于草案阶段 Chrome和Firefox已经实现了这个功能 微软正在edge上努力实现 但是iOS目前在考虑中
+  三： 
