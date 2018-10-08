@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+
+//Notification.requestPermission()---让浏览器弹出是否允许消息通知的提示
+
+//Notification.permission---（只读）granted, denied, 或default 允许/阻止/等待
+
+//new Notification(title, options) ---创建一个消息对话  在结合 Service Worker中用注册后的实例的showNotification方法
+
+
+if(!('PushManager' in window)){
+  alert("您的浏览器不支持消息推送！")
+}else{
+  new Promise((resolve,reject)=>{
+    //弹出选择框 用户选择是否允许网页弹出消息通知
+    //Notification.requestPermission的第一种情况 --接受一个callback
+    let notificationRequstPermission=Notification.requestPermission(result=>{
+      resolve(result)
+    });
+    //Notification.requestPermission的第二种情况 --本身是一个promise
+    if(notificationRequstPermission){
+      notificationRequstPermission.then(resolve)
+    }
+  }).then(result=>{
+    if(result==='granted'){
+        new Notification('标题',{
+          body:'内容',
+          icon:'/icon1.png'
+        })
+    }
+  })
+
+}
+</script>
