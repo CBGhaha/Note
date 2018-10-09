@@ -1,0 +1,22 @@
+babel:js的语法编译器
+polyfill和babel的不同：polyfill是兼容不同浏览器的js api
+                      babel是让不同的js扩展语法转化为标准语法
+
+babel的配置
+ babel结合webpack使用需要使用 babel-loader
+ bable的配置项
+  1：presets:预设  --预设就是一些plugin的集合设定
+     babel-preset-es2015 /2016/2017
+     babel-preset-env
+        --env不配置默认包含 2015/2016/2017
+        --env可以指定目标环境（bowsers（浏览器版本）/node  ）根据指定环境编译
+     react
+     typescript
+  2：plugins:插件
+     装饰器
+     
+
+presets和plugins的顺序
+  plugins优先于presets执行
+    plugins 按照数组的index增序进行编译
+    presets 按照反向从后至前执行编译

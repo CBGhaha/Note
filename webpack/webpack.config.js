@@ -13,7 +13,7 @@ const config={
   mudule:{
     rules:[
       {
-        test:/\.js|\.jsx/,
+        test:/\.css|\.less/,
         use:[
           'style-loader',//将计算后的样式加入页面
           {
