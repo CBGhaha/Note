@@ -1,20 +1,35 @@
 babel:js的语法编译器
-polyfill和babel的不同：polyfill是兼容不同浏览器的js api
+polyfill和presets的不同：polyfill是兼容不同浏览器的js api
                       babel是让不同的js扩展语法转化为标准语法
 
 babel的配置
  babel结合webpack使用需要使用 babel-loader
  bable的配置项
   1：presets:预设  --预设就是一些plugin的集合设定
-     babel-preset-es2015 /2016/2017
+     babel-preset-es2015(将代码转化为es5)/2016/2017(将ES2016/ES2017转化为es6) 所以一般选择es2015结合stage-x当然也可以一起使用（es5 es6 es7）
+     babel-preset-last 相当于（es5 es6 es7）一起使用
+     stage-0/1/2/3  按照提案阶段 前面包括后面的内容 一般图省事直接设置成stage-0
      babel-preset-env
         --env不配置默认包含 2015/2016/2017
         --env可以指定目标环境（bowsers（浏览器版本）/node  ）根据指定环境编译
      react
      typescript
   2：plugins:插件
-     装饰器
-     
+     装饰器-- "transform-decorators-legacy",
+     对于async的插件在stage-3及更改版本已近包含了编译ansyc awite的插件
+
+  3：polyfill Babel默认只转换新的 JavaScript 语法，而不转换新的 API。例如，Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise 等全局对象，以及一些定义在全局对象上的方法（比如 Object.assign）
+     babel-polyfill和transform-runtime的不同：
+     babel-polyfill 是在全局定义这些api 引入polyfill后文件会加大很多
+     transform-runtime 在编译是引入所需的垫片实现polyfill的功能且无全局污染，但是实例方法无法正常使用，如 “foobar”.includes(“foo”)
+                       节省包的大小（因为是引用） 并且将js代码中使用到的新原生对象和静态方法转换成对runtime实现包的引用(用js方法做处理而不是直接在全局改写)
+     在一般项目中使用babel-polyfill 在编写第三方库时使用transform-runtime
+
+     tips:在一般项目中也可以使用transform-runtime 但是可能会因为Promise报错
+          这可能是因为某些第三方库使用的是全局Promise而浏览器不支持Promise（例如vuex）
+          也可能是webpack按需加载功能需要浏览器支持Promise
+          这里可在js入口提前定义 Window.Promise=Promise; 让transform-runtime处理后的Promise替换全局下的Promise
+          也可能会因为preset modules的模式存在问题 需要设定modules:false
 
 presets和plugins的顺序
   plugins优先于presets执行
