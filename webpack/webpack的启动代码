@@ -1,0 +1,26 @@
+webpack启动是一个自执行函数  接受所有模块组成的数组 启动时默认执行第一个模块
+核心函数：
+var installedModules={};定义一个全局缓存对象 用来保存和记录已经加载过的模块
+function __webpack_require__(moduleId) {
+        //检查缓存对象，看模块是否加载过
+        if (installedModules[moduleId]) {
+            //如果模块已经加载过直接返回缓存中的模块
+            return installedModules[moduleId].exports;
+        }
+
+        //如果首次加载该模块 创建一个新的模块缓存，再存入缓存对象
+        var module = installedModules[moduleId] = {
+            i: moduleId,
+            l: false,
+            exports: {}
+        };
+
+        // 执行模块代码 将创建的模块缓存、模块的exports、以及__webpack_require__模块加载函数传递给该模块（在有些模块中需要引入其他模块，这样模块可以获取模块加载函数加载其他模块）
+        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+        // 将模块标识为已加载
+        module.l = true;
+
+        // 返回加载好的模块--export的内容
+        return module.exports;
+    }
