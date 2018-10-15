@@ -34,7 +34,7 @@ function ddd(a,b){
     return a(b(...arg))
   }
 }
-function compose(..funcs){
+function compose(funcs){
   if(funcs.length===0){
     return arg=>arg;
   }
@@ -44,7 +44,7 @@ function compose(..funcs){
   return funcs.reduce(ddd);
 }
 compose(funsArg)(0);
-funsArg.reduce(ddd)(0);
+// funsArg.reduce(ddd)(0);
 
 
 

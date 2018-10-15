@@ -24,3 +24,17 @@ function __webpack_require__(moduleId) {
         // 返回加载好的模块--export的内容
         return module.exports;
     }
+一：普通模块加载
+  通过模块id使用 __webpack_require__加载模块 其实异步加载在 chunk js加载完成之后也是讲chunk.js的内容塞入modules数组中 通过__webpack_require__加载所需模块
+二：异步模块加载
+  异步和普通加载的区别在于 异步多了一步动态插入script脚本 脚本插入之后会将chunk缓存数组记录更改成已加载（这个chunk的script已经动态创建过,所以这个chunk里所需要的模块也已经记录在了全局modules里），
+  将chunck里的模块加入全局modules数组 调用 __webpack_require__引入chunck里用到的模块
+
+
+
+源码难点：
+  怎样异步加载chuck.js ?  通过传入chunk的id动态的创建script标签 当然为了逻辑严谨性还在chunk的缓存数组中将状态变为加载中（一个数组,并巧妙的将Promise的resolve和reject函数及本Promise实例放入数组）
+  如果在js加载中的同时又有并发请求加载chunk则直接返回Promise实例 并返回一个处于等待状态的promise（这里之所以用到promise是以为js的加载是异步的）
+
+  在异步加载中 怎样判断chunk.js已经加载完毕？ 这里有一个回调函数 在chunk加载后 脚本执行时会执行这个回调 回调将动态加载chunk的promise异步操作状态变为resolve
+ （并将记录chunk缓存数组中本chunk的状态变为0---已加载）之后会在.then()方法中__webpack_require__已经添加在全局modules数组中的模块
