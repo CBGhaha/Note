@@ -25,7 +25,7 @@ function __webpack_require__(moduleId) {
         return module.exports;
     }
 一：普通模块加载
-  通过模块id使用 __webpack_require__加载模块 其实异步加载在 chunk js加载完成之后也是讲chunk.js的内容塞入modules数组中 通过__webpack_require__加载所需模块
+  通过模块id使用 __webpack_require__加载模块 其实异步加载在 chunk js加载完成之后也是将chunk.js的内容塞入modules数组中 通过__webpack_require__加载所需模块
 二：异步模块加载
   异步和普通加载的区别在于 异步多了一步动态插入script脚本 脚本插入之后会将chunk缓存数组记录更改成已加载（这个chunk的script已经动态创建过,所以这个chunk里所需要的模块也已经记录在了全局modules里），
   将chunck里的模块加入全局modules数组 调用 __webpack_require__引入chunck里用到的模块

@@ -27,3 +27,9 @@ middleware的可以实现的原理：
   //do sth for action;
   nect(...)|dispath(...)
 }
+
+
+redux的主要组成部分和函数方法
+createStore(reducer,initState,enhancer)  store的创建函数 接受combineReducers创建的函数，初始state,store的增强器
+combineReducers()接受一个reducer组成的对象，返回一个函数
+applyMiddleware()enhancer的创建函数
