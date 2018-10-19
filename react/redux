@@ -31,5 +31,6 @@ middleware的可以实现的原理：
 
 redux的主要组成部分和函数方法
 createStore(reducer,initState,enhancer)  store的创建函数 接受combineReducers创建的函数，初始state,store的增强器
-combineReducers()接受一个reducer组成的对象，返回一个函数
-applyMiddleware()enhancer的创建函数
+combineReducers() 接受一个reducer组成的对象，返回一个函数 store内部在更新state时 会给这个函数传递state和action并执行从而创建新的state
+applyMiddleware() enhancer的创建函数 enhancer是一个store的包装 它接收createStore 并执行createStore 得到createStore返回的{dispatch,getState,subscribe,...}
+                  并对
