@@ -33,4 +33,5 @@ redux的主要组成部分和函数方法
 createStore(reducer,initState,enhancer)  store的创建函数 接受combineReducers创建的函数，初始state,store的增强器
 combineReducers() 接受一个reducer组成的对象，返回一个函数 store内部在更新state时 会给这个函数传递state和action并执行从而创建新的state
 applyMiddleware() enhancer的创建函数 enhancer是一个store的包装 它接收createStore 并执行createStore 得到createStore返回的{dispatch,getState,subscribe,...}
-                  并对
+                  并对dispatch进行扩展 1:执行所有中间件，传递dispatch,getState给中间件函数 2:compose执行后的中间件数组 之所以可以compose是因为所有的中间件都返回一个
+                  接受action的函数 这个函数就可以传递给下一个函数当做next 3:将包装后的dispatch和createStore返回的对象合并 返回。
