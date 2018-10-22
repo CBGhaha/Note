@@ -1,0 +1,11 @@
+V2将路由集中管理 通常放到一个router.js文件中定义
+V4是将路由才拆分开来的 可以在组件中定义路由 route变成完全的组件化了 可以再组件中使用
+  对比之前如果需要在两个子路由组件使用公共组件和功能 是通过设定父路由的component layout 然后通过this.props.children
+  现在可以直接定义父路由父组件 在父组件中使用route定义子路由
+
+V4路径默认非精准匹配 比如'/add' 可以匹配 '/'和'/add'两个route
+
+V4增加 Switch 组件 只渲染一个匹配到的route
+V4正价exact属性 实现精准匹配
+
+V4 去除了IndexRoute组件 可以由<Route exact>实现
