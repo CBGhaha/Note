@@ -1,0 +1,2 @@
+connet除了熟知的将 state和action 变成组件的属性 还有一个隐藏的功能 它在内部对比了组件的props 做了一个防重复渲染操作
+这个类似于PureComponent的功能 
