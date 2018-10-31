@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+function compareDate(time){
+  var theDate=new Date(time);
+  var nowDate= new Date();
+  var nowHour=nowDate.getHours();
+  return (theDate.getTime()-nowDate.getTime()+16*3600*1000>0)&&nowHour<15;
+}
+console.log(compareDate('2018-10-26'))
+</script>

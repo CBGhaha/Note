@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+//Object.assgin（）--对象的拷贝 和对象的扩展运算作用一样
+    var arr=[1,2];
+    var obj1={
+      arr:[1,2]
+    };
+    var obj2=Object.assign(new Object(),obj1)
+    console.log(obj2===obj1)
+    console.log(obj2.arr===obj1.arr)//只能深拷贝一层 且不能拷贝对象的原型的属性
+
+//Object.is()---判断变量是否全等
+// js ==的弊端
+// 0 == ' '  // true
+// null == undefined // true
+// [1] == true // true
+
+// js ===的弊端
+// +0 === -0 // true，但我们期待它返回false
+// NaN === NaN // false，我们期待它返回true
+ // Object.is()可以避免上述错误
+ console.log(Object.is(NaN,NaN))
+
+ //对象字面量的属性可以计算 可以动态获取属性
+ var  a={
+   ['aaa'+111]:1,
+   changed:'我是一个不确定属性名的属性'
+ }
+ let objname='changed';
+ console.log(a.aaa111)
+ console.log(a[objname])
+
+ //Object.keys();Object.values();Object.entries()
+ //返回对象的属性名、属性值、属性名和属性值 组成的数组
+
+</script>

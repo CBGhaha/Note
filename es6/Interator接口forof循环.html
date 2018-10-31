@@ -9,7 +9,14 @@
   </body>
 </html>
 <script type="text/javascript">
-// Interator接口：
+// Interator       一是为各种数据结构，提供一个统一的、简便的访问接口；
+//                 二是使得数据结构的成员能够按某种次序排列；
+//                 三是 ES6 创造了一种新的遍历命令for...of循环，
+//                 Iterator 接口主要供for...of消费。
+/**
+    判断一个数据类型是否具有Interator接口是判断他有没有Symbol.iterator属性  Symbol是一个内置的预设定好的 Symbol类型的特殊值
+     Symbol.iterator属性返回一个遍历器生成函数 generator函数一样 执行函数返回一个遍历器对象
+**/
 // Array
 // Map
 // Set
@@ -19,4 +26,15 @@
 // NodeList 对象
 // 这些都可以使用for of 遍历循环
 
+var map=new Map();
+map.set('a',1).set('b',2).set('c',3);
+for(var i of map){
+  console.log(i)
+}
+
+
+// 拿到数据的Interator接口可以使用next 一次获取书记成员
+var interator=map[Symbol.iterator]();
+console.log(interator.next())
+console.log(interator.next())
 </script>

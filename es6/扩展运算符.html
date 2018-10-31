@@ -9,7 +9,7 @@
   </body>
 </html>
 <script type="text/javascript">
-
+//--解构赋值
 // 1:函数的调用
 function aaa(a,...arg){
   console.log(arg);
@@ -19,12 +19,27 @@ function bbb(a,b){
   console.log(a+b);
 };
 bbb(...[1,2]);
-// 2:copy数组 （深拷贝）
+//2:数组的结构赋值
+let [a,b]=[1,2];
+console.log(a,b);
+//3:对象的解构赋值
+let {c,d:{dd}}={c:'c',d:{dd:'dd'}};
+console.log(c,d,dd)
+
+//--拓展运算 用于数组和对象拷贝
+
+// 1:copy数组 （深拷贝）
 let arr1=[1,2,3];
 let arr2=[...arr1];
 let arr3=[0,...arr1];
 console.log(arr2);
 console.log(arr3);
+//2:拷贝对象
+let obj1={a:1,b:2};
+let obj2={...obj1};//这种拷贝和Object.assgin一致 只做了一层的深拷贝 且不能拷贝对象的原型属性
+console.log(obj2)
+console.log(obj2===obj1)
+
 //3:分拆字符串
 let str1='bang';
 let strArr=[...str1];

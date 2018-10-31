@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  function* helloWordGenerator(){
+    yield 'hello';
+    yield 'world';
+    return "end"
+  }
+  var hw=helloWordGenerator();
+  console.log(hw.next());
+  var obj1=Object.create({a:1,b:2})
+  console.log(obj1.constructor);
+
+</script>
