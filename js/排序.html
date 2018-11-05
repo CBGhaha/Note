@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+  //插入排序
+
+  //从数组的第二个开始 依次与前面的成员比较  将大于当前元素的成员后移 自身插入到第一个比他小的成员前面
+    //example [8,4,7,4,2,7,4]
+    //1:[4,8,7,4,2,7,4]
+    //2:[4,7,8,4,2,7,4]
+    //3:[4,4,7,8,2,7,4]
+    //4:[2,4,4,7,8,7,4]
+    //        ...
+  function insertionSort(arr) {
+      for (var i = 1; i < arr.length; i++) {
+          var element = arr[i];
+          for (var j = i - 1; j >= 0; j--) {
+              var tmp = arr[j];
+              var order = tmp - element;
+              if (order > 0) {
+                  arr[j + 1] = tmp;
+              } else {
+                  break;
+              }
+          }
+          arr[j + 1] = element;
+      }
+      return arr;
+  }
+//这种排序的时间复杂度为 O(n)~O(n*n)
+</script>
