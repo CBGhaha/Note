@@ -42,7 +42,7 @@ Person.prototype.do=function(){
       P3.prototype=new Person();
       //缺点 ：几乎完美的继承方式 但是还是有一点  在原型对象和实例属性上都调用父构造函数生成的实例属性有少许性能浪费
 
-//4: 原型式继承---这个也类似于es5的object的object.create()方法
+//4: 原型式继承---这个也类似于es5的object的object.create()方法 它将原对象的属性赋给新对象的__proto__ 而不是新对象本身
     function create(obj){
       function F(){};
       F.prototype=obj;
@@ -59,12 +59,12 @@ Person.prototype.do=function(){
         return clone;
     }
 //寄生组合式继承--实例属性复制给子构造的实例属性  原型属性复制给子构造函数的原型属性
-//之所以需要利用寄生式是因为需要改写子构造函数的原型对象的constructor 而不改变父构造函数原型对象的constructor 
+//之所以需要利用寄生式是因为需要改写子构造函数的原型对象的constructor 而不改变父构造函数原型对象的constructor
     function  P6(){
       Person.call(this)
     }
     prototypeObj=creatObj(Person.prototype);
-    creatObj.constructor=P6;
+    prototypeObj.constructor=P6;//这里的constructor属性是prototypeObj本身的属性非__proto__上的 所以不会覆盖Person的原型
     P6.prototype=prototypeObj;
 
 </script>

@@ -42,4 +42,17 @@
  //Object.keys();Object.values();Object.entries()
  //返回对象的属性名、属性值、属性名和属性值 组成的数组
 
+
+// Object.create()
+//Object.create()将一个对象拷贝给一个新对象的__proto__ 所以新对象本身继承原对象 但是是没有自身属性的
+// example:
+function Person(){
+  this.name='bang'
+}
+var person1=new Person();
+var person2=Object.create(person1);
+console.log(person2);
+console.log(person2.name);
+console.log(person2.constructor)
+console.log(person2.__proto__===person1)
 </script>

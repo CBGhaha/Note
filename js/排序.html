@@ -34,5 +34,37 @@
       }
       return arr;
   }
+
+内连接查询
+select *(table_1.a,b,c,table_2.x,y,z/table_1.*---选择两个表规定的字段) from tablle_1 inner join table_2 on table_1.a=table_2.x where table_1.id>100;
+找到table_1中满足条件的数据 合并匹配上的需要的table_2中的字段 这种会筛去满足不了条件的table_1数据（如果table_2中没有任何数据能和table_1匹配）
+
+
+左连接
+select * from table_1 left join table_2 on  table_1.a=table_2.x where table_1.id>100;
+在内连接查询的基础上 保存匹配不了的table_1数据  而为匹配的table_2数据的字段值为null 并不会筛选table_1的数据
+
+
+右连接
+select * from table_1 right join table_2 on  table_1.a=table_2.x where table_1.id>100;
+与左连接相反 保留table_2的数据
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //这种排序的时间复杂度为 O(n)~O(n*n)
 </script>

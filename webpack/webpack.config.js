@@ -35,7 +35,22 @@ const config={
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.(png|jsp|gif)/,
+        use:[
+          {
+            loader: 'url-loader',
+            options:{
+              query: {
+                limit: 8192,
+                publicPath:'/',
+                name:'imgs/[name].[chunckHash].[ext]'
+              }
+            }
+          }
+        ],
+      },
     ]
   },
   resolve:{
