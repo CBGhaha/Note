@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+//以下配置是服务端配置
+  var time=10000;
+  var path="/";//有效路径--在当前路径及以下路径cookie有效
+  var Domain='abc.com';//有效域--在当前域名及下级域名下有效
+  var Secure=true;//是否仅安全传输--只在https协议传输
+  var HTTPONLY=true;//浏览器存储的cookie是否可以被其他脚本处理
+  setCookie('key','value',time,path,Domain,Secure,HTTPONLY);
+
+//浏览器端通过document.cookie读写cookie
+    //写
+    var exp = new Date();
+		exp.setTime(exp.getTime() + 1*24*60*60*30);
+		document.cookie ="userId=113648;expires=" + exp.toGMTString();
+    //读
+    console.log(document.cookie.userId);
+
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+//
+function Element(tagName,props,children){
+  this.tagName=tagName;
+  this.props=props;
+  this.children=children;
+}
+function ul(tagName,props,children){
+  return new Element(tagName,props,children)
+}
+var el=ul('ul',{id:'list'},[
+  ul('li',{class:'item'},['item 1']),
+  ul('li',{class:'item'},['item 2']),
+  ul('li',{class:'item'},['item 3'])
+])
+Element.prototype.render=function(){
+  var el=document.createElement(this.tagName);
+  for(var propName in this.props){
+    el.setAttribute(propName,this.props[propName])
+  }
+  let children=this.children||[];
+  children.forEach(item=>{
+      var child=item instanceof Element?item.render():document.createTextNode(item);
+      el.appendChild(child)
+  })
+  return el;
+}
+
+document.body.appendChild(el.render())
+
+</script>

@@ -17,35 +17,5 @@
 // }
 // console.log(compareDate('2018-10-26'))
 
-var Base = function () {
-    this.a = 2
-}
-Base.prototype.b= 3;
-var o1 = new Base();
-var o2 = Object.create(Base);
-console.log(o1.a);
-console.log(o1.b);
-console.log(Base.b);
-console.log(o2);
-
-var o3=Object.create(o1);
-console.log(o1.constructor===o3.constructor)
-console.log(o3.constructor)
-
-
-function creatObj(obj){
-    var clone=Object.create(obj);
-    // clone.say=function(){
-    //   console.log('hello')
-    // }
-    return clone;
-}
-function  P6(){
-  Base.call(this)
-}
-prototypeObj=creatObj(Base.prototype);
-prototypeObj.constructor=P6;
-P6.prototype=prototypeObj;
-var p6=new P6();
-console.log(p6.constructor)
+console.log(/^(A|B|C|D)\.$/.test('A.正确'))
 </script>

@@ -1,0 +1,19 @@
+session 一种会话存储技术
+session 在服务端使用开启后 在用户首次访问会在服务端存储一个session-id(可修改定制)
+        在以后的访问中 凭借这个session-id命中session会话中储存的信息供访问和修改
+
+      session也可以和cookie一样配置各种属性
+
+example:
+服务端开启session服务 获取session中是否存在该客户端userId（非session-id） 如果没有那么用户是未登录状态 如果有那么使用userId去数据库中查找用户信息
+如果用户退出登录 那么销毁当前session
+
+
+对于大量的session数据和web服务器集群共享session数据 可以重写session的存储机制 将session和缓存或数据库结合起来
+
+session的6种状态： 开始处理器，结束处理器，读处理器，写处理器，删除处理，垃圾回收处理器
+写：更新或存储session-id和session-content （及当前跟新session的时间）,
+读：根据session-id读取session-Content,
+删除：删除该条数据
+垃圾回收：超过session的有效期执行的操作 当前时间和写操作时候记录的时间相比 如果大于规定的实效时间则删除数据
+开始和结束处理：一些初始化和收尾工作

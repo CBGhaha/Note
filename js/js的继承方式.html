@@ -22,7 +22,7 @@ Person.prototype.do=function(){
       P1.prototype.say=function(){
         console.log('hello')
       }
-      //缺点  1：对于引用类型的属性（Array,Object） 被所有实例共享 所以修改时也会全部修改
+      //缺点  1：对于原型上引用类型的属性（Array,Object） 被所有实例共享 所以修改时也会全部修改
       //     2:无法向父构造函数传参
 
 //2:构造继承
