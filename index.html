@@ -2,20 +2,23 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <title></title>
+    <style media="screen">
+      body{
+        font-family: '隶书'
+      }
+    </style>
   </head>
   <body>
-
+    SSSS
+    <p id='box'></p>
   </body>
 </html>
 <script type="text/javascript">
-// function compareDate(time){
-//   var theDate=new Date(time);
-//   var nowDate= new Date();
-//   var nowHour=nowDate.getHours();
-//   return (theDate.getTime()-nowDate.getTime()+16*3600*1000>0)&&nowHour<15;
-// }
-// console.log(compareDate('2018-10-26'))
+var a=JSON.stringify(window.navigator.userAgent);
+document.getElementById('box').innerHTML = a;
+if(/Browser|Safari|Firefox|Chrome/.test(window.navigator.userAgent)){
 
-console.log(/^(A|B|C|D)\.$/.test('A.正确'))
+}
 </script>
