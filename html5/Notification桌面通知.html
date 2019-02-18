@@ -10,12 +10,12 @@
 </html>
 <script type="text/javascript">
 
+
 //Notification.requestPermission()---让浏览器弹出是否允许消息通知的提示
 
 //Notification.permission---（只读）granted, denied, 或default 允许/阻止/等待
 
 //new Notification(title, options) ---创建一个消息对话  在结合 Service Worker中用注册后的实例的showNotification方法
-
 
 if(!('PushManager' in window)){
   alert("您的浏览器不支持消息推送！")
@@ -31,7 +31,9 @@ if(!('PushManager' in window)){
       notificationRequstPermission.then(resolve)
     }
   }).then(result=>{
+    console.log(result);
     if(result==='granted'){
+      //chromw仅用于https
         new Notification('标题',{
           body:'内容',
           icon:'/icon1.png'

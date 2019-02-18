@@ -19,13 +19,12 @@ Person.prototype.say=function(){
   console.log(this.name)
 }
 console.log(Person.prototype.constructor===Person)
-console.log(Person.__proto__)
 
 //hasOwnProperty 判断一个对象的属性是来自自身还是原型对象
 var p1=new Person();
 console.log('name属性是否来自它本身:',p1.hasOwnProperty("name"))
 console.log('say属性是否来自它本身:',p1.hasOwnProperty("say"))
-//因为这个属性是可写的为了防止属性被改写 所以在很多第三方模块或框架中 用
+//因为这个属性是可写的 为了防止属性被改写 所以在很多第三方模块或框架中 用
 Object.prototype.hasOwnProperty.bind(p1,'name')
 
 //实例化一个对象的时候在函数内部的定义的属性是单独的 每次实例化的时候会执行一遍  在原型对象上定义的属性是共享的

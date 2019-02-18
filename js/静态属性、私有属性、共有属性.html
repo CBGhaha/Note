@@ -26,13 +26,13 @@
   }
 //  私有属性
   function Human(){
-    var name="bang",
-    this.saySelf(){
+    var name="bang";
+    this.saySelf=()=>{
       console.log(name)
     }
   }
   new Human().saySelf()
   // name 是私有属性 --外部不可改变 内部可以访问
 
-//目前class只有静态方法 没有静态属性  
+//目前class只有静态方法 没有静态属性
 </script>

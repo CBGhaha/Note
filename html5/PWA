@@ -14,4 +14,3 @@ PWA 的主要技术点
 
   一：Service Worker和web worker一样 也是一个单独的进程 独立于当前网页进程
   二：manifest.json目前处于草案阶段 Chrome和Firefox已经实现了这个功能 微软正在edge上努力实现 但是iOS目前在11.3 safari中得到了支持
-  三：

@@ -9,7 +9,7 @@ babel的配置
      babel-preset-es2015(将代码转化为es5)/2016/2017(将ES2016/ES2017转化为es6) 所以一般选择es2015结合stage-x当然也可以一起使用（es5 es6 es7）
      babel-preset-last 相当于（es5 es6 es7）一起使用
      stage-0/1/2/3  按照提案阶段 前面包括后面的内容 一般图省事直接设置成stage-0
-     babel-preset-env   --https://babel.docschina.org/docs/en/babel-preset-env 
+     babel-preset-env   --https://babel.docschina.org/docs/en/babel-preset-env
                         --https://segmentfault.com/a/1190000011639765
 
         --env不配置默认包含 2015/2016/2017
@@ -27,6 +27,7 @@ babel的配置
      babel-polyfill 是在全局定义这些api 引入polyfill后文件会加大很多
      transform-runtime 在编译是引入所需的垫片实现polyfill的功能且无全局污染，但是实例方法无法正常使用，如 “foobar”.includes(“foo”)
                        节省包的大小（因为是引用） 并且将js代码中使用到的新原生对象和静态方法转换成对runtime实现包的引用(用js方法做处理而不是直接在全局改写)
+                       babel-plugin-transform-runtime 和 babel-runtime 需要配套使用，使用了 babel-plugin-transform-runtime 后一定需要 babel-runtime
      在一般项目中使用babel-polyfill 在编写第三方库时使用transform-runtime
 
      tips:在一般项目中也可以使用transform-runtime 但是可能会因为Promise报错
