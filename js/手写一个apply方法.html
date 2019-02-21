@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+        Function.prototype.$apply=function(obj,arr){
+          obj.fn=this;
+          var argArr=[];
+          for(var i=1;i<arguments.length;i++){
+            argArr.push('arguments['+i+']')
+          }
+          eval("obj.fn("+argArr+")");
+          delete obj.fn;
+
+        }
+        function a(mun){
+          console.log(mun);
+          console.log(this.name)
+        }
+        a.$apply({name:'bangguo'},25)
+  </script>
+
+</html>

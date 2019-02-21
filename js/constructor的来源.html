@@ -24,5 +24,7 @@ console.log(a.__proto__.constructor===a.constructor)
 let prototypeObj=a.__proto__ ;
 console.log(prototypeObj)//可以看到prototypeObj自己有constructor属性 并不是来自__proto__
               //原型对象的原型的constructor       //原型对象的constructor
+console.log(prototypeObj.__proto__.constructor);
+console.log(prototypeObj.constructor);
 console.log(prototypeObj.__proto__.constructor===prototypeObj.constructor)
 </script>

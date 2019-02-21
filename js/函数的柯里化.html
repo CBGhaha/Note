@@ -15,6 +15,7 @@
   const curry = function(fn,...rest) {
     //用来记录传入的实参
     const _args = rest||[];
+    //返回一个函数 如果该函数未接受参数 则将保存的参数数组传入fn 并执行fn 否则保存传递来的参数并继续返回函数
     return function cb(...rest) {
       if (rest.length === 0) {
         return fn.apply(this, _args);

@@ -65,6 +65,8 @@ Person.prototype.do=function(){
     }
     prototypeObj=creatObj(Person.prototype);
     prototypeObj.constructor=P6;//这里的constructor属性是prototypeObj本身的属性非__proto__上的 所以不会覆盖Person的原型
+    console.log(prototypeObj.__proto__.constructor);
+    console.log(prototypeObj.constructor)
     P6.prototype=prototypeObj;
 
 </script>

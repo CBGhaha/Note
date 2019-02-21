@@ -9,20 +9,29 @@
   </body>
 </html>
 <script type="text/javascript">
-  Function.proptotype.$call=function(context){
+console.log(Function);
+  Function.prototype.$call=function(context){
+    //context为新指定的对象
     //给新指定this的对象 加入一个方法 该方法为函数本身
+
+    //在context上定义方法的目的是这样原函数的this将自动指向context
       context.fn=this;
     //用数组记录下传过来的参数 （排除第一个绑定的this参数 ）
       var args=[];
-      for(var i=1,i<arguments.length;i++){
+      for(var i=1;i<arguments.length;i++){
         args.push("arguments["+i+"]")
       }
     //用eval转换为js后执行
-      eval("context.fn("+args+"0");
+      eval("context.fn("+args+")");
     //执行完后删除增加的原this对象的fn属性
       delete context.fn;
   }
 
 //整个思路是接受一个更改this指向的新对象 给新对象设定一个函数方法 方法为需要改变this指向的原函数 这时调用该方法时函数内部的this就指向了整个新对象
 //接着把记录的其他arguments 再传递给该方法执行
+var a=function (num){
+  console.log(num);
+  console.log(this.name);
+}
+a.$call({name:'bang'},20);
 </script>
