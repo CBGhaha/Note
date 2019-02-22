@@ -16,19 +16,20 @@
     </style>
   </head>
   <body>
-    <div id='box1'></div>
+    <div id='box1'>box1</div>
     <div id='box2'>
-      <div id='dd'></div>
+      box2
+      <div id='dd'>dd</div>
     </div>
   </body>
 </html>
 <script type="text/javascript">
-// dom0级事件 dom0级事件只能在冒泡流中触发 q且每个dom元素只能绑定一个dom0级事件
+// dom0级事件 dom0级事件只能在冒泡流中触发 且每个dom元素只能绑定一个dom0级事件
 var box1=document.getElementById('box1');
 var box2=document.getElementById('box2');
 var dd=document.getElementById('dd');
-box1.onclick=function(e){
-  console.log(e.target)
+dd.onclick=function(e){
+  console.log(e.target,'我是dd上绑定的dom0级事件')
 }
 
 //dom2级事件 在事件冒泡和事件捕获流中都可以设定 而且一个dom元素可以绑定多个dom2同一事件
@@ -36,10 +37,16 @@ box1.onclick=function(e){
 //一般都是采用冒泡流
 
 // 点击dd的时候也点击了box2 先捕获流 box2->dd再冒泡流dd->box2
-box2.addEventListener('click',function(e){
-  console.log(e.target)
+box2.onclick=function(e){
+  console.log(e.target,'我是box2上绑定的dom0级事件')
+}
+dd.addEventListener('click',function(e){
+  console.log(e.target,'我是dd上绑定的冒泡流事件')
 },false)
 box2.addEventListener('click',function(e){
-  console.log('我绑定的是捕获流的dom事件')
+  console.log(e.target,'我是box2上绑定的冒泡流事件')
+},false)
+box2.addEventListener('click',function(e){
+  console.log(e.target,'我是box2上绑定的捕获流事件')
 },true)
 </script>

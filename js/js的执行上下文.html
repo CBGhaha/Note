@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+
+
+   /*
+      js的执行上下文：
+        1:全局上下文
+        2:函数执行上下文
+        3：eval函数执行上下文
+  */
+
+  /*
+      执行上下文栈
+        在js执行时会push全局执行上下文到执行上下文栈中 当调用函数时会创建该函数的执行上下文到栈中
+       当栈顶的函数执行完毕时 该函数的执行上下文将会从栈中pop出
+  */
+
+  //例如：
+
+  var scope = "global scope";
+  function checkscope(){
+      var scope = "local scope";
+      function f(){
+          return scope;
+      }
+      return f();
+  }
+  checkscope();
+
+/*
+  ECStack.push(<checkscope> functionContext);  checkscope函数执行上下文进栈
+  ECStack.push(<f> functionContext);           f函数执行上下文进栈
+  ECStack.pop();                               f函数执行上下文出栈
+  ECStack.pop();                              heckscope函数执行上下文出栈
+*/
+
+  var scope = "global scope";
+  function checkscope(){
+      var scope = "local scope";
+      function f(){
+          return scope;
+      }
+      return f;
+  }
+  checkscope()();
+
+  /*
+    ECStack.push(<checkscope> functionContext); checkscope函数上下文进栈
+    ECStack.pop();                              checkscope函数上下文出栈
+    ECStack.push(<f> functionContext);          f函数上下文进栈
+    ECStack.pop();                              checkscope函数上下文出栈
+  */
+
+  // 执行上下文分为创建阶段和执行阶段
+  /*
+    在创建阶段做三件事
+        1: 确定this的值
+        2：创建词法环境 let const定义的变量 但不会定义，functhin定义的函数 函数的arguments 已定义，以及可引入使用的外部环境的词法词法（函数可使用的 函数外部定义的变量）
+        3：创建变量环境 var 定义的变量 定义为undefined，以及可引入使用的外部环境的环境变量（函数可使用的 函数外部定义的变量）
+  */
+  //所以在变量提升中 var functhin 定义的变量可存在变量提升 且function能正确调用 而let const声明的变量无法提升
+  /*
+    赋值，执行代码
+  */
+  </script>
+
+</html>

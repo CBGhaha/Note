@@ -1,0 +1,12 @@
+hasOwnProperty() 判断对象的属性是否来自本身（可能来自原型对象）
+defineProperty(obj,key,{
+    get:
+    set:
+    writable: 是否可写
+    value:
+})  给对象设定属性
+
+
+optimize:优化
+alias:别名
+extensions:拓展
