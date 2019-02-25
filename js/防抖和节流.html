@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id='box'>111</div>
+    <div id='box2'>222</div>
+  </body>
+  <script type="text/javascript">
+    //防抖是高频延时事件只会触发一次 且最后一次会覆盖前面的
+    function debounce(fn,time){
+      let timeOut=false;
+      return ()=>{
+        clearTimeout(timeOut);
+        timeOut=setTimeout(()=>{
+          fn.call(this);
+        },time)
+      }
+
+    }
+    //节流是高频延迟事件不会同时触发 第一次事件未处理完成 后续事件不触发
+    function throttle(fn,time){
+      var timeOut=true;
+      return function(){
+        if(timeOut){
+          setTimeout(()=>{
+            fn.call(this);
+            timeOut=true;
+          },1000)
+          timeOut=false;
+        }
+      }
+    }
+    var box=document.getElementById('box');
+    function eventfun(){
+      console.log('click!')
+    }
+    box.onclick=debounce(eventfun,1000)
+    box2.onclick=throttle(eventfun,1000)
+  </script>
+</html>

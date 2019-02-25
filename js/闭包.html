@@ -70,4 +70,40 @@ resultFun();
 
 
 
+//闭包的特殊性  如果一个函数内部存在两个闭包 如果其中一个闭包引入了外部作用域的变量 那该变量将出现在该作用域所有闭包共享的词法环境中。
+
+var theThing = null;
+var replaceThing = function () {
+  var originalThing = theThing;
+  theThing = {
+    longStr: new Array(1000000).join('*'),
+    a:function(){
+      console.log(originalThing);
+    }
+  };
+};
+setInterval(replaceThing, 1000);
+//上面代码时常见的内存泄露 a方法是一个闭包 访问了originalThing这个包含大数组属性的对象  垃圾回收机制无法回收闭包内对外部作用域的引用
+
+
+var theThing = null;
+var replaceThing = function () {
+  var originalThing = theThing;
+  var unused = function () {
+    if (originalThing)
+      console.log("hi");
+  };
+
+  theThing = {
+    longStr: new Array(1000000).join('*'),
+    someMethod: function () {
+      console.log(someMessage);
+    }
+  };
+};
+
+setInterval(replaceThing, 1000);
+//但如上代码也会造成内存泄露 即使闭包someMethod并未访问originalThing这个大对象 因为另一个闭包unused访问了外部函数的originalThing变量
+//originalThing进入作用域所有闭包共享的词法环境中 所以originalThing也无法被垃圾回收机制回收
+
 </script>

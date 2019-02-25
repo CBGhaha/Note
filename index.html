@@ -9,16 +9,30 @@
         font-family: '隶书'
       }
     </style>
-    <script src="http://g.alicdn.com/msd/base-flexible/0.0.5/flexible-min.js"></script>
   </head>
   <body>
     SSSS
-    <p id='box'></p>
+    <p id='box' onclick='grow()'>111</p>
+    <div id='nodes'></div>
   </body>
 </html>
-<script type="text/javascript">
-var a=JSON.stringify(window.navigator.userAgent);
-document.getElementById('box').innerHTML = a;
-if(/Browser|Safari|Firefox|Chrome/.test(window.navigator.userAgent)){
 
-}</script>
+<script>
+    console.log(person)
+
+    console.log(fun)
+
+    var person = "Eric";
+
+    console.log(person)
+
+    function fun() {
+        console.log(person)
+        var person = "Tom";
+        console.log(person)
+    }
+
+    fun()
+
+    console.log(person)
+</script>
