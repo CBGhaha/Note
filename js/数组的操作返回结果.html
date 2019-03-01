@@ -30,4 +30,15 @@ let arr7=arr6.pop();
 console.log(arr6);
 console.log(arr7);
 
+//forEach遍历  即不修改原数组 也不会返回新的数组
+let arr8=[1,2,3,4];
+arr8.forEach(function(value,index,arr){
+  console.log(this);
+  console.log(value,index,arr)
+})
+let arr9=[1,2,3,4];
+let arr10=arr9.map((value,index)=>{
+  return value+1;
+})
+console.log(arr10);
 </script>

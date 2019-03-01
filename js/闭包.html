@@ -83,7 +83,8 @@ var replaceThing = function () {
   };
 };
 setInterval(replaceThing, 1000);
-//上面代码时常见的内存泄露 a方法是一个闭包 访问了originalThing这个包含大数组属性的对象  垃圾回收机制无法回收闭包内对外部作用域的引用
+//上面代码是常见的内存泄露 a方法是一个闭包 访问了originalThing这个包含大数组属性的对象 其存储了上一次创建的大数组对象 而上次有访问了上上次的大数组对象 所以创建过得大数组对象被层级嵌套引用
+// 垃圾回收机制无法回收闭包内对外部作用域的引用
 
 
 var theThing = null;

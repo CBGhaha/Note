@@ -17,7 +17,7 @@ export default function applyMiddleware(...middlewares) {
 
     [next => action =>{ console.log(1);return next(action)},next => action =>{console.log(2);return next(action)}]//由于上一步所以这里说有函数成员都能拿到middlewareAPI
     // 数组成员1执行之后的内容 作为参数传递给 数组成员0
-    next=function(action){
+    function(action){
         console.log(2);
         return store.dispatch(action)
     }

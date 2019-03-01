@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+</html>
+<script type="text/javascript">
+// 1:Object.create(obj)，返回一个原型指向obj的新对象
+function A(){
+  this.name='aa';
+}
+var a=new A();
+var obj1=Object.create(a);
+console.log(obj1);
+// 2:Object.prototype.hasOwnProperty(key),判断属性是否来自自身
+console.log(a.hasOwnProperty('name'));
+console.log(obj1.hasOwnProperty('name'));
+
+// 3：Object.defineProperties(obj,{...})/Object.defineProperty(obj,key,{...}),设定对象属性 及属性的可读、可写、可遍历、可删除、get、set
+Object.defineProperties(a,{
+  age:{
+    writeable:false,
+    enumerabel:false,
+    value:25,
+    configurable:false
+  }
+})
+console.log(a);
+//4: Object.getOwnPropertyDescriptor(obj,name) 获取对象自身的属性的属性 （writeable,configurable,enumerable,value,get,set）
+  var des=Object.getOwnPropertyDescriptor(a,'name');
+  console.log(des);
+//5: Object.getOwnpropertyNames(obj) 获取对象自身所有属性名组成的数组 包括可枚举和不可枚举的属性名 但Symbol除外
+var keysNames=Object.getOwnPropertyNames(a);
+console.log(keysNames);
+//6: Object.prototype.isPrototypeOf(); 判断对象是否在目标对象的原型链上
+console.log(a.isPrototypeOf(obj1));
+
+
+//es6新加方法
+//Object.assign() 对象一层深拷贝 只能拷贝自身可遍历没symbol属性
+//Object.is(obj1,obj2) 判断值相等 改进===的 +0和-0相等 和NaN和NaN不等
+//Object.getOwnPropertyDescriptors() 获取对象属性 的完整属性对象 getOwnPropertyDescriptor的复合版 主要用来解决Object.assign()无法拷贝对象的的set和get http://es6.ruanyifeng.com/#docs/object-methods#Object-getOwnPropertyDescriptors
+//Object.getPrototypeOf() Object.setPrototypeOf() 读/写对象的原型
+//Object.keys()，Object.values()，Object.entries() 返回对象自身可枚举的键、值、键值对数组 组成的数组 不包括symbol
+//Object.getOwnPropertySymbols(obj) 获取对象自身Symbol属性组成的数组
+
+
+//对象的遍历方法
+//1: for...in循环：只遍历对象自身的和继承的可枚举的属性 不包括symbol。
+//2: 获取键名数组 再遍历 Reflect.ownKeys()和Objetc.keys() 相比多了自身的symbol属性名
+</script>
