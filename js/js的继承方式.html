@@ -69,4 +69,23 @@ Person.prototype.do=function(){
     console.log(prototypeObj.constructor)
     P6.prototype=prototypeObj;
 
+
+
+//es6的继承
+//es6的继承有两点  子类的__proto__指向父类
+//在es5中在子类中创建this 用父类的构造函数修饰this
+//在es6中是在父类创建this this包含父类实例属性 在子类修饰this
+
+class A extends Array{
+  constructor(){
+    super()
+  }
+}
+
+function B(){
+  Array.apply(this)
+}
+console.log(new A());
+console.log(new B())
+
 </script>

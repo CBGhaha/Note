@@ -26,7 +26,9 @@ class Person{
 let person1=new Person();
 //1: typrof检测 返回 function
 console.log(typeof Person);
-//2:每个class都有一个constructor方法 在实例化一个对象时默认执行 如果未显示定义 一个空的constructor方法会被添加
+//2:每个class都有一个constructor方法
+//constructor相当于构造函数 在实例化一个对象时默认执行 如果未显示定义 一个空的constructor方法会被添加 而且会默认加入super()
+//如果construcor方法中 return 则和es5构造函数一致 如果返回类型是object则会替代实例对象
 
 //3:person1 instanceof Person 依然可以判断实例对象的类
 console.log(person1 instanceof Person);
@@ -47,7 +49,7 @@ console.log(person2.name);
 person2.realName='bang';
 console.log(person2.name);
 
-//7：类的静态方法 在类的定义方法前加入static 则该方法只能被类本身调用 不能被他的实例对象调用
+//7：类的静态方法 在类的定义方法前加入static 则该方法只能被类本身调用 不能被他的实例对象调用 静态方法中的this指向类本身
 Person.personal();
 person1.personal();
 

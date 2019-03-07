@@ -1,0 +1,20 @@
+一:组件实例化时
+    1：getDefaultProps---只会调用一次 用于获取初始的props
+    2：getInitialState---只会调用一次 用于设置初始化的state
+    3：componentWillMount---在首次渲染之前调用 最后一次修改state的机会 但修改state并不会触发render
+    4: render  ---创建虚拟dom
+    5: componentDidMount ---虚拟dom创建完毕 并且所有子组件render执行完毕 可以在此获取数据
+
+    问题点:          componentWillMount         和           componentDidMount有什么区别：
+                    修改无法触发render执行                                  可以
+                    服务端客户端都能调用                                  服务端无法调用
+                    综上 componentWillMount不能用来获取数据  因为数据的获取是异步的 并不能触发render
+二：组件存在期
+    componentWillReceiveProps ---在组件props更新时执行 在此处可以根据props的修改 更新组件的state并且此时的setState并不会触发组件的render
+    shouldComponentUpdate---在组件props和state更新时触发 返回false则组件不会更新 返回true则会更新
+    componentWillUpdate---组件即将重新渲染
+    componentDidUpdate---组件重新渲染完成 此处可以访问和修改dom
+
+三:组件销毁期
+    componentWillUnmount ---组件从dom中卸载移除时 在此处应完成清理和销毁工作 例如定时器和dom事件监听
+    

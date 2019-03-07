@@ -18,5 +18,16 @@
 </html>
 
 <script>
-a={a:{x:1},b:2}
+  class A{
+    constructor(){
+      this.name='bangguo';
+    }
+  }
+  class B extends A{
+    constructor(){
+      super()
+    }
+  }
+  var b=new B();
+  console.log(b)
 </script>

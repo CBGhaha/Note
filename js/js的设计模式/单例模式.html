@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+    //单例--- 使一个类创建唯一实例 即使多次实例化该类也只但会第一次实例化后的实例对象 但js是一种“无类”语言 所以把函数当成类也说得通
+    var getObj=(function(){
+        var  createObj;
+        function A(){
+          this.name='bang'
+        }
+        return function(){
+          createObj=createObj?createObj:new A();
+          return createObj;
+        }
+    })()
+
+    //以上就是一个单例模式 getObj是一个函数 每次返回都是同一个A构造函数的实例
+    console.log(getObj(),getObj()===getObj())
+
+    //如何在es6 Class创建单例模式  在constructor中判断单例对象是否已经创建（对象绑定在类的静态属性上）
+    class B{
+      constructor(str){
+        if(B.singletonObj){
+          return B.singletonObj
+        }
+        this.name=str;
+        B.singletonObj=this;
+      }
+    }
+    new B('bangguo')
+    console.log(new B(),new B()===new B() )
+  </script>
+</html>

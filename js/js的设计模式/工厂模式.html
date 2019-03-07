@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/javascript">
+        //工厂模式是一种创建对象的函数 不关心创建对象的逻辑是怎么实现的 根据不同参数返回不同对象
+        //根据不同参数生成不同类的实例
+
+        //简单工厂模式  判断逻辑都在工厂函数中 如果需要判断的类不断增多则判断逻辑复杂 代码改动多
+        let UserFactory = function (role) {
+          function SuperAdmin() {
+            this.name = "超级管理员",
+            this.viewPage = ['首页', '通讯录', '发现页', '应用数据', '权限管理']
+          }
+          function Admin() {
+            this.name = "管理员",
+            this.viewPage = ['首页', '通讯录', '发现页', '应用数据']
+          }
+          function NormalUser() {
+            this.name = '普通用户',
+            this.viewPage = ['首页', '通讯录', '发现页']
+          }
+
+          switch (role) {
+            case 'superAdmin':
+              return new SuperAdmin();
+              break;
+            case 'admin':
+              return new Admin();
+              break;
+            case 'user':
+              return new NormalUser();
+              break;
+            default:
+              throw new Error('参数错误, 可选参数:superAdmin、admin、user');
+          }
+        }
+
+        //调用
+        let superAdmin = UserFactory('superAdmin');
+        let admin = UserFactory('admin')
+        let normalUser = UserFactory('user')
+
+    </script>
+  </body>
+
+</html>
