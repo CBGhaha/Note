@@ -9,12 +9,17 @@
   </body>
 </html>
 <script type="text/javascript">
-  diff 策略
-  1:Web UI 中 DOM 节点跨层级的移动操作特别少，可以忽略不计。
+//react的diff
+  //react计算出新的vritual dom树后和旧的Vritual-dom树对比  找到区别（diff） 更新dom
+    /*
+    diff的原则：
+    一：虚拟dom树 diff（tree diff）：react只会对同一级的节点比较 不会跨级比较节点 如果节点D跨级操作 则会在原级删除节点 在另一级新建节点
+    二：组件的diff（component diff）：不同组件类创建的组件 直接删除新建 不继续比较 如果是相同的组件类则继续沿用虚拟dom树 diff 比较
+    三：同一节点下的组件和子节点比较(element diff):react根据key值比较节点是否相同 对于已存在的节点 如果顺序修改则移动节点 已删除则删除节点 新增则新增节点
 
-  2:拥有相同类的两个组件将会生成相似的树形结构，拥有不同类的两个组件将会生成不同的树形结构。
 
-  3:对于同一层级的一组子节点，它们可以通过唯一 id 进行区分。
 
-  基于以上三个前提策略，React 分别对 tree diff、component diff 以及 element diff 进行算法优化，事实也证明这三个前提策略是合理且准确的，它保证了整体界面构建的性能。
+  */
+
+
 </script>
