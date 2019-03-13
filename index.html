@@ -5,29 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
     <title></title>
     <style media="screen">
-      body{
-        font-family: '隶书'
+      #box{
+        height: 200px;
+      }
+      #box::after{
+        content:'';
+        width:0;
+        height:100%;
+        display:inline-block;
+        vertical-align:middle;
+      }
+      #box>div{
+        width: 100px;
+        height: 100px;
+        background: blue;
+        border: 1px solid yellow;
+        display: inline-block;
+        vertical-align: middle;
       }
     </style>
   </head>
   <body>
-    SSSS
-    <p id='box' onclick='grow()'>111</p>
-    <div id='nodes'></div>
+    <div  id='box'>
+      <div class='c1'>1</div>
+      <div class='c2'>2</div>
+      <div class='c3'>3</div>
+      <div class='c4'>4</div>
+      <div>5</div>
+    </div>
   </body>
 </html>
 
 <script>
-  class A{
-    constructor(){
-      this.name='bangguo';
-    }
-  }
-  class B extends A{
-    constructor(){
-      super()
-    }
-  }
-  var b=new B();
-  console.log(b)
+console.log(window.history);
+history.pushState('s','','abc');
+onpopstate
 </script>
