@@ -15,11 +15,11 @@ new Promise((resolve,reject)=>{
   resolve(1111);
 }).then((res)=>{
   console.log(11)
-  return(res)
-}).catch((error)=>{
-  console.log(error)
+  return(res)//这里返回了一个新的promise 相当于Promise.resolve(res),可以给后续的.then调用
 }).then(r=>{
   console.log(r)
+}).catch((error)=>{
+  console.log(error)
 })
 
 // .catch是.then(,(error)=>{})的别名
@@ -36,6 +36,7 @@ new Promise((resolve,reject)=>{
   new Promise((resolve,reject)=>{
     resolve(111)
   })
+  // 如果Promise.resolve接受的本身就是一个Promise实例 则直接返回这个实例 Promise.resolve（promiseA）===promiseAS
 /*****************************************************/
 //Promise.reject
   //返回一个reject 状态的 promise实例

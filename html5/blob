@@ -1,0 +1,32 @@
+blob对象是存储二进制文件，
+blob属性：size:文件大小
+          type:文件类型 MIME
+    方法：slice（startIndex,endIndex） 分割大文件
+
+File:继承blob
+File属性：
+      name：文件名，该属性只读。
+      size：文件大小，单位为字节，该属性只读。
+      type：文件的 MIME 类型，如果分辨不出类型，则为空字符串，该属性只读。
+      lastModified：文件的上次修改时间，格式为时间戳。
+      lastModifiedDate：文件的上次修改时间，格式为 Date 对象实例。
+    方法：继承自blob的slice，用来分割文件
+
+FileReader:用来读取blob和file对象，将文件读取成文本字符串、ArrayBuffer,Base64编码（本地读取img并编辑）、
+实例方法：
+    readAsText(Blob|File, opt_encoding)：返回文本字符串。默认情况下，文本编码格式是 UTF-8，可以通过可选的格式参数，指定其他编码格式的文本。
+    readAsDataURL(Blob|File)：返回一个基于 Base64 编码的 data-uri 对象。
+    readAsArrayBuffer(Blob|File)：返回一个 ArrayBuffer 对象。
+    abort：中断读取
+
+读取是异步的，存在以下事件：
+      onabort ：读取中断或调用 reader.abort() 方法时触发。
+      onerror ：读取出错时触发。
+      onload  ：读取成功后触发。
+      onloadend ：读取完成后触发，不管是否成功。触发顺序排在 onload 或 onerror 后面。
+      onloadstart ：读取将要开始时触发。
+      onprogress  ：读取过程中周期性触发。（可以用来获取文件读取的进度）
+
+
+window.URL.createObjectURL(blob|file) ：创建一个文件的超链接
+应用场景可以是显示本地上传图片，获取下载资源 插入a标签用户点击下载获取。

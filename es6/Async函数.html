@@ -9,9 +9,14 @@
   </body>
 </html>
 <script type="text/javascript">
+var ss=new Promise((resolve)=>{
+  setTimeout(()=>{
+    resolve(1111)
+  },1000)
+})
   async function a(){
     try{
-        const data1 = await Promise.resolve(1);
+        const data1 = await ss;//把await后面的内容包装成一个promise Promise.resolve(s),将s作为下一个Promise 传递给下一个then 处理
         const data2 = await Promise.resolve(2);
         const data3 = await Promise.resolve(3);
         console.log(data1,data2,data3)
@@ -19,7 +24,29 @@
 
     }
   }
+  //这里相当于
+  //tips:Promise.resolve()里如果是个promise 则后面的then相当于调用ss.then
+  let data1,data2,data3;
+  console.log(Promise.resolve(ss)===ss);
+  Promise.resolve(ss).then((a1)=>{
+    data1=a1;
+    return Promise.resolve(2)
+  }).then((a2)=>{
+    data2=a2;
+    return Promise.resolve(3)
+  })
+  .then((a3)=>{
+    data3=a3;
+    console.log(data1,data2,data3)
+  })
   //只有当前await等待的 promise 兑现后，它后面的代码才会执行（或者抛出错误，后面代码都不执行，直接去到 catch 分支）
   // 相比较promise async更加语义化
   a()
+
+  new Promise((resolve)=>{
+
+    resolve(111)
+  }).then((a)=>{JSON.parse('a')}).catch((err)=>{
+    console.log(err)
+  })
 </script>
