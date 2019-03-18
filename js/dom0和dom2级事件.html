@@ -24,6 +24,7 @@
   </body>
 </html>
 <script type="text/javascript">
+//DOM标准规定事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。
 // dom0级事件 dom0级事件只能在冒泡流中触发 且每个dom元素只能绑定一个dom0级事件
 var box1=document.getElementById('box1');
 var box2=document.getElementById('box2');
@@ -38,8 +39,12 @@ dd.onclick=function(e){
 
 // 点击dd的时候也点击了box2 先捕获流 box2->dd再冒泡流dd->box2
 box2.onclick=function(e){
+  console.log(e.currentTarget)
   console.log(e.target,'我是box2上绑定的dom0级事件')
 }
+dd.addEventListener('click',function(e){
+  console.log(e.target,'我是dd上绑定的捕获流事件')
+},true)
 dd.addEventListener('click',function(e){
   console.log(e.target,'我是dd上绑定的冒泡流事件')
 },false)

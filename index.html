@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
     <title></title>
     <style media="screen">
+    body{
+      padding:0.1px
+    }
       #box{
-        height: 200px;
+        height: 2000px;
+        margin-top: 200px;
+        position: relative;
+        margin-left: 100px;
       }
-      #box::after{
-        content:'';
-        width:0;
-        height:100%;
-        display:inline-block;
-        vertical-align:middle;
+      .c1{
+        position: sticky;
+        top: 100px;left:100px;
       }
       #box>div{
         width: 100px;
@@ -33,6 +36,7 @@
       <div class='c4'>4</div>
       <div>5</div>
     </div>
+    111
   </body>
 </html>
 
