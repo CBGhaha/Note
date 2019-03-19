@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -9,6 +10,10 @@
   </body>
 </html>
 <script type="text/javascript">
+var example1=[8,4,7,4,2,7,4];
+var example2=[8,4,7,4,2,7,4];
+var example3=[8,4,7,4,2,7,4];
+var example4=[8,4,7,4,2,7,4];
   //插入排序
 
   //从数组的第二个开始 依次与前面的成员比较  将大于当前元素的成员后移 自身插入到第一个比他小的成员前面
@@ -18,10 +23,12 @@
     //3:[4,4,7,8,2,7,4]
     //4:[2,4,4,7,8,7,4]
     //        ...
+  let num1=0;
   function insertionSort(arr) {
       for (var i = 1; i < arr.length; i++) {
           var element = arr[i];
           for (var j = i - 1; j >= 0; j--) {
+            num1++;
               var tmp = arr[j];
               var order = tmp - element;
               if (order > 0) {
@@ -34,20 +41,86 @@
       }
       return arr;
   }
+  console.log(insertionSort(example1),num1)
 
-内连接查询
-select *(table_1.a,b,c,table_2.x,y,z/table_1.*---选择两个表规定的字段) from tablle_1 inner join table_2 on table_1.a=table_2.x where table_1.id>100;
-找到table_1中满足条件的数据 合并匹配上的需要的table_2中的字段 这种会筛去满足不了条件的table_1数据（如果table_2中没有任何数据能和table_1匹配）
+//冒泡法排序
+//每次从数组的第一位开始 依次和后一位对比 ，如果当前元素大于下一个元素他们交换位置 直到找出此轮的最大值
+let num2=0;
+function bubbleSort(arr){
+  //数组长度为n ，需要找出n-1次最大值，
+  for(var i=0;i<arr.length;i++){
+    //前面已找出了i个最大值，所以还有arr.length-i剩余排序元素，在这arr.length-i个元素中找到最大值需要对比arr.length-i-1次
+    for(var j=0;j<arr.length-i-1;j++){
+      num2++;
+      var nextItem=arr[j+1];
+      if(arr[j]-nextItem>0){
+        arr[j+1]=arr[j];
+        arr[j]=nextItem;
 
+      }
+    }
+  }
+  return arr;
+}
+console.log(bubbleSort(example2),num2)
 
-左连接
-select * from table_1 left join table_2 on  table_1.a=table_2.x where table_1.id>100;
-在内连接查询的基础上 保存匹配不了的table_1数据  而为匹配的table_2数据的字段值为null 并不会筛选table_1的数据
+//冒泡排序的优化
+//优化前提，在遍历一遍剩余未排序的元素中的最大值时，记录最后一次交换位置的索引，是否在索引后面的排序已经是正序了，下次不用在此排序，如果遍历完发现没有一次交换过位置 那么就说明剩余未排序的成员已近是顺序了！
+//比如 4,1,2,3,5,6 第一次排序 4最后一次换序应该在index 3位置 后面都没有换顺序 则证明后续的排序是正确的 下次应该只截取index<3的索引取最大值冒泡
+let num3=0;
+function bubbleSort2(arr){
+  var i=arr.length-1;//记录还需冒泡运算的次数,还需多少次和剩余未排序有关，剩余n个则还需运算n-1次
+  while(i>0){
+    let changeIndex=0;//默认值一次也不需要交换
 
+    for(var j=0;j<i;j++){
+      num3++;
+      var nextItem=arr[j+1];
+      if(arr[j]-nextItem>0){
+        arr[j+1]=arr[j];
+        arr[j]=nextItem;
+        ischange=true;
+        changeIndex=j;//记录changeIndex本轮最后一次交换位置的地方，
+      }
 
-右连接
-select * from table_1 right join table_2 on  table_1.a=table_2.x where table_1.id>100;
-与左连接相反 保留table_2的数据
+    }
+    //这里changeIndex之后的顺序已经归正，还需要找出changeIndex个最大值  以归正前面的元素
+    //竟然i记录了还需冒泡运算的次数
+    i=changeIndex;
+
+  }
+  return arr;
+}
+console.log(bubbleSort2(example3),num3)
+//选择排序：遍历n-1次数组，每次找出剩余未排元素的极值和已排序列的后一位交换位置（放已排序列后面），时间复杂度永远为O(n^2)。
+let num4=0;
+function selectSort(arr){
+  for(var i=0;i<arr.length;i++){
+    var minIndex=i;
+    for(var j=i+1;j<arr.length;j++){
+      num4++;
+      minIndex=arr[minIndex]-arr[j]>0?j:minIndex
+    }
+    var min=arr[minIndex];
+    arr[minIndex]=arr[i];
+    arr[i]=min;
+  }
+  return arr;
+}
+console.log(selectSort(example4),num4)
+// 内连接查询
+// select *(table_1.a,b,c,table_2.x,y,z/table_1.*---选择两个表规定的字段) from tablle_1 inner join table_2 on table_1.a=table_2.x where table_1.id>100;
+// 找到table_1中满足条件的数据 合并匹配上的需要的table_2中的字段 这种会筛去满足不了条件的table_1数据（如果table_2中没有任何数据能和table_1匹配）
+//
+//
+// 左连接
+// select * from table_1 left join table_2 on  table_1.a=table_2.x where table_1.id>100;
+// 在内连接查询的基础上 保存匹配不了的table_1数据  而为匹配的table_2数据的字段值为null 并不会筛选table_1的数据
+//
+//
+// 右连接
+// select * from table_1 right join table_2 on  table_1.a=table_2.x where table_1.id>100;
+// 与左连接相反 保留table_2的数据
 
 
 

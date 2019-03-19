@@ -41,9 +41,13 @@
 </html>
 
 <script>
-console.log(3990*12*30/64)
-function sum(time){
-  return Math.pow(1.03, time)
+console.log(1==='1');
+if(2){
+  console.log(NaN==null)
 }
-console.log(sum(30))
+function cc(a,b){
+  console.log(this,a,b)
+}
+var bb=cc.bind({a:1},1);
+console.log(bb(2))
 </script>
