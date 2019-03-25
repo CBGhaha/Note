@@ -6,7 +6,8 @@
     <title></title>
     <style media="screen">
     body{
-      padding:0.1px
+      padding:0.1px;
+      box-sizing: border-box;
     }
       #box{
         height: 2000px;
@@ -41,13 +42,20 @@
 </html>
 
 <script>
-var  arr=[1,2,[1,2,3],{a:1},4,5,6];
-function extentArr(a,b){
-  let arr=  Array.isArray(b)?a.concat(b.reduce(extentArr,[])):a.concat(b);
-  return arr;
+function P(){
+  this.name=[1,2,3]
 }
-let a=arr.reduce(extentArr,[]);
-console.log(a)
+P.prototype.say=function(){
+  console.log(111)
+}
+function A(){
 
-console.log(new Set([1,2,3,3,4]))
+}
+A.prototype=new P();
+var a1=new A();
+var a2=new A();
+a1.name.push(4);
+a1.say=1111;
+var P1=new P();
+console.log(a1)
 </script>
