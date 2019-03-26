@@ -8,5 +8,5 @@ js分为同步任务和异步任务
 微任务包括：Promise.then、MutaionObserver、process.nextTick(Node.js 环境)
 
 宏任务和微任务的区别 ：宏任务执行完毕之后立即执行微任务中可执行的微任务 然后下执行下一个宏任务之前需要检查渲染 然后GUI线程接管渲染 渲染完毕之后执行下一个宏任务
-
+(js语言设定js引擎与GUI引擎是互斥的,也就是说GUI引擎在渲染时会阻塞js引擎计算.原因很简单,如果在GUI渲染的时候,js改变了dom,那么就会造成渲染不同步)
 所以同时可执行的Timeout和promise.then promise会先一步执行

@@ -42,20 +42,61 @@
 </html>
 
 <script>
-function P(){
-  this.name=[1,2,3]
+function swap(items, firstIndex, secondIndex){
+    var temp = items[firstIndex];
+    items[firstIndex] = items[secondIndex];
+    items[secondIndex] = temp;
 }
-P.prototype.say=function(){
-  console.log(111)
+function partition(items, left, right) {
+    var pivot   = items[Math.floor((right + left) / 2)];
+        i       = left,
+        j       = right;
+        console.log(pivot);
+    while (i <= j) {
+        while (items[i] <= pivot) {
+            i++;
+        }
+        while (items[j] > pivot) {
+            j--;
+        }
+        if (i <= j) {
+            swap(items, i, j);
+            console.log(items,i,j);
+            i++;
+            j--;
+        }
+    }
+    console.log(i,j)
+    return i;
 }
-function A(){
+function quickSort(items, left, right) {
+    var index;
+    if (items.length > 1) {
+        index = partition(items, left, right);
+        if (left < index - 1) {
+            quickSort(items, left, index - 1);
+        }
+        if (index < right) {
+            quickSort(items, index, right);
+        }
 
+    }
+    return items;
 }
-A.prototype=new P();
-var a1=new A();
-var a2=new A();
-a1.name.push(4);
-a1.say=1111;
-var P1=new P();
-console.log(a1)
+function partition2(arr, left ,right) {     //分区操作
+    var pivot = left,                      //设定基准值（pivot）
+        index = pivot + 1;
+    for (var i = index; i <= right; i++) {
+        if (arr[i] < arr[pivot]) {
+            swap(arr, i, index);
+            index++;
+        }
+    }
+    swap(arr, pivot, index - 1);
+    return index-1;
+}
+var arr=[5,4,3,2,1,6,9,10,11];
+
+partition(arr,0,arr.length-1)
+console.log(arr)
 </script>
