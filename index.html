@@ -30,6 +30,9 @@
     </style>
   </head>
   <body>
+    <strong>1111</strong>
+    <em>2222</em>
+    <i>3333</i>
     <div  id='box'>
       <div class='c1'>1</div>
       <div class='c2'>2</div>
@@ -37,6 +40,7 @@
       <div class='c4'>4</div>
       <div>5</div>
     </div>
+
     111
   </body>
 </html>
@@ -99,4 +103,6 @@ var arr=[5,4,3,2,1,6,9,10,11];
 
 partition(arr,0,arr.length-1)
 console.log(arr)
+console.log(document.getElementsByTagName('strong')[0]);
+document.getElementsByTagName('strong')[0].innerText='22222';
 </script>

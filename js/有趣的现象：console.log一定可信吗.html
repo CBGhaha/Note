@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+      <strong>1111111<strong>
+  </body>
+  <script type="text/javascript">
+    //dom打印不可信
+    console.log(document.getElementsByTagName('strong')[0]);
+    document.getElementsByTagName('strong')[0].innerText='22222';
+
+  </script>
+</html>
