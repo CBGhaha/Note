@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    // function Promise(fn){
+    //     var callbacks =[];
+    //     function resolve(arg){
+    //         setTimeout(() => {
+    //             for(var i of callbacks){
+    //                 i(arg);
+    //             }
+    //         }, 0);
+            
+    //     }
+    //    this.then=function(callback){
+    //     callbacks.push(callback);
+    //    }
+    //    fn(resolve);
+    // }
+    
+    new Promise(resolve=>{
+        resolve(1)
+    }).then((res)=>{
+        console.log(res);
+        // return 2;
+    }).then((res)=>{
+        console.log(res)
+    })
+
+</script>
+</html>

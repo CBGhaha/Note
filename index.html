@@ -5,43 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
     <title></title>
     <style media="screen">
-    body{
-      padding:0.1px;
-      box-sizing: border-box;
+    *{
+      padding:0;
+      margin: 0;
     }
       #box{
-        height: 2000px;
-        margin-top: 200px;
-        position: relative;
-        margin-left: 100px;
+        width: 200px;
+        height: 200px;
+
       }
-      .c1{
-        position: sticky;
-        top: 100px;left:100px;
+      #box div{
+        display: block;;
       }
-      #box>div{
-        width: 100px;
-        height: 100px;
-        background: blue;
-        border: 1px solid yellow;
-        display: inline-block;
-        vertical-align: middle;
+      #box span{
+        height: 30px;width:50px;background: red;display: inline-block;
+      }
+      .s1{
+        
+        float: left
       }
     </style>
   </head>
   <body>
-    <strong>1111</strong>
-    <em>2222</em>
-    <i>3333</i>
-    <div  id='box'>
-      <div class='c1'>1</div>
-      <div class='c2'>2</div>
-      <div class='c3'>3</div>
-      <div class='c4'>4</div>
-      <div>5</div>
+    <div id='box'>
+      <div>
+        <span  class='s1'>1</span>
+        <span>2</span>
+        <span class='s3'>3</span>
+      </div>
     </div>
-
-    111
+    <input type="file"/>
   </body>
 </html>
 
@@ -137,5 +130,14 @@ var s={
     }
   }
 }
-
+var obj = {
+    '2': 3,
+    '3': 4,
+    'length': 2,
+    'splice': Array.prototype.splice,
+    'push': Array.prototype.push
+}
+obj.push(1)
+obj.push(2)
+console.log(obj)
 </script>
