@@ -5,34 +5,24 @@
     <title>Page Title</title>
 </head>
 <body>
-    
+
 </body>
 <script>
-
-    // function Promise(fn){
-    //     var callbacks =[];
-    //     function resolve(arg){
-    //         setTimeout(() => {
-    //             for(var i of callbacks){
-    //                 i(arg);
-    //             }
-    //         }, 0);
-            
-    //     }
-    //    this.then=function(callback){
-    //     callbacks.push(callback);
-    //    }
-    //    fn(resolve);
-    // }
-    
-    new Promise(resolve=>{
-        resolve(1)
-    }).then((res)=>{
-        console.log(res);
-        // return 2;
-    }).then((res)=>{
-        console.log(res)
-    })
-
+var thepromise1=new Promise((resolve)=>{
+  setTimeout(()=>{
+    resolve("aaa");
+  },1000)
+});
+var thepromise2=thepromise1.then(`(res)=>{
+  console.log(res);
+  return 1
+}`)
+console.log(thepromise1);
+console.log(thepromise2);
+setTimeout(()=>{
+  console.log(thepromise1);
+  console.log(thepromise2);
+  console.log(thepromise1===thepromise2);
+},2000)
 </script>
 </html>
