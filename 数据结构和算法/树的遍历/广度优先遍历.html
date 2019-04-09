@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+
+</html>
+<script type="text/javascript">
+    var tree={
+      a:{
+        a1:{
+          a1_1:1,a1_2:1,a1_3:{
+            a1_3_1:1,
+            a1_3_2:1
+          }
+        },
+        a2:{
+          a2_1:1,a2_2:1,
+        },
+        a3:{
+          a3_1:1,a3_2:1,
+        }
+      },
+      b:{
+        b1:{
+          b1_1:1,b1_2:1,
+        },
+        b2:{
+          b2_1:1,b2_2:1,
+        },
+        b3:{
+          b3_1:1,b3_2:1,
+        }
+      }
+    };
+    BFS(tree);
+    function BFS(tree){
+      var arr=[tree];
+      while(arr.length>0){
+        var children=Object.keys(arr[0]);
+        console.log('遍历到了这里，对该节点访问',arr[0]);
+        for(var i of children){
+          arr.push(arr[0][i])
+        }
+        arr.shift();
+      }
+    }
+
+</script>
