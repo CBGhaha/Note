@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div></div>
+  </body>
+  <script type="text/javascript">
+
+    //最常用： console.log
+    console.log("console.log");
+    //console.info
+    console.info("console.info");
+    //打印一条警告
+    console.warn("console.warn");
+    //打印一条错误
+    console.error('console.error');//并不会阻止代码执行
+    //打印代码执行耗时
+    console.time('time');
+    console.timeEnd('time');
+    //分组打印
+    console.group("group1");
+      console.log('groupContent');
+    console.groupEnd('group1');
+    //断言 只有当断言不成立时 打印错误提示
+    console.assert(1===2,'console.assert断言不成立');
+    //打印对象
+    var dom=document.getElementsByTagName('div')[0];
+    console.dir(dom);
+    //打印 追踪内容的来源
+    console.trace();
+  </script>
+</html>
