@@ -35,7 +35,9 @@
         }
       }
     };
-    DFS(tree);
+    // DFS(tree);
+
+    //深度遍历方法一：讲所有的节点倒序从后存放于数组，每次取数组最后一位访问 
     function DFS(tree){
       var arr=[tree];
       while(arr.length>0){
@@ -47,6 +49,16 @@
         }
 
       }
+    }
+  
+    DFS2(tree);
+    //深度遍历方法2：采用递归遍历节点
+    function DFS2(tree){
+      console.log("遍历的节点是：",tree);
+      var childrenKeys=Object.keys(tree);
+      childrenKeys.forEach(child=>{
+        DFS2(tree[child])
+      })
     }
   </script>
 </html>

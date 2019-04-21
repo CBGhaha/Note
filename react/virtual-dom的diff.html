@@ -21,5 +21,71 @@
 
   */
 
+var vdom1={
+    type:"ul",
+    props:{id:"list"},
+    children:[
+      {type:"li",props:{class:"item"},children:["item 1"]},
+      {type:"li",props:{class:"item"},children:["item 2"]},
+      {type:"li",props:{class:"item"},children:["item 3"]}
+      ]
+  }
+var vdom2={
+    type:"ul",
+    props:{id:"list-2"},
+    children:[
+      {type:"li",props:{class:"item"},children:["item 1"]},
+      {type:"li",props:{class:"item"},children:["item 2"]},
+      {type:"li",props:{class:"item-3"},children:["item 3"]}
+      ]
+  }
+  var INDEX=0;
+diff(vdom1,vdom2)
 
+function diff(oldVdom,newVdom){
+  var patchs=[];
+  walk(oldVdom,newVdom,patchs);
+  console.log(patchs);
+
+};
+function diffAttr(oldProps,newProps){
+  let changeObj={};
+  //如果原属性发生修改
+  for(let i in oldProps){
+    if(oldProps[i]!==newProps[i]){
+      changeObj[i]=newProps[i]
+    }
+  }
+  //如果产生原属性上不存在的属性
+  for(var j in newProps){
+    if(!oldProps.hasOwnProperty(j)){
+      changeObj[j]=newProps[j]
+    }
+  }
+  return changeObj;
+}
+function walk(oldVdom,newVdom,patchs){
+
+  //每一个节点单独创建一个保存修改的对象
+  let nodePatch=[];
+  if(typeof oldVdom==='string'&&typeof newVdom==='string'){
+    if(oldVdom!==newVdom){
+    nodePatch.push({type:'TEXT_CHANGE',change:newVdom});
+    if(nodePatch.length>0){
+      patchs[INDEX]=nodePatch;
+    }}
+  }else if(oldVdom.type===newVdom.type){
+    var attrChange=diffAttr(oldVdom.props,newVdom.props);
+    Object.keys(attrChange).length>0&&nodePatch.push({type:'ATTR_CHANGE',change:diffAttr(oldVdom.props,newVdom.props)});
+    if(nodePatch.length>0){
+      console.log(INDEX);
+      patchs[INDEX]=nodePatch;
+    }
+    oldVdom.children.forEach((oldChild,inx) => {
+      INDEX++;
+      walk(oldChild,newVdom.children[inx],patchs)
+    });
+  }
+  
+}
 </script>
