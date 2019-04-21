@@ -9,33 +9,38 @@
   </body>
 </html>
 <script type="text/javascript">
-//
-function Element(tagName,props,children){
-  this.tagName=tagName;
-  this.props=props;
-  this.children=children;
-}
-function ul(tagName,props,children){
-  return new Element(tagName,props,children)
-}
-var el=ul('ul',{id:'list'},[
-  ul('li',{class:'item'},['item 1']),
-  ul('li',{class:'item'},['item 2']),
-  ul('li',{class:'item'},['item 3'])
-])
-Element.prototype.render=function(){
-  var el=document.createElement(this.tagName);
-  for(var propName in this.props){
-    el.setAttribute(propName,this.props[propName])
+
+
+
+class Element{
+  constructor(type,props,children){
+    this.type=type;
+    this.props=props;
+    this.children=children;
   }
-  let children=this.children||[];
-  children.forEach(item=>{
-      var child=item instanceof Element?item.render():document.createTextNode(item);
-      el.appendChild(child)
-  })
-  return el;
+  render(){
+    var dom=document.createElement(this.type);
+    if(this.props){
+      for(var key in this.props){
+        dom.setAttribute(key,this.props[key])
+      }
+    }
+    (this.children||[]).forEach((child)=>{
+      var childDom=child instanceof Element?child.render():document.createTextNode(child);
+      dom.appendChild(childDom);
+    })
+    return dom;
+  }
 }
+function createElement(type,props,children){
+  return new Element(type,props,children);
+}
+var virtual_dom=createElement('ul',{id:'list'},[
+  createElement('li',{class:'item'},['item 1']),
+  createElement('li',{class:'item'},['item 2']),
+  createElement('li',{class:'item'},['item 3'])
+])
 
-document.body.appendChild(el.render())
-
+console.log(virtual_dom);
+console.log(virtual_dom.render());
 </script>
