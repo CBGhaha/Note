@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>常见的继承</title>
+</head>
+<body>
+
+</body>
+<script>
+    
+    function Man(name){
+        this.name=name
+    }
+    Man.prototype.say=function(){
+        console.log(this.name)
+    }
+    var man1=new Man('bangguo');
+//1：普通原型链继承
+    function Person1(age){
+        this.age=age
+    }
+    //通过改变子类构造函数的原型对象指向实现
+    Person1.prototype=man1;
+    /*
+        缺陷：
+        1:不能先父构造函数传值，
+        2:父类的属性如果是引用数据类型 则被所有子类公用，一处修改则全部改变
+    */
+//2:构造继承
+    function Person2(name,age){
+        Man.call(this,name);
+        this.age=age;
+    }
+    /*
+        核心是在子类构造函数中执行父类构造函数（修改this）
+        特点：
+        1:一种理论上的形式 在实际中单纯使用构造继承并不多
+        2：可以向父构造函数传值
+        3：没有继承父类的公用方法
+    */
+//3:组合式继承
+    function Person3(name,age){
+        Man.call(this,name);
+        this.age=age;
+    }
+    Person3.prototype=new Man();
+    /*
+        是原型链和构造继承粗暴组合方式
+        特点：
+        1：可以向父类传值
+        2：继承了父类的公用方法，几乎满足了我们所需要的条件
+        缺陷：
+        1：在子类对象的原型对象和实例对象上都存在父类的属性（因为执行了两次父构造函数） 这样是多余的，浪费内存
+        2：这样子类的constructor属性 是指向父类的Man构造函数，造成不严谨
+      
+     */
+    var person3= new Person3("bangguo",23);
+    console.log(person3)
+    console.log(Man.__proto__===Function.prototype)
+//寄生式继承
+    function createObj(fatherObj){
+        let childObj=Object.create(fatherObj);
+        /*
+            此处也可以定义子对象的一些自己构造犯法
+            childObj.say=function(){....}
+        */
+       return childObj;
+    }
+    /*
+        特点：
+        1:传递需要继承的父对象，讲父对象的属性和方法赋值给子对象的__proto__
+        2:这种方法即不能向父父构造函数传参 每个子对象也没有公用的方法 ，只是一种继承思想 应用并不多
+
+    */
+//继承组合式继承 --es5中最接近完美的继承方案
+    function  Person5(name,age){
+        Man.call(this,name);
+        this.age=age;
+    }
+    let FatherPrototypeCopy=createObj(Man.prototype);
+    /*
+        这句代码 尤为重要和经典 这样解决了子类实例的constructor丢失问题
+        因为Man.prototype 赋值在FatherPrototypeCopy的__proto__上 ，定义
+        FatherPrototypeCopy.constructor并不会修改Man.prototype.constructor
+    */
+    FatherPrototypeCopy.constructor=Person5;
+    Person5.prototype=FatherPrototypeCopy;
+//es6的继承
+class A{
+    constructor(name){
+        this.name=name
+    }
+    say(){
+        console.log(this.name)
+    }
+}
+/*
+    es6继承在es5中特殊的一些特色
+    1：es5是在子类中创建this 在用父类修饰this;es6是在父类中创建this,this已经包含了父类的属性和方法，然后再在子类中修饰this(所以继承时，子类constructor构造函数必须先super())
+    2：es6中子类的__proto__指向父类,而在es5所有的构造函数的__proto__都指向Function.prototype(因为函数是Function的实例)
+*/
+class B extends A{
+    constructor(name,age){
+        super(name);
+        this.age=age;
+    }
+}
+var b=new B("bangguo",26);
+console.log(b);
+console.log(B.__proto__)
+</script>
+</html>
