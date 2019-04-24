@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冒泡排序</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /**
+    冒泡排序有时容易与插入排序混淆 他们都会与一侧的所有元素相比 
+    但冒泡右边的永远是最大的元素，将最大值一步步冒泡到右边 
+
+
+    */
+    var arr=[6,3,4,7,9,12,2,1];
+    for(var i=0;i<arr.length;i++){
+        for(var j=0;j<arr.length-i;j++){
+            if(arr[j+1]<arr[j]){
+                let item =arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=item; 
+            }
+        }
+    }
+    console.log(arr);
+</script>
+</html>
