@@ -5,25 +5,47 @@
     <title>冒泡排序</title>
 </head>
 <body>
-    
+
 </body>
 <script>
     /**
-    冒泡排序有时容易与插入排序混淆 他们都会与一侧的所有元素相比 
-    但冒泡右边的永远是最大的元素，将最大值一步步冒泡到右边 
-
-
+      冒泡排序有时容易与插入排序混淆 他们都会与一侧的所有元素相比
+      但冒泡右边的永远是最大的元素，将最大值一步步冒泡到右边
     */
     var arr=[6,3,4,7,9,12,2,1];
+    //需要冒泡arr.length次
     for(var i=0;i<arr.length;i++){
+      //每次冒泡需要比较arr.length-i次大小，因为已经有前i个最大值被冒泡出来了
         for(var j=0;j<arr.length-i;j++){
             if(arr[j+1]<arr[j]){
                 let item =arr[j];
                 arr[j]=arr[j+1];
-                arr[j+1]=item; 
+                arr[j+1]=item;
             }
         }
     }
+
+
+    /**
+      冒泡排序的优化，如果一次冒泡过程中 ，从第n个位置后的元素对比中都没有发生交换操作，那么就可以判断 n之后的顺序已经规整 下次冒泡只需要冒到n为止
+      例如 [3,5,2,6,7,8,9,10] 第一次冒泡 需要全比较到最后一位 但是记录下此次交换位置的位数为2
+      之后再也没有发生过交换操作 因为5,6,7,8,9,10已经是正序的最大数排序集
+    */
+    var arr2=[6,3,4,7,9,12,2,1];
+    let length=arr2.length;
+    while(length>0){
+      let index=0;
+      for(var j=0;j<length;j++){
+        if(arr2[j]>arr2[j+1]){
+          var item=arr2[j];
+          arr2[j]=arr2[j+1];
+          arr2[j+1]=item;
+          index=j+1;
+        }
+      }
+      length=index;
+    }
     console.log(arr);
+    console.log(arr2);
 </script>
 </html>

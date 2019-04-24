@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+
+</html>
+<script type="text/javascript">
+  /*
+
+  选择排序是一种最直观排序 每次挑选剩余集合的最值 ，放到已排集合的后面
+
+
+  */
+  var arr=[6,3,4,7,9,12,2,1];
+  for(var i=0;i<arr.length-1;i++){
+    var minIndex=i;
+    for(var j=i;j<arr.length;j++){
+      if(arr[j]<arr[minIndex]){
+        minIndex=j;
+      }
+    }
+    if(minIndex!=i){
+      let item=arr[i];
+      arr[i]=arr[minIndex];
+      arr[minIndex]=item;
+    }
+  }
+  console.log(arr);
+</script>
