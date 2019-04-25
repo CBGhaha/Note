@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快速排序</title>
+</head>
+<body>
+    
+</body>
+<script>
+var arr=[6,3,4,7,9,12,2,1];
+var resArr=[];
+var index=0
+function sort(arr){
+    if(arr.length<1){
+        return arr
+    }
+    var midIndex=Math.floor(arr.length/2);
+    var item=arr[midIndex];
+    var arrLeft=[];
+    var arrRight=[];
+    for(var i in arr){
+        if(arr[i]>item){
+            arrRight.push(arr[i])
+        }else if(arr[i]<item){
+            arrLeft.push(arr[i])
+        }
+    }
+    return [...sort(arrLeft),item,...sort(arrRight)]
+}
+console.log(sort(arr));
+</script>
+</html>

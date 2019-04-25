@@ -25,7 +25,7 @@ let server=net.createServer({},function(socket){
     })
 })
 server.listen('8080',function(){
-    console.log(server.address());
+    console.log('服务端地址为：'+server.address());
 } );
 
 //可以用telnet模拟客户端 与服务端tcp服务器通信 telnet localhost 8080
