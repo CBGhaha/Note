@@ -1,6 +1,7 @@
 //创建一个tcp服务器 它是相较于http更底层的通信服务 
 var net=require('net');
 let server=net.createServer({},function(socket){
+    //socket代表当前客户端与服务器连接对象 他是一个可读可写流
     server.maxConnections=5;//允许同时连接客户端最大数
     console.log("客户端已连接地址为：",socket.address());
     server.getConnections((err,count)=>{

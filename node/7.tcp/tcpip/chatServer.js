@@ -3,6 +3,7 @@ const net = require('net');
 const util = require('util');
 let clients = {};
 let server = net.createServer(function (socket) {
+    
     console.log('client' + util.inspect(socket.address()));
     socket.setEncoding('utf8');
     server.getConnections((err, count) => {
