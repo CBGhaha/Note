@@ -10,9 +10,8 @@
 <script>
     function compose(funList){
         return funList.reduce(function (a,b){
-            //这里为什么要用一个function 套着 a(b())？ 为了简单的将compose后的函数 接受的argn 传递给 b()
             return function(...args){
-                return a(b(...arg))
+                return a(b(...args))
             }
          })
     }
@@ -36,25 +35,63 @@
 
         }
     }
-[A1,A2,A3]
 
-A1,A2 ;sum; args=>A1(A2(args))
-sum, A3;args1=>sum(A3(args1))
-var a=function(args){
-    return A1(A2(args))
+function A1(next){
+    console.log("A1:",next);
+    return function a1(action){
+
+    };
 }
-var b=function (args1){
-    return !function(args){
-        return A1(A2(args))
-        }(A3(args1))
+function A2(next){
+    console.log("A2:",next);
+    return function a2(action){
+        
+    };
 }
-var c=function (args2){
-    return !function (args1){
-    return !function(args){
+function A3(next){
+    console.log("A3:",next);
+    return function a3(action){
+        
+    };
+}
+function A4(next){
+    console.log("A4:",next);
+    return function a4(action){
+        
+    };
+}
+/* 
+    A1,A2 ;sum; args=>A1(A2(args))
+    sum, A3;args1=>sum(A3(args1))
+    var a=function(args){
         return A1(A2(args))
+    }
+    var b=function (args1){
+        return !function(args){
+            return A1(A2(args))
             }(A3(args1))
-    }(A4(args2))
-}
-var c=arg2=>A1(A2(A3(A4(args2))))
+    }
+    var c=function (args2){
+        return !function (args1){
+        return !function(args){
+            return A1(A2(args))
+                }(A3(args1))
+        }(A4(args2))
+    }
+*/
+
+
+/*  
+    compose之后的代码等于如下
+
+    var c=(arg2)=>{return A1(A2(A3(A4(arg2))))}
+    c("sss")
+
+*/
+
+var s=compose([A1,A2,A3,A4]);
+var newDispatch=s("我是初始化的store.dispatch");
+console.log(newDispatch);
+
 </script>
 </html>
