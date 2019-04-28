@@ -39,33 +39,37 @@
 function A1(next){
     console.log("A1:",next);
     return function a1(action){
-
+        console.log('a1-action:',action);
+        next(action)
     };
 }
 function A2(next){
     console.log("A2:",next);
     return function a2(action){
-        
+        console.log('a2-action:',action);
+        next(action)
     };
 }
 function A3(next){
     console.log("A3:",next);
     return function a3(action){
-        
+        console.log('a3-action:',action);
+        next(action)
     };
 }
 function A4(next){
     console.log("A4:",next);
     return function a4(action){
-        
+        console.log('a4-action:',action);
+        next(action)
     };
 }
 /* 
     A1,A2 ;sum; args=>A1(A2(args))
-    sum, A3;args1=>sum(A3(args1))
     var a=function(args){
         return A1(A2(args))
     }
+    sum, A3;args1=>sum(A3(args1))
     var b=function (args1){
         return !function(args){
             return A1(A2(args))
@@ -90,8 +94,15 @@ function A4(next){
 */
 
 var s=compose([A1,A2,A3,A4]);
-var newDispatch=s("我是初始化的store.dispatch");
+var newDispatch=s(()=>{
+    console.log("我是初始化的store.dispatch")
+});
 console.log(newDispatch);
-
+newDispatch({type:'test'})
+async function aa(){
+  let res=await new Promise((resolve)=>{resolve(2)}).then((res)=>{console.log(res);return res});
+  console.log(res)
+}
+aa()
 </script>
 </html>

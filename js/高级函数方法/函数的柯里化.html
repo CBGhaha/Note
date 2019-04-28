@@ -29,4 +29,17 @@
   };
   var a=curry(sum,3)(2)(1)();
   console.log(a);
+
+
+  function curry(fun,...args){
+    let argArr=args;
+    return function fn(...arg){
+      if(arg.length>0){
+        argArr.concat(args);
+        return fn;
+      }else{
+        fun(...argArr);
+      }
+    }
+  }
 </script>

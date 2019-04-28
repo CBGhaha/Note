@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*
+    素数是只能被自己和1整除的数
+*/
+/*
+    1:判断一个数n是否是素数 
+    思路：从2~n遍历  寻找是否有能被他整除的数
+    思路优化：是否需要遍历到n？如果2~n^0.5 都不存能整除n的数 那么它就是素数 因为 如果存在因子x>n^0.5 能整除n则必有一个因子y<n^0.5也能整除n 
+*/
+function isNum(num){
+    var stand=Math.floor(Math.sqrt(num));
+    var isprime=false;
+    for(var i =2;i<stand;i++){
+        if(num%i===0){
+            isprime=true;
+            break; 
+        }
+    }
+    return isprime
+}
+console.log(isNum(11))
+</script>
+</html>

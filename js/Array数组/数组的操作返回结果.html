@@ -14,7 +14,7 @@ let arr=[1,2,3,4,5];
 let arr1=arr.splice(1,1);
 console.log(arr1);
 console.log(arr);
-// slice 截取数组 返回截取到的数组但不会修改原数组
+// slice 截取数组 返回截取到的数组 但不会修改原数组
 let arr2=[1,2,3,4,5];
 let arr3=arr2.slice(0,2);
 console.log(arr2);
@@ -24,11 +24,15 @@ let arr4=[1,2,3,4,5];
 let arr5=arr4.concat([6,7]);
 console.log(arr4);
 console.log(arr5)
-//pop 删除数组最后一个元素 返回被删除的元素 修改原数组
+//push 元素插入数组后面 返回插入的元素 修改原数组
 let arr6=[1,2,3,4];
-let arr7=arr6.pop();
-console.log(arr6);
+let item=arr6.push(5);
+console.log(item);
+//pop 删除数组最后一个元素 返回被删除的元素 修改原数组
+let arr7=[1,2,3,4];
+let item7=arr7.pop();
 console.log(arr7);
+console.log(item7);
 
 //forEach遍历  即不修改原数组 也不会返回新的数组
 let arr8=[1,2,3,4];
@@ -36,9 +40,20 @@ arr8.forEach(function(value,index,arr){
   console.log(this);
   console.log(value,index,arr)
 })
+//map遍历 返回新数组 不修改原数组
 let arr9=[1,2,3,4];
 let arr10=arr9.map((value,index)=>{
   return value+1;
 })
 console.log(arr10);
+//shift 删除数组的第一个 返回插入值 修改原数组
+let arr11=[1,2,3,4];
+let item11=arr11.shift();
+console.log(arr11);
+console.log(item11);
+//unshift() 元素插入数组的第一个 返回删除元素 修改原数组
+let arr12=[1,2,3,4];
+let item12=arr12.unshift(0);
+console.log(arr12);
+console.log(item12);
 </script>

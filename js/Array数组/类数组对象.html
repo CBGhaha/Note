@@ -22,6 +22,16 @@
       
 
     */
-    var
+     
+   function callback(item){
+     console.log(item)
+   }
+   var _this={name:1};
+    Array.from(new Array(10),callback,_this);
+  /**
+     * callback--新数组每个成员执行的回调函数
+     * 回调函数的this 指向
+     * 
+     */
   </script>
 </html>

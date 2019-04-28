@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function* finonacci(){
+        let a=1;let b=1;
+        yield a;yield b;
+        while(true){
+            let t=b;
+            b=a+b;a=t;
+            yield b
+        }
+    }
+   const it=finonacci();
+   console.log(Array.from(new Array(10),()=>it.next()).map(x=>x.value))
+</script>
+</html>
