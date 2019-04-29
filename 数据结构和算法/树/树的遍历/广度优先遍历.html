@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .box{
+                width: 300px
+            }
+            p{
+                display: flex;
+                justify-content: space-around
+            }
+        </style>
+    </head>
+    <body>
+        <div class='box'>
+            <p>1</p>
+            <p><span>11</span><span>12</span></p>
+            <p><span>21</span><span>22</span><span>23</span><span>24</span></p>
+            <p><span>31</span><span>32</span>
+               <span></span><span></span><span></span><span></span><span></span><span></span>
+            </p>
+    
+        </div>
+    </body>
+
+</html>
+<script type="text/javascript">
+    class node{
+        constructor(v,children){
+            this.v=v;
+            this.children=children
+        }
+    }
+    var tree=new node(1,[
+        new node(11,[
+            new node(21,[
+                new node(31),
+                new node(32)
+            ]),
+            new node(22)
+        ]),
+        new node(12,[
+            new node(23),
+            new node(24)
+        ]),
+    ])
+    BFS(tree);
+    function BFS(tree){
+      var arr=[tree];
+      while(arr.length>0){
+        console.log('遍历到了这里，对该节点访问',arr[0].v);
+        var children=arr[0].children;
+        children&&children.forEach(child => {
+          arr.push(child)
+        });
+        arr.shift();
+      }
+    }
+
+</script>

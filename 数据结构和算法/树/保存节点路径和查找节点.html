@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>保存节点路径和查找节点</title>
+    <style>
+        .box{
+            width: 300px
+        }
+        p{
+            display: flex;
+            justify-content: space-around
+        }
+    </style>
+</head>
+<body>
+    <div class='box'>
+        <p>1</p>
+        <p><span>11</span><span>12</span></p>
+        <p><span>21</span><span>22</span><span>23</span><span>24</span></p>
+        <p><span>31</span><span>32</span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+        </p>
+
+    </div>
+</body>
+<script>
+    class node{
+        constructor(v,children){
+            this.v=v;
+            this.children=children
+        }
+    }
+    var tree=new node(1,[
+        new node(11,[
+            new node(21,[
+                new node(31),
+                new node(32)
+            ]),
+            new node(22)
+        ]),
+        new node(12,[
+            new node(23),
+            new node(24)
+        ]),
+    ])
+//将符合条件的节点挑选出来 保存路径
+function nodePath(tree,fn,path=[0]){
+    let children=tree.children;
+    if(fn(tree)){pathResult.push({tree,path})};
+    if(!children) return; 
+    for(var i in children){
+        nodePath(children[i],fn,[...path,Number(i)]);   
+    }
+}
+
+let pathResult=[];//用于保存匹配到的path
+nodePath(tree,(tree)=>{return tree.v>22})
+console.log(pathResult)
+
+//根据路径找到节点
+function nodeFind(tree,path){
+    let children=tree.children;
+    let index=path.shift();
+    return path.length>0?nodeFind(children[index],path):tree
+    
+}
+console.log(nodeFind(tree,pathResult[0].path))
+
+
+
+//使用generator实现 保存符合条件的节点和路径
+function *generatorTree_transverse(tree,path=[0]){
+    let children=tree.children;
+    if(!children){yield ({tree,path}); return;} ;
+    yield ({tree,path});
+    for(var i in children){
+        yield * generatorTree_transverse(children[i],[...path,Number(i)]);   
+    }
+}
+
+function generatorNodePath(tree,fn){
+   let rs= generatorTree_transverse(tree,path=[0]);
+   return [...rs].filter(fn)
+}
+let nodePaths=generatorNodePath(tree,(tree)=>{return tree.tree.v>24});
+console.log(nodePaths);
+</script>
+</html>

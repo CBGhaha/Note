@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <style>
+            .box{
+                width: 300px
+            }
+            p{
+                display: flex;
+                justify-content: space-around
+            }
+        </style>
+    </head>
+    <body>
+        <div class='box'>
+            <p>1</p>
+            <p><span>11</span><span>12</span></p>
+            <p><span>21</span><span>22</span><span>23</span><span>24</span></p>
+            <p><span>31</span><span>32</span>
+               <span></span><span></span><span></span><span></span><span></span><span></span>
+            </p>
+    
+        </div>
+    </body>
+  <script type="text/javascript">
+    class node{
+        constructor(v,children){
+            this.v=v;
+            this.children=children
+        }
+    }
+    var tree=new node(1,[
+        new node(11,[
+            new node(21,[
+                new node(31),
+                new node(32)
+            ]),
+            new node(22)
+        ]),
+        new node(12,[
+            new node(23),
+            new node(24)
+        ]),
+    ])
+    DFS(tree);
+
+    //深度遍历方法一：讲所有的节点倒序从后存放于数组，每次取数组最后一位访问 
+    function DFS(tree){
+      var arr=[tree];
+      while(arr.length>0){
+        var item=arr.pop();
+        console.log('遍历到了这里，对该节点访问',item.v);
+        var children=item.children;
+        if(children){
+          for(var i=children.length-1;i>=0;i--){
+            arr.push(children[i])
+          }
+        }
+
+      }
+    }
+  
+    DFS2(tree);
+    //深度遍历方法2：采用递归遍历节点
+    function DFS2(tree){
+      console.log("遍历的节点是：",tree.v);
+      tree.children&&tree.children.forEach((child,index)=>{
+        DFS2(child)
+      })
+
+    }
+function *DFS(tree){
+    yield tree;
+    let children=tree.children;
+    if(children){
+        for(let i in children){
+            yield *DFS3(children[i])
+        }
+    }
+}
+[...DFS(tree)]
+  </script>
+</html>
