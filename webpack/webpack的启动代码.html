@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+/**
+ * webpack给每个module设定了唯一的moduleId 包括不同bundle中的module 他们都有不重复唯一moduleId
+ * 对于已经加载过了module webpack把它加入到了全局缓存对象中 根据moduleId区分 如果另一个场景中使用了同一个module则直接从缓存中拿出执行
+ * 
+ * 对于异步加载的bundle.js webpack给每个bundle也分配了唯一的id webpack用另一个全局对象记录bundle的加载情况
+ * webpack通过创建script标签 加入bundle到head  并记录bundle处于加载状态
+ * bundle.js加入后会执行一个webpack提供的函数 将bundle里执行的module加入全局的module缓存对象 然后将bundle状态设为已加载
+ * 
+ * 在引入bundle.js的代码中 是通过__webpack_require__执行bundle的module实现的 
+ * 
+ * 一个import就是一个module 许多个module组成一个chunck（js源文件）一个代码分割为一个bundle；
+ */
+
+
+
+
+//webpack启动是一个自执行函数  接受所有模块组成的数组 启动时默认执行第一个模块
+
+    (function(modules){
+        //缓存对象 记录已加载过的module
+        var installedModules={};
+        //核心函数：引入并执行module
+        function __webpack_require__(moduleId) {
+            //检查缓存对象，看模块是否加载过 如果模块已经加载过直接返回缓存中的模块
+            if (installedModules[moduleId]) {
+                return installedModules[moduleId].exports;
+            }
+            //如果首次加载该模块 那么就创建一个module对象 
+            var module = installedModules[moduleId] = {
+                i: moduleId,
+                l: false,
+                exports: {}
+            };
+
+            /*
+                执行模块代码 将创建的模块对象、模块对象的exports(用于接受对外暴露的对象<export.default、module.export>)、
+                以及__webpack_require__模块加载函数传递给该模块（在有些模块中需要引入其他模块，这样模块可以获取模块加载函数,加载其他模块）
+            */
+            modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+            // 将模块标识为已加载
+            module.l = true;
+            // 返回加载好的模块--export的内容
+            return module.exports;
+        }
+    })([
+        //     /* 0 */
+        (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            //定义是__esModule(es6的引入模块)
+            Object.defineProperty(__webpack_exports__, "__esModule", {
+                value: true
+            });
+            /* 映入id=1的模块 */
+            var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(1);
+            console.log('Hello Dickens');
+            Object(__WEBPACK_IMPORTED_MODULE_0__logger__["a" /* default */ ])();
+        }),
+        //     /* 1 */
+        (function (module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            __webpack_exports__["a"] = log;
+            function log() {
+                console.log('Log from logger');
+            }
+        })
+    ])
+</script>
+
+<!-- 一：普通模块加载
+  通过模块id使用 __webpack_require__加载模块 其实异步加载在 chunk js加载完成之后也是将chunk.js的内容塞入modules数组中 通过__webpack_require__加载所需模块
+二：异步模块加载
+  异步和普通加载的区别在于 异步多了一步动态插入script脚本 脚本插入之后会将chunk缓存数组记录更改成已加载（这个chunk的script已经动态创建过,所以这个chunk里所需要的模块也已经记录在了全局modules里），
+  将chunck里的模块加入全局modules数组 调用 __webpack_require__引入chunck里用到的模块
+
+
+
+源码难点：
+  怎样异步加载chuck.js ?  通过传入chunk的id动态的创建script标签 当然为了逻辑严谨性还在chunk的缓存数组中将状态变为加载中（一个数组,并巧妙的将Promise的resolve和reject函数及本Promise实例放入数组）
+  如果在js加载中的同时又有并发请求加载chunk则直接返回Promise实例 并返回一个处于等待状态的promise（这里之所以用到promise是以为js的加载是异步的）
+
+  在异步加载中 怎样判断chunk.js已经加载完毕？ 这里有一个回调函数 在chunk加载后 脚本执行时会执行这个回调 回调将动态加载chunk的promise异步操作状态变为resolve
+ （并将记录chunk缓存数组中本chunk的状态变为0---已加载）之后会在.then()方法中__webpack_require__已经添加在全局modules数组中的模块 -->

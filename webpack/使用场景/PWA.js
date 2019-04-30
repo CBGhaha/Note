@@ -1,4 +1,4 @@
-PWA server worker中的缓存文件列表是静态的 每次打包后的文件列表名字后都带有hash 名称不固定 如果每次手写那么会很麻烦
+//PWA server worker中的缓存文件列表是静态的 每次打包后的文件列表名字后都带有hash 名称不固定 如果每次手写那么会很麻烦
 
 'serviceworker-webpack-plugin' 用于
 new ServiceWorkerWebpackPlugin({

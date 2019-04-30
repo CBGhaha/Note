@@ -79,7 +79,7 @@ var arr=[1,2,3,4,5,6,7];
 function * flatten(arr){
   for(let i =0;i<arr.length;i++){
     let a= yield arr[i]+'a';
-    console.log(a)
+    console.log(a) 
   }
 }
 var as=flatten(arr);
