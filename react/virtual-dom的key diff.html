@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+     Array.prototype.$findIndex=function(item){
+        return this.findIndex((i)=>{
+           return i.key===item.key
+        })
+    }
+    var dom=[1,2,3,4,5];
+    
+    var arr1=[{key:'a',value:1},{key:'b',value:2},{key:'c',value:3},{key:'d',value:4},{key:'e',value:5}];
+    var arr2=[{key:'c',value:3},{key:'f',value:7},{key:'e',value:5},{key:'d',value:4},{key:'a',value:1},{key:'b',value:2}];
+    function keyDiff(newArr,oldArr){
+        var diffArr=[];
+        let max=0;
+        for(var i=0;i<newArr.length;i++){
+            let index=oldArr.$findIndex(newArr[i]);
+            max=Math.max(max,index);
+            if(index<0){
+                diffArr[i]={type:'newKeyItem',item:newArr[i],newIndex:i};
+            }else{
+                console.log(index,max)
+               if(index<max){
+                diffArr[i]={type:'changeAdressItem',item:newArr[i],newIndex:i,oldIndex:index};
+               }
+            }
+        }
+        return diffArr;
+    }
+   let keyDiffArr=keyDiff(arr2,arr1);
+
+</script>
+</html>

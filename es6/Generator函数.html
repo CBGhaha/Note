@@ -17,18 +17,18 @@
 
   //1:简单示例
   function* helloWordGenerator(){
-    yield 1;
+    var next1=yield 1;
     //第一步运行到此结束 done:false
-    console.log('step1');
-    yield 2;
+    console.log('step1:',next1);
+    var next2=yield 2;
     //第二步运行到此结束 done:false
-    console.log('step2');
+    console.log('step2:',next2);
     //第二步运行到此结束 done:true
   }
   let hg=helloWordGenerator();
-  console.log(hg.next());
-  console.log(hg.next());
-  console.log(hg.next());
+  console.log(hg.next('a'));
+  console.log(hg.next('b'));
+  console.log(hg.next('c'));
 
 
 //2:Generatpr 实现async
@@ -79,7 +79,6 @@ var arr=[1,2,3,4,5,6,7];
 function * flatten(arr){
   for(let i =0;i<arr.length;i++){
     let a= yield arr[i]+'a';
-    console.log(a) 
   }
 }
 var as=flatten(arr);

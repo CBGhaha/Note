@@ -72,6 +72,7 @@ console.log(nodeFind(tree,pathResult[0].path))
 //使用generator实现 保存符合条件的节点和路径
 function *generatorTree_transverse(tree,path=[0]){
     let children=tree.children;
+    //每个节点都被遍历 保存了它的path
     if(!children){yield ({tree,path}); return;} ;
     yield ({tree,path});
     for(var i in children){
@@ -81,6 +82,7 @@ function *generatorTree_transverse(tree,path=[0]){
 
 function generatorNodePath(tree,fn){
    let rs= generatorTree_transverse(tree,path=[0]);
+   //筛选符合条件的节点
    return [...rs].filter(fn)
 }
 let nodePaths=generatorNodePath(tree,(tree)=>{return tree.tree.v>24});

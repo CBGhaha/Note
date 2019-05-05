@@ -39,10 +39,13 @@ var vdom2={
       {type:"li",props:{class:"item-3"},children:["item 3"]}
       ]
   }
+  //记录各节点的编号 -采用的是深度优先遍历
   var INDEX=0;
 diff(vdom1,vdom2)
 
+
 function diff(oldVdom,newVdom){
+  //全局的变化数组，数组索引代表节点的编号
   var patchs=[];
   walk(oldVdom,newVdom,patchs);
   console.log(patchs);
@@ -64,27 +67,35 @@ function diffAttr(oldProps,newProps){
   }
   return changeObj;
 }
+//对比的核心函数
 function walk(oldVdom,newVdom,patchs){
-
   //每一个节点单独创建一个保存修改的对象
   let nodePatch=[];
+  //如果节点是textNode类型
   if(typeof oldVdom==='string'&&typeof newVdom==='string'){
     if(oldVdom!==newVdom){
     nodePatch.push({type:'TEXT_CHANGE',change:newVdom});
+    //textNode类型将不存在children所以不需要 递归 直接add入全局数组
     if(nodePatch.length>0){
       patchs[INDEX]=nodePatch;
     }}
+    //如果节点是相同类型的dom节点
   }else if(oldVdom.type===newVdom.type){
+    //对比节点的属性 获取修改对象
     var attrChange=diffAttr(oldVdom.props,newVdom.props);
     Object.keys(attrChange).length>0&&nodePatch.push({type:'ATTR_CHANGE',change:diffAttr(oldVdom.props,newVdom.props)});
     if(nodePatch.length>0){
       console.log(INDEX);
       patchs[INDEX]=nodePatch;
     }
+    //新旧节点的children遍历递归 比较
     oldVdom.children.forEach((oldChild,inx) => {
       INDEX++;
       walk(oldChild,newVdom.children[inx],patchs)
     });
+    //如果是不同类型的节点
+  }else{
+    
   }
   
 }

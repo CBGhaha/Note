@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //普通算法基于判断一个数是否是素数 然后循环遍历n次 判断
+
+    //升级算法：2~n组成的元素数组 第一项为素数（因为比它小的数都没有整除它） 每次过滤掉能被数组第一项整除的元素  
+
+    function seach_prime(n){
+        var resultArr=[];
+        var arr=Array.from({length:n-2},(_,i)=>i+2);
+        let item;
+        while(item=arr.shift()){
+            resultArr.push(item);
+            arr=arr.filter((i)=>i%item!==0)
+        }
+        return resultArr;
+
+    }
+    console.log(seach_prime(100))
+
+    //generator的写法
+    function *seach_prime2(n){
+        var arr=Array.from({length:n-2},(_,i)=>i+2);
+        let item;
+        while(item=arr.shift()){
+            yield item;
+            arr=arr.filter((i)=>i%item!==0)
+        }
+    }
+    let it=seach_prime2(100);
+    console.log([...it])
+</script>
+</html>

@@ -95,14 +95,10 @@ function A4(next){
 
 var s=compose([A1,A2,A3,A4]);
 var newDispatch=s(()=>{
-    console.log("我是初始化的store.dispatch")
+    console.log("我是初始化的store.dispatch,作为最后一个中间件的next")
 });
 console.log(newDispatch);
-newDispatch({type:'test'})
-async function aa(){
-  let res=await new Promise((resolve)=>{resolve(2)}).then((res)=>{console.log(res);return res});
-  console.log(res)
-}
-aa()
+newDispatch({type:'test'});
+
 </script>
 </html>
