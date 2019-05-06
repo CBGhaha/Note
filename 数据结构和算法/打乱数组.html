@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function upSetArr(arr){
+        for(var i in arr){
+            var j=Math.floor(Math.random()*(arr.length-i))+Number(i);
+            [arr[i],arr[j]]=[arr[j],arr[i]]
+        }
+    }
+    let count=0;
+    for(var i=0;i<10000;i++){
+        let arrs=[1,2,3,4,5];
+        upSetArr(arrs);
+        if(arrs[0]===5){
+            count++
+        }
+    }
+    console.log(count/10000);
+
+
+    //还有一种网红的错误写法 
+    function upsetArr2(arr){
+        arr.sort((a,b)=>Math.random()-0.5)
+    }
+    let count2=0;
+    for(var i=0;i<10000;i++){
+        let arrs=[1,2,3,4,5];
+        upsetArr2(arrs);
+        if(arrs[0]===5){
+            count2++
+        }
+    }
+    console.log(count2/10000);
+</script>
+</html>

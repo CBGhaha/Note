@@ -10,24 +10,74 @@
 <script>
 var arr=[6,3,4,7,9,12,2,1];
 var resArr=[];
-var index=0
-function sort(arr){
-    if(arr.length<1){
-        return arr
-    }
-    var midIndex=Math.floor(arr.length/2);
-    var item=arr[midIndex];
-    var arrLeft=[];
-    var arrRight=[];
-    for(var i in arr){
-        if(arr[i]>item){
-            arrRight.push(arr[i])
-        }else if(arr[i]<item){
-            arrLeft.push(arr[i])
+var index=0;
+
+function partition(arr,startIndex,endIndex){
+    var item=arr[Math.floor((startIndex+endIndex)/2)];
+    while(startIndex<endIndex){
+        //从左到右找到大于基准值的数
+        while(arr[startIndex]<item){
+            startIndex++
+        }
+        //从右到左找到小于基准值得数
+        while(arr[endIndex]>item){
+            endIndex--
+        }
+        //找到了大于和小于基准轴的数，如果他们的位置是大的在左小的在右那么他们的位置反了 所以需要换位置 如果大的已经在右小的已经在左 就不需要换位置了
+        if(startIndex<endIndex){
+            [arr[startIndex],arr[endIndex]]=[arr[endIndex],arr[startIndex]];
+            //继续往下找
+            startIndex++;endIndex--
         }
     }
-    return [...sort(arrLeft),item,...sort(arrRight)]
+    return startIndex-1;
 }
-console.log(sort(arr));
+
+function sort2(arr,start,end){
+    let index=partition(arr,start,end);
+    console.log(arr,index,start,end);
+    if(index-start>0){
+        sort2(arr,start,index)
+    }
+    if(end-(index+1)>1){
+        sort2(arr,index+1,end)
+    }
+}
+sort2(arr,0,7)
+console.log(arr);
+// function sort(arr){
+//     if(arr.length<1){
+//         return arr
+//     }
+//     var midIndex=Math.floor(arr.length/2);
+//     var item=arr[midIndex];
+//     var arrLeft=[];
+//     var arrRight=[];
+//     for(var i in arr){
+//         if(arr[i]>item){
+//             arrRight.push(arr[i])
+//         }else if(arr[i]<item){
+//             arrLeft.push(arr[i])
+//         }
+//     }
+//     return [...sort(arrLeft),item,...sort(arrRight)]
+// }
+// console.log(sort(arr));
+function partition2(arr,startIndex,endIndex){
+    var item =arr[Math.floor(startIndex+endIndex/2)];
+    while(startIndex<endIndex){
+        while(arr[startIndex]<item){
+            startIndex++
+        }
+        while(arr[endIndex]>item){
+            endIndex--
+        }
+        if(startIndex>endIndex){
+            [arr[startIndex],arr[endIndex]]=[arr[endIndex],arr[startIndex]];
+            startIndex++;endIndex--
+        }
+    }
+    return startIndex--
+}
 </script>
 </html>
