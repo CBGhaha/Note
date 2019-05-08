@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    class ListNode{
+        constructor(key,value){
+            this.key=key;
+            this.value=value;
+            this.nextNode=null;
+            this.preNode=null;
+        }   
+    }
+    class List{
+        constructor(){
+            this.head=null;
+
+        }
+        insertNode(node){
+            //如果链表有头部节点 那么将原头部节点的前一个节点指向node
+            if(this.head){
+                this.head.preNode=node;
+            }
+            node.nextNode=this.head;
+            node.preNode=null;
+            //插入的node为新的链表头部节点
+            this.head=node;
+
+        }
+        searchNode(key){
+            let node=this.head;
+            while(node.key!==node&&node){
+                node=node.nextNode;
+            }
+            return node;
+        }
+        delete(node){
+            const {preNode,nextNode}=node;
+            preNode&&(preNode.nextNode=nextNode);
+            nextNode&&(nextNode.preNode=preNode);
+
+        }
+
+    }
+</script>
+</html>
