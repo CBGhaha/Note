@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/react/15.6.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react-dom/15.6.2/react-dom.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    function Hello(props) {
+      console.log('hello 组件渲染了')
+      return React.createElement('div', null, [`Hello ${props.toWhat}`,props.children])
+    }
+
+    console.log(React.createElement(Hello, { toWhat: 'World' }, 'sss'))
+    console.log(React.createElement('div', { toWhat: 'World' }))
+    ReactDOM.render(
+      React.createElement(Hello, { toWhat: 'World' }, 'child'),
+      document.getElementById('root')
+    )
+  </script>
+</html>
+
+<div>
+  <Banner />
+  <ul>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<div id='box'></div>
+<script>
+  class Banner extends React.Component{
+    constructor(props){
+      super(props)
+    }
+    render(){
+      return React.createElement(Hello, { toWhat: 'banner' })
+    }
+  }
+  var vituralDom=React.createElement('div',{},[
+    React.createElement(Banner,{}),
+    React.createElement('ul',{},[
+      React.createElement('li',{},'1'),
+      React.createElement('li',{},'2'),
+      React.createElement(function(){return React.createElement('li', { },'function child')},{},'2')
+    ]),
+  ]);
+  ReactDOM.render(
+      vituralDom,
+      document.getElementById('box')
+  )
+
+
+
+
+
+
+</script>

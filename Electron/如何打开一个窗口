@@ -1,0 +1,45 @@
+一:如何打开一个窗口:
+  1:BrowserWindow
+    const { BrowserWindow } = require('electron')
+
+    // 或者从渲染进程中使用 `remote`.
+    // const { BrowserWindow } = require('electron').remote
+
+    let win = new BrowserWindow({ width: 800, height: 600 })
+
+  2：<webview>标签
+    webview是一个单独的进程，与 iframe 不同, webview 在与应用程序不同的进程中运行。它与您的网页没有相同的权限, 
+    渲染进程中使用
+    <webview id="foo" src="https://www.github.com/" style="display:inline-flex; width:640px; height:480px" preload=''></webview>
+    (在渲染进程中使用webview,因 Chromium的更新 可能影响其稳定性，--事实上electron5.02中确实无法使用)
+
+    主进程中使用
+    let view = new BrowserView()
+    win.setBrowserView(view)
+    view.setBounds({ x: 0, y: 0, width: 300, height: 300 })
+    view.webContents.loadURL('https://electronjs.org')
+    (注意：需要在主进程 app ready事件之后加入)
+
+  3：window.open 
+    在渲染进程中重开一个BrowserWindow进程， 返回一个BrowserWindowProxy类实例 
+    实例有如下方法
+    win.blur()
+    将焦点从子窗口中移除.
+
+    win.close()
+    不调用卸载事件，便关闭了子窗口。
+
+    win.eval(code)
+    code String
+    Eval子窗口中的代码
+
+    win.focus()
+    聚焦子窗口(即窗口置顶)
+
+    win.print()
+    调用子窗口上的打印对话框
+
+    win.postMessage(message, targetOrigin)
+    message String
+    targetOrigin String
+    调通过指定位置或用*来代替不明位置，向子窗口发送信息

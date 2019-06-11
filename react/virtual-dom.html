@@ -1,46 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title></title>
   </head>
-  <body>
-
-  </body>
+  <body></body>
 </html>
 <script type="text/javascript">
-
-
-
-class Element{
-  constructor(type,props,children){
-    this.type=type;
-    this.props=props;
-    this.children=children;
-  }
-  render(){
-    var dom=document.createElement(this.type);
-    if(this.props){
-      for(var key in this.props){
-        dom.setAttribute(key,this.props[key])
-      }
+  class Element {
+    constructor(type, props, children) {
+      this.type = type
+      this.props = props
+      this.children = children
     }
-    (this.children||[]).forEach((child)=>{
-      var childDom=child instanceof Element?child.render():document.createTextNode(child);
-      dom.appendChild(childDom);
-    })
-    return dom;
+    render() {
+      var dom = document.createElement(this.type)
+      if (this.props) {
+        for (var key in this.props) {
+          dom.setAttribute(key, this.props[key])
+        }
+      }
+      ;(this.children || []).forEach(child => {
+        var childDom =
+          child instanceof Element
+            ? child.render()
+            : document.createTextNode(child)
+        dom.appendChild(childDom)
+      })
+      return dom
+    }
   }
-}
-function createElement(type,props,children){
-  return new Element(type,props,children);
-}
-var virtual_dom=createElement('ul',{id:'list'},[
-  createElement('li',{class:'item'},['item 1']),
-  createElement('li',{class:'item'},['item 2']),
-  createElement('li',{class:'item'},['item 3'])
-])
+  function createElement(type, props, children) {
+    return new Element(type, props, children)
+  }
+  var virtual_dom = createElement('ul', { id: 'list' }, [
+    createElement('li', { class: 'item' }, ['item 1']),
+    createElement('li', { class: 'item' }, ['item 2']),
+    createElement('li', { class: 'item' }, ['item 3'])
+  ])
 
-console.log(virtual_dom);
-console.log(virtual_dom.render());
+  console.log(virtual_dom)
+  console.log(virtual_dom.render())
 </script>
