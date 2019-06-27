@@ -1,111 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Document</title>
     <style>
-        .btn{
-           padding: 10px 20px;border:1px solid #666;display: inline-block
-        }
-        .red{background:red;color:#fff}
-        .green{background:green;color:#fff}
-        .blue{background:blue;color:#fff }
-        body>div{
-            position: relative
-        }
-        .box{
-            width: 100%;
-            height:200px; 
-        }
-        .boxScreen{
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 11;
-            width: 100%;
-            height:200px;
-            color:rgba(0,0,0,0)
-        }
-        ul>li span{
-            width: 10px;
-            height: 10px;
-            display: inline-block
-        }
+      .btn {
+        padding: 10px 20px;
+        border: 1px solid #666;
+        display: inline-block;
+      }
+      .red {
+        background: red;
+        color: #fff;
+      }
+      .green {
+        background: green;
+        color: #fff;
+      }
+      .blue {
+        background: blue;
+        color: #fff;
+      }
+      body > div {
+        position: relative;
+      }
+      .box {
+        width: 100%;
+        height: 200px;
+      }
+      .boxScreen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 11;
+        width: 100%;
+        height: 200px;
+        color: rgba(0, 0, 0, 0);
+      }
+      ul > li span {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+      }
     </style>
-    <script src='https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js'></script>
-</head>
-<body>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+  </head>
+  <body>
     <div>
-        <div class='box'></div>
-        <div class='boxScreen'></div>
+      <div class="box"></div>
+      <div class="boxScreen"></div>
     </div>
-    <button type='red' class='btn'>红色</button>
-    <button type='green' class='btn'>绿色</button>
-    <button type='blue' class='btn'>蓝色</button>
+    <button type="red" class="btn">红色</button>
+    <button type="green" class="btn">绿色</button>
+    <button type="blue" class="btn">蓝色</button>
     <ul></ul>
-</body>
-<script>
-    var text='11xx而威尔玩儿万科任务二五二委员认为忍无可忍因为而威尔一五二一物业日晚热议五二一五二一五二一任务五二五为';
-    $('.box').text(text);
-    $('.boxScreen').text(text);
-    var tagArr=[];//词条数组
-    var tagObj={};//所有词条包含所选文字
+  </body>
+  <script>
+    var text =
+      '11xx而威尔玩儿万科任务二五二委员认为忍无可忍因为而威尔一五二一物业日晚热议五二一五二一五二一任务五二五为'
+    $('.box').text(text)
+    $('.boxScreen').text(text)
+    var tagArr = [] //词条数组
+    var tagObj = {} //所有词条包含所选文字
     //点击选色
-    $('.btn').on('click',function(e){
-        let type=e.target.getAttribute('type');
-        let text=getSelection().toString();
-        let start=window.getSelection().anchorOffset;
-        let end=window.getSelection().focusOffset;
-        let length= Math.abs(end-start);
-        length!==0&&addTag(start>end?end:start,length,type,text);
+    $('.btn').on('click', function(e) {
+      let type = e.target.getAttribute('type')
+      let text = getSelection().toString()
+      let start = window.getSelection().anchorOffset
+      let end = window.getSelection().focusOffset
+      let length = Math.abs(end - start)
+      length !== 0 && addTag(start > end ? end : start, length, type, text)
     })
     //添加词条
-    function addTag(index,length,type,text){
-        tagArr.push({text,index,length,type});
-        tagObj={};
-        tagArr.forEach((item)=>{
-            tag(item);
-        })
-        
-        render();
-        renderLis(tagArr)
+    function addTag(index, length, type, text) {
+      tagArr.push({ text, index, length, type })
+      tagObj = {}
+      tagArr.forEach(item => {
+        tag(item)
+      })
+
+      render()
+      renderLis(tagArr)
     }
     //删除词条
-    function delTag(index){
-        tagArr.splice(index,1);
-        tagObj={};
-        tagArr.forEach((item)=>{
-            tag(item);
-        })
-        render();
-        renderLis(tagArr);
+    function delTag(index) {
+      tagArr.splice(index, 1)
+      tagObj = {}
+      tagArr.forEach(item => {
+        tag(item)
+      })
+      render()
+      renderLis(tagArr)
     }
     //定义tagObj
-    function tag(item){
-        let {text,index,length,type}=item;
-        for(var i =index;i<index+length;i++){
-            tagObj[i]=type;
-        }
+    function tag(item) {
+      let { text, index, length, type } = item
+      for (var i = index; i < index + length; i++) {
+        tagObj[i] = type
+      }
     }
     //渲染文字
-    function render(){
-        var str='';
-        for(var i=0; i<text.length; i++){
-            if(tagObj[i]){
-                str+=`<span class=${tagObj[i]}>${text[i]}</span>`
-            }else{
-                str+=text[i]
-            }
+    function render() {
+      var str = ''
+      for (var i = 0; i < text.length; i++) {
+        if (tagObj[i]) {
+          str += `<span class=${tagObj[i]}>${text[i]}</span>`
+        } else {
+          str += text[i]
         }
-        $('.box').html(str);
+      }
+      $('.box').html(str)
     }
     //渲染词条列表
-    function renderLis(tagArr){
-        $("ul").html('');
-        for(var i in tagArr){
-            var li=`<li><span class=${tagArr[i].type}></span>${tagArr[i].text}<button onclick="delTag(${i})">删除标记</button></li>`
-            $("ul").html( $("ul").html()+li);
-        }
+    function renderLis(tagArr) {
+      $('ul').html('')
+      for (var i in tagArr) {
+        var li = `<li><span class=${tagArr[i].type}></span>${
+          tagArr[i].text
+        }<button onclick="delTag(${i})">删除标记</button></li>`
+        $('ul').html($('ul').html() + li)
+      }
     }
-</script>
+
+    function a() {
+      var i = 0
+      return function() {
+        console.log(i++)
+      }
+    }
+    var c = a(),
+      d = a()
+    c()
+    c()
+    d()
+  </script>
 </html>

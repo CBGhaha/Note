@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title></title>
     <style media="screen">
-        .box{
-          height: 200px;
-          width: 200px;
-          background: yellowgreen;
-          display: flex;
-          /*子元素的水平对其方式，左 右 居中 靠两边，  */
-          justify-content:space-around;
+      .box {
+        height: 200px;
+        width: 200px;
+        background: yellowgreen;
+        display: flex;
+        /*子元素的水平对其方式，左 右 居中 靠两边，  */
+        justify-content: space-around;
 
-          align-items:center;
-          flex-wrap: wrap;
-          align-content:space-around;
-
-        }
-        .item{
-          width: 60px;
-          height: 60px;
-          display:block;
-          background: black;
-        }
+        align-items: center;
+        flex-wrap: wrap;
+        align-content: space-around;
+      }
+      .item {
+        width: 60px;
+        height: 60px;
+        display: block;
+        background: black;
+      }
     </style>
   </head>
   <body>
@@ -31,16 +30,16 @@
     <!-- 父元素设定子元素的竖对齐方式(align-items)  靠上 靠下 居中 -->
     <!-- 父元素设定多行子元素的竖对齐方式(align-content)  靠上 靠下 居中 上下靠齐 每行子元素上下间距（包括元素距父边框距离）相等 只有一行此属性设定无效-->
     <!-- 父元素设定子元素一行超出宽度是否换行(flex-wrap)  -->
-<!-- ************************************************************************************************************************************** -->
+    <!-- ************************************************************************************************************************************** -->
 
     <!--子元素设定 排序权重  -->
     <!--子元素设定 设置单个子元素与其他项目不同的竖对齐方式覆盖父元素的aligin-items -->
 
-    <div class='box'>
-      <span class='item'></span>
-      <span class='item'></span>
-      <span class='item'></span>
-      <span class='item'></span>
+    <div class="box">
+      <span class="item"></span>
+      <span class="item"></span>
+      <span class="item"></span>
+      <span class="item"></span>
     </div>
   </body>
 </html>
