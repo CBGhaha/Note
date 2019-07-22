@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>BFC</title>
+    <style>
+      .bfc-box {
+        display: inline-block;
+      }
+      .bfc-child-1 {
+        width: 100px;
+        height: 100px;
+        background: red;
+        margin-bottom: 100px;
+      }
+      .bfc-child-2 {
+        margin-top: 50px;
+        width: 100px;
+        height: 100px;
+        background: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bfc-box">
+      <div class="bfc-child-1"></div>
+      <div class="bfc-child-2"></div>
+    </div>
+  </body>
+</html>
+<!-- 
+  BFC也叫块级格式上下文
+  
+  生成BFC的途径：
+    1：html根元素
+    2：float
+    3: position 不为 static
+    4: overflow 不为 visiable
+    5: display 为 flex inline-block
+
+
+  特性：
+    设置float的元素 不会浮于BFC兄弟元素上
+    BFC元素的高度 会计算内部的BFC元素
+    BFC内部 的块级子元素的垂直方向上的margin会重叠
+    
+
+
+-->
