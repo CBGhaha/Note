@@ -1,72 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Document</title>
     <style>
-        .box{
-            width: 300px
-        }
-        p{
-            display: flex;
-            justify-content: space-around
-        }
+      .box {
+        width: 300px;
+      }
+      p {
+        display: flex;
+        justify-content: space-around;
+      }
     </style>
-</head>
-<body>
-    <div class='box'>
-        <p>1</p>
-        <p><span>11</span><span>12</span></p>
-        <p><span>21</span><span>22</span><span>23</span><span>24</span></p>
-        <p><span>31</span><span>32</span>
-           <span></span><span></span><span></span><span></span><span></span><span></span>
-        </p>
-
+  </head>
+  <body>
+    <div class="box">
+      <p>1</p>
+      <p><span>11</span><span>12</span></p>
+      <p><span>21</span><span>22</span><span>23</span><span>24</span></p>
+      <p>
+        <span>31</span><span>32</span> <span></span><span></span><span></span
+        ><span></span><span></span><span></span>
+      </p>
     </div>
-</body>
-<script>
-    class node{
-        constructor(v,children){
-            this.v=v;
-            this.children=children
-        }
+  </body>
+  <script>
+    class node {
+      constructor(v, children) {
+        this.v = v
+        this.children = children
+      }
     }
-    var tree=new node(1,[
-        new node(11,[
-            new node(21,[
-                new node(31),
-                new node(32)
-            ]),
-            new node(22)
-        ]),
-        new node(12,[
-            new node(23),
-            new node(24)
-        ]),
+    var tree = new node(1, [
+      new node(11, [new node(21, [new node(31), new node(32)]), new node(22)]),
+      new node(12, [new node(23), new node(24)])
     ])
-    console.log(tree);
-//                 1
-//          11             12
-//      21     22       23    24
-//    31  32      
-    function tree_transverse(tree,type,callback){
-        let hasExe=false;
-        if(!tree.children){callback(tree.v);return ;}
-        //什么时候 执行这个？ clid节点的子节点没有被访问时 首先执行 所以他是先序遍历 先自己后子　
-        if(type===0){callback(tree.v);hasExe=true};
-        tree.children.forEach((clid,index) => {
-            //中序遍历时 在左边的子节点的所有 子节点访问完毕 访问父节点 然后迭代遍历右边的子节点
-            if(index===1&&type===1){
-                hasExe=true;
-                callback(tree.v);
-            }
-            tree_transverse(clid,type,callback);               
-        });
-        //什么时候回执行这个 当当前节点的所有后代节点被访问  所以他是后续遍历 先子后自己 
-        (!hasExe)&&callback(tree.v);
-        
+    console.log(tree)
+    //                 1
+    //          11             12
+    //      21     22       23    24
+    //    31  32
+    function tree_transverse(tree, type, callback) {
+      let hasExe = false
+      if (!tree.children) {
+        callback(tree.v)
+        return
+      }
+      //什么时候 执行这个？ clid节点的子节点没有被访问时 首先执行 所以他是先序遍历 先自己后子
+      if (type === 0) {
+        callback(tree.v)
+        hasExe = true
+      }
+      tree.children.forEach((clid, index) => {
+        //中序遍历时 在左边的子节点的所有子节点访问完毕 访问父节点 然后迭代遍历右边的子节点
+        if (index === 1 && type === 1) {
+          hasExe = true
+          callback(tree.v)
+        }
+        tree_transverse(clid, type, callback)
+      })
+      //什么时候回执行这个 当当前节点的所有后代节点被访问  所以他是后续遍历 先子后自己
+      !hasExe && callback(tree.v)
     }
-    tree_transverse(tree,0,(e)=>{console.log(e);}) //type=0 正序遍历 type=1 中序遍历 type=2后续遍历
-
-</script>
+    tree_transverse(tree, 0, e => {
+      console.log(e)
+    }) //type=0 正序遍历 type=1 中序遍历 type=2后续遍历
+  </script>
 </html>

@@ -1,13 +1,68 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title></title>
   </head>
-  <body>
-
-  </body>
+  <body></body>
 </html>
 <script type="text/javascript">
   console.log(/\{[a-z0-9]+\}/g.exec('{ewe}qlewqwe{werwe}'))
+
+  //精确匹配
+  console.log(/ww/.test('wwaa'))
+  //全部匹配 g
+  console.log(/ww/g.test('wwaa'))
+  //忽略大小写 i
+  console.log(/ww/i.test('wWaa'))
+  //匹配个数
+  console.log(/w{1,3}/.test('wwwaa'))
+  /*
+    * 等价于{0,} 即任意多个
+    + 等价于{1,} 即至少一个
+    ? 等价于{0,1} 即有一个或者没有
+  */
+
+  //贪婪和惰性 ?
+  console.log('wwwaa'.match(/w{1,3}/g)) //选中www [w,ww],[w,w,w]都符合 为什么会是www呢 因为正则默认贪婪模式
+  console.log('wwwaa'.match(/w{1,3}?/g))
+
+  //集合 []
+  console.log('acdbwqs1'.match(/[a-d]{4}/))
+  //集合非 [^]
+  console.log('acdbwqs1'.match(/[^a-d]{1}/g))
+
+  /*
+    \d 等价于 [0-9]。表示是一位数字。digit 的首字母。
+    \D 等价于 [^0-9]。
+    \w 等价于 [0-9a-zA-Z_]。表示数字、大小写字母和下划线。word的首字母，也称单词字符。
+    \W 等价于 [^0-9a-zA-Z_]。
+    \s 等价于 [ \t\v\n\r\f]。表示空白符，包括空格、水平制表符、垂直制表符、换行符、回车符、换页符。记忆方式：s是space character的首字母。
+    \S 等价于 [^ \t\v\n\r\f]。
+    . 等价于[^\n\r\u2028\u2029]。点是通配符，表示几乎任意字符。
+  */
+
+  //位置
+
+  //单词边界:\b 非单词边界：\B
+  console.log('how are you howhaha'.match(/\bhow\w*\B/))
+  //整个文字的开头和结尾 ^ 和 $
+
+  //匹配行首和行尾  m
+  console.log(
+    `how are you
+   howhaha
+   youas`.match(/you\w+/m)
+  )
+  //匹配特定位置：
+  //在某个模式之前的位置(?=p)
+  console.log(`how are you howhaha youas`.match(/how\w+(?=\s)/)) //匹配在空格字符之前的位置
+  //在某个模式之后的位置
+  console.log(`how are you howhaha youas`.match(/(?<=\s)you\w+/)) //匹配在空格字符之后的位置
+  //不在某个模式之前和之后的位置
+  console.log(`hows are you howhaha youas`.match(/how\w{1}(?!a)/g)) //匹配不在a之前的how\w{1}
+  console.log(`hows are you howhaha youas`.match(/(?<!\s)how\w+/g)) //匹配不在空格后面的的how\w+
+
+  // 引用 \1 --引用上一次（）内匹配的内容
+  console.log('asasqwwwwwwdsds'.match(/(\w)\1{3}/g)) //匹配连续四次相同字符
 </script>
