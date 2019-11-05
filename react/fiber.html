@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+/*
+  1：各个任务被放入任务队列
+  2：调用requestIdelCallback 获取队列的任务执行
+  3：react的更新任务被拆分成单个的执行单元 这些执行单元被包装成链表结构
+  4：原本需要递归的树形结构被改为可中断的遍历链表结构 在requestIdelCallback执行单元，在留余的时间不足时
+     链表暂停执行，交出线程权。交出时已经递归申请了下次requestIdelCallback
+  5：下次浏览器有剩余时间时，判断当前任务是新任务还是上次任务，如果是上次中止任务则继续上次的位置执行
+
+*/
+
+/**
+ * fiber将每个组件和节点数据结构优化 ：
+ * 在fiber架构中 这种树结构被修改，每个react组件有：
+    type:类型
+    ...
+    return:指向父节点
+    child:指向第一个子节点
+    sibling:指向第一个兄弟节点
+
+    这就像一个链表 可向下前进和向上溯。如此，整个遍历就可以打断和继续变成了一个遍历
+    每个执行单元在执行后返回下一个执行单元 即下一个组件实例
+*/
+</script>

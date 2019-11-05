@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+/*
+  requestIdleCallback:在浏览器空余时间操作
+
+  deadline:{
+    didTimeout:boolean -任务是否超时
+    timeRemaining:()=>number -当前帧剩余时间
+  }
+  options:{
+    timeout:number -当请求超过时间未执行 强行执行的期限
+  }
+
+*/
+
+/*
+  浏览器会在空余时间执行ewquesTdleCallback的回调，为了防止浏览器不会有空余时间 回调被“饿死”，
+  可以设定一个超时时间，达到超时时间强制执行回调内的内容
+*/
+window.requestIdleCallback((deadline)=>{
+
+},{ timeout: 2000 })
+</script>
