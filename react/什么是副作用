@@ -1,0 +1,3 @@
+一种操作的定义：ajax获取数据，获取dom，修改dom 这些之前需要在组件渲染dom完成后执行的操作，
+对应16.3之前的生命周期就是：componentDidMout componentDidUpdata componentWillUnMount
+在hooks中 的useEffect。
