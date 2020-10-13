@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  /*
+   *将数组中的0移动到数组的最右边 其他元素的顺序不改变
+  */
+
+  /*
+    *思路：指针a指向最后一个非零的元素的索引  指针b向后遍历，遇见非零的元素与a+1索引元素交换位置
+    *
+  */
+  const list=[0,1,0,3,0,2,1,5,0];
+  function sortZero(arr){
+    var a = 0;
+    var b = 0;
+    while(b < arr.length){
+      if(arr[b]!==0){
+        arr[a++] = arr[b];
+      }
+      b++
+    }
+    for(var i = a;i<arr.length;i++){
+      arr[i] = 0
+    }
+    return arr;
+  }
+  
+  console.log(sortZero(list))
+</script>
+</html>

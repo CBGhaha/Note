@@ -10,9 +10,11 @@
 </html>
 <script type="text/javascript">
   /*
+
     generatorGenerator 函数是一个状态机，封装了多个内部状态。
     执行 Generator 函数会返回一个遍历器对象，也就是说，Generator 函数除了状态机，还是一个遍历器对象生成函数。
     返回的遍历器对象，可以依次遍历 Generator 函数内部的每一个状态(next)。 
+    
   */
 
   //1:简单示例
@@ -31,7 +33,7 @@
   console.log(hg.next('c'));
 
 
-//2:Generatpr 实现async
+//2:Generator 实现async
  function* PromiseGenerator(){
     console.log('step1 begin');
     let a=yield request1;
@@ -44,14 +46,14 @@
   var hw=PromiseGenerator(); 
   //run 是一个触发 hw状态机修改的函数 在异步函数request1和request2触发 当他们的异步操作得到结果时调用 ，使之进入到下一个装态
   function run(data){
-    const itVal=hw.next(data);
+    const itVal = hw.next(data);
     if(!itVal.done){
       itVal.value(run)
     }
   }
   run();
 
-function request1(_run){
+  function request1(_run){
     setTimeout(()=>{
       _run("a");
     },2000)
@@ -61,19 +63,18 @@ function request1(_run){
     setTimeout(()=>{
       _run('b');
     },1000)
-    
   }
 
-  function * flatten(arr){
-       for(let i =0;i<arr.length;i++){
-           if(Array.isArray(arr[i])){
-                yield * flatten(arr[i])
-           }else{
-                yield arr[i]
-           }
+  // function * flatten(arr){
+  //      for(let i =0;i<arr.length;i++){
+  //          if(Array.isArray(arr[i])){
+  //               yield * flatten(arr[i])
+  //          }else{
+  //               yield arr[i]
+  //          }
            
-       }
-   }
+  //      }
+  //  }
 //3:generator 和数组遍历结合
 var arr=[1,2,3,4,5,6,7];
 function * flatten(arr){

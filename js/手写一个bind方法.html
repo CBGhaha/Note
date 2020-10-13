@@ -9,10 +9,11 @@
   </body>
 </html>
 <script type="text/javascript">
+
 Function.prototype.$bind=function(context){
   context.fn=this;//this指函数实例本身
   let args=[];
-  //记录bind第1个参数之后的参数
+  // 记录bind第1个参数之后的参数
   for(var i=1;i<arguments.length;i++){
     args.push(arguments[i])
   }

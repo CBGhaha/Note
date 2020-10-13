@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 两个已经排序好的数组 获取两个数组的重复的元素和重复的次数
+  /*
+    思路：
+    索引指针i从数组一开始遍历
+    指针j从数组二开始遍历
+    
+    
+  
+  */
+  const arr1 = [1,2,3,4,5,7,7,7,9];
+  const arr2 = [3,4,5,7,7,9];
+  let j = 0;
+  let i = 0;
+  const sameCountNum = {};
+  while(i<arr1.length-1&&j<arr2.length-1){
+    const item1=arr1[i];
+    const item2= arr2[j];
+    if(item1>item2){
+      j++
+    }
+    if(item1<item2){
+      i++
+    }
+    if(item1===item2){
+      sameCountNum[item1] = Number(sameCountNum[item1]||'0')+1;
+      i++;
+      j++;
+    }
+  }
+  console.log(sameCountNum);
+</script>
+</html>

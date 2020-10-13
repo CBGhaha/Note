@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body></body>
+</html>
+<script>
+
+/*
+ * 不能新开数组空间
+ * 原地删除重复的数组
+ * 复杂度为o(n)
+*/
+
+const list = [1,2,3,4,4,5,6,8]
+ function removeDuplicates(arr){
+  let j = 0;
+  for(let i = 1;i<arr.length; i++){
+      if( list[i] !== list[j] ){
+        list[++j] = list[i];
+      }
+  }
+  arr.pop()
+ }
+
+removeDuplicates(list)
+console.log(list)
+
+</script>

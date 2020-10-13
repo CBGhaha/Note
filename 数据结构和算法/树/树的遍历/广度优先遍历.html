@@ -48,15 +48,53 @@
     ])
     BFS(tree);
     function BFS(tree){
-      var arr=[tree];
-      while(arr.length>0){
-        console.log('遍历到了这里，对该节点访问',arr[0].v);
-        var children=arr[0].children;
-        children&&children.forEach(child => {
-          arr.push(child)
-        });
-        arr.shift();
-      }
+        const queue = [tree];
+        let node
+        while(node = queue.shift()){
+            const {v, children} = node;
+            console.log('get-current-node:',v);
+            if(children && children.length > 0){
+                for(let i of children){
+                    queue.push(i);
+                }
+            }
+        }
     }
+
+    // class Tree{
+    //     constructor(v,children){
+    //         this.v=v;
+    //         this.children = children;
+    //     }
+    // }
+    // const tree = new Tree(1,[
+    //     new Tree('2-1',[
+    //         new Tree('2-1-1'),
+    //         new Tree('2-1-2',[
+    //             new Tree('2-1-2-1'),
+    //             new Tree('2-1-2-2'),
+    //         ]),
+    //         new Tree('2-1-3'),
+    //     ]),
+    //     new Tree('2-2',[
+    //         new Tree('2-2-1')
+    //     ]),
+    // ])
+    // function BFS(tree){
+    //     const queue = [tree];
+    //     let node
+    //     while(node = queue.shift()){
+    //         const {v, children} = node;
+    //         console.log('get-current-node:',v);
+    //         if(children && children.length > 0){
+    //             for(let i of children){
+    //                 queue.push(i);
+    //             }
+    //         }
+    //     }
+    // }
+    // BFS(tree)
+
+
 
 </script>
