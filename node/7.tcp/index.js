@@ -1,3 +1,7 @@
+怎样深拷贝 
+深拷贝如果处理原型上的属性和方案
+
+
 /**
  * OSI网络协议 
  * 七层OSI网络协议 
@@ -76,7 +80,7 @@
    *  主机B收到请求后，向A发送ACK=1，Ack number=(2333334)，seq=1234567的ACK包 表示我收到了你的断开请求，但我现在还不能断开
    *  主机B发送完了最后的数据，向A发送FIN=1，Ack number=(2333334)，seq=1234567的FIN包,告诉客户端，我处理完毕了，你现在可以断开了
    *  客户端收到可以断开信息，发送ACK=1,Ack number=(1234568),seq=23333334
-   * (seq：32位序列号--本次传递的包编号，Ack number：32位确认序列号--下次对方应该传递的包编号，客户端和服务端各自的seq初始是随机的，并不相关)
+   * (seq：32位序列号--本次传递的自己的包编号，Ack number：32位确认序列号--已经收到对方发送来的数据总长度，也等于下次对方应该传递的包编号。客户端和服务端各自的seq初始是随机的，并不相关)
 
   */
 
@@ -113,3 +117,180 @@
   *     4：传输层，把TCP头拆掉，将真实数据送往应用层
   * 
   */
+
+ [{
+	"success": true,
+	"data": [
+		[{
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"operation": {
+					"doAnswer": true,
+					"hasAnswered": false,
+					"notShowModal": false,
+					"showAnswer": false,
+					"tag": "doAnswer"
+				},
+				"questionId": "1557666",
+				"role": "teacher"
+			}]],
+			"operatorId": "1326468478",
+			"operatorRole": "TEACHER",
+			"seq": 155
+		}, {
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"questionId": "1557666",
+				"operation": {
+					"active": false,
+					"ansStatus": false,
+					"rightAnswerStr": "B",
+					"ansStr": "A",
+					"answer": [true],
+					"timerCount": "00:05",
+					"name": "111",
+					"sid": "1346247933",
+					"src": "https://web-data.zmlearn.com/image/67fd9a36-b762-456e-aa58-1975e29e28c6.png",
+					"correctResult": 2
+				},
+				"role": "student"
+			}]],
+			"operatorId": "1346247933",
+			"operatorRole": "STUDENT",
+			"seq": 156
+		}, {
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"questionId": "1557666",
+				"role": "student",
+				"operation": {
+					"sid": "1346247934",
+					"active": false,
+					"src": "https://web-data.zmlearn.com/image/67fd9a36-b762-456e-aa58-1975e29e28c6.png",
+					"name": "123",
+					"answer": [null, true],
+					"ansStatus": true,
+					"timerCount": "00:08",
+					"correctResult": 1,
+					"rightAnswerStr": "B",
+					"ansStr": "B"
+				}
+			}]],
+			"operatorId": "1346247934",
+			"operatorRole": "STUDENT",
+			"seq": 157
+		}, {
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"questionId": "1557666",
+				"role": "student",
+				"operation": {
+					"timerCount": "00:17",
+					"ansStr": "C",
+					"ansStatus": false,
+					"src": "https://web-data.zmlearn.com/image/67fd9a36-b762-456e-aa58-1975e29e28c6.png",
+					"sid": "1346307722",
+					"answer": [null, null, true],
+					"rightAnswerStr": "B",
+					"active": false,
+					"correctResult": 2,
+					"name": "UaT2"
+				}
+			}]],
+			"operatorId": "1346307722",
+			"operatorRole": "STUDENT",
+			"seq": 158
+		}, {
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"questionId": "1557666",
+				"role": "student",
+				"operation": {
+					"sid": "1346247939",
+					"active": false,
+					"src": "https://web-data.zmlearn.com/image/67fd9a36-b762-456e-aa58-1975e29e28c6.png",
+					"name": "1231",
+					"answer": [null, null, null, true],
+					"ansStatus": false,
+					"timerCount": "00:23",
+					"correctResult": 2,
+					"rightAnswerStr": "B",
+					"ansStr": "D"
+				}
+			}]],
+			"operatorId": "1346247939",
+			"operatorRole": "STUDENT",
+			"seq": 159
+		}, {
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"operation": {
+					"active": false,
+					"ansStatus": true,
+					"ansStr": "B",
+					"answer": [null, true],
+					"correctResult": 1,
+					"name": "Uat05",
+					"rightAnswerStr": "B",
+					"sid": 1346247935,
+					"src": "https://web-data.zmlearn.com/image/67fd9a36-b762-456e-aa58-1975e29e28c6.png",
+					"timerCount": "00:43"
+				},
+				"questionId": "1557666",
+				"role": "student"
+			}]],
+			"operatorId": "1346247935",
+			"operatorRole": "STUDENT",
+			"seq": 161
+		}, {
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"questionId": "1557666",
+				"role": "student",
+				"operation": {
+					"sid": 1346247937,
+					"active": false,
+					"src": "https://web-data.zmlearn.com/image/5c1422a1-b134-4f2f-97a2-ed7be34118da.png",
+					"name": "1232",
+					"answer": [null, true],
+					"ansStatus": true,
+					"timerCount": "00:58",
+					"correctResult": 1,
+					"rightAnswerStr": "B",
+					"ansStr": "B"
+				}
+			}]],
+			"operatorId": "1346247937",
+			"operatorRole": "STUDENT",
+			"seq": 162
+		},{
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"operation": {
+					"doAnswer": false,
+					"hasAnswered": true,
+					"notShowModal": false,
+					"showAnswer": false,
+					"tag": "doAnswer"
+				},
+				"questionId": "1557666",
+				"role": "teacher"
+			}]],
+			"operatorId": "1326468478",
+			"operatorRole": "TEACHER",
+			"seq": 164
+		},  {
+			"data": [0, 0, -1, "zmlMessage", ["questionOperation", {
+				"operation": {
+					"doAnswer": false,
+					"hasAnswered": true,
+					"showAnswer": true,
+					"tag": "showAnswer"
+				},
+				"questionId": "1557666",
+				"role": "teacher"
+			}]],
+			"operatorId": "1326468478",
+			"operatorRole": "TEACHER",
+			"seq": 167
+		}], "5279"
+	]
+}]
+1346247933-111
+1346247934-123
+1346307722-UaT2
+1346247939-123
+1346247935-Uat05
+1346247937-1232

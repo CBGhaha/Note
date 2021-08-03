@@ -1,0 +1,17 @@
+react 库里封装了创建组件和编写组件中一些有用的方法和基类；
+      例如：
+      类组件基类：React.Component/React.PureComponent
+      创建组件： React.createElement()
+      函数组件的PureComponent：React.memo(FunctionComponent)
+      允许组件返回多个同级元素 ：React.Fragment
+      创建ref: React.createRef
+      16后的懒加载：React.Suspense+React.lazy
+
+reactDom 库里封装了将组件插入dom或访问组件对应的dom的能力
+      例如：
+      将react组件插入html: ReactDOM.render()
+      将dom下的组件清除：ReactDOM.unmountComponentAtNode(dom)
+      
+
+
+      

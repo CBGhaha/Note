@@ -61,7 +61,7 @@ Person.prototype.do=function(){
 //寄生组合式继承--实例属性复制给子构造的实例属性  原型属性复制给子构造函数的原型属性
 //之所以需要利用寄生式是因为需要改写子构造函数的原型对象的constructor 而不改变父构造函数原型对象的constructor
     function  P6(){
-      Person.call(this)
+      Person.call(this);
     }
     prototypeObj=creatObj(Person.prototype);
     prototypeObj.constructor=P6;//这里的constructor属性是prototypeObj本身的属性非__proto__上的 所以不会覆盖Person的原型

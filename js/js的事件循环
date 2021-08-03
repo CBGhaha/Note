@@ -1,7 +1,7 @@
 js分为同步任务和异步任务
 同步任务在主线程上执行，在同步任务执行完后，主线程不断的循环往复的从任务队列中读取可执行的异步任务，这种机制称为事件循环。
 
-任务队列可以有多个，一个任务队列是多个有序的任务集合 每种相同异步api制造的异步任务在同一个任务队列中。比如Timeout和Promise
+任务队列可以有多个，一个任务队列是多个有序的任务集合 每种相同异步api制造的异步任务在同一个务队任列中。比如Timeout和Promise
 
 但是任务队列中的任务类型分为宏任务和微任务
 宏任务包括：script(整体代码)、setTimeout、setInterval、I/O、UI交互事件、postMessage、MessageChannel、setImmediate(Node.js 环境)

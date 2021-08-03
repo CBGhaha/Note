@@ -9,8 +9,8 @@
 </body>
 <script>
     function compose(funList){
-        return funList.reduce(function (a,b){
-            return function(...args){
+        return funList.reduce((a,b) => {
+            return (...args)=>{
                 return a(b(...args))
             }
          })

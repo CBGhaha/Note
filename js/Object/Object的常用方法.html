@@ -28,7 +28,8 @@ Object.defineProperties(a,{
     value:25,
     configurable:false
   }
-})
+}) 
+
 console.log(a);
 //4: Object.getOwnPropertyDescriptor(obj,name) 获取对象自身的属性的属性 （writeable,configurable,enumerable,value,get,set）
   var des=Object.getOwnPropertyDescriptor(a,'name');
@@ -49,7 +50,7 @@ console.log(a.isPrototypeOf(obj1));
 //Object.getOwnPropertySymbols(obj) 获取对象自身Symbol属性组成的数组
 
 
-//对象的遍历方法
+//对象的
 //1: for...in循环：只遍历对象自身的和继承的可枚举的属性 不包括symbol。
 //2: 获取键名数组 再遍历 Reflect.ownKeys()和Objetc.keys() 相比多了自身的symbol属性名
 </script>

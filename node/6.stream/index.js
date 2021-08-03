@@ -8,8 +8,6 @@
  * let rs = require('fs').createReadStream(path.join(__dirname, '1.test'));
  * 读取流每次会读取一段数据 
  * rs.on('data', function (data) {
-        //data--每次读取的数据
-    });
  * 
  */
 /**

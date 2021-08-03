@@ -24,13 +24,15 @@
   </body>
 </html>
 <script type="text/javascript">
-//DOM标准规定事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。
+// vue3 
+// DOM标准规定事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。
 // dom0级事件 dom0级事件只能在冒泡流中触发 且每个dom元素只能绑定一个dom0级事件
 var box1=document.getElementById('box1');
 var box2=document.getElementById('box2');
 var dd=document.getElementById('dd');
+
 dd.onclick=function(e){
-  console.log(e.target,'我是dd上绑定的dom0级事件')
+  console.log(e.target,'我是dd上绑定的dom0级事件');
 }
 
 //dom2级事件 在事件冒泡和事件捕获流中都可以设定 而且一个dom元素可以绑定多个dom2同一事件

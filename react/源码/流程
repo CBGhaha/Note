@@ -5,8 +5,8 @@
 
 react的组件在初始化时就以树结构表现 
 children和组件组成可一个组件树
-这个组件树用递归的方式遍历 在初始化时(生产dom片段 并插入))和setState时（重新render diff 批量插入修改 执行生命周期）
 
+这个组件树用递归的方式遍历 在初始化时(生产dom片段 并插入))和setState时（重新render diff 批量插入修改 执行生命周期）
 在fiber架构中 这种树结构被修改，每个react组件有：
     type:类型
     ...

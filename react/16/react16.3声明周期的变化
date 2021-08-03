@@ -4,6 +4,7 @@
     componentWillUpdate
 
     增加了两个声明周期
+
     static getDerivedStateFromProps(nextProps,preState) //在props和state修改后 render前触发 在实例化阶段和存在期都会执行，返回的一个对象 是要修改的state
                                                           它应该只会对根据props修改state 并不应该做其他的操作，比如异步获取数据，这里应该交给componentDidUpdate
                                                           因为是静态方法 所以无法获取组件实例的方法 属性（this.xxx）,在comonentWillReceiveProps我们常常在props更新后更新state
@@ -13,6 +14,9 @@
                                                           所以只判断nextProps是否和preState一致，可能造成state回滚，这时需要解耦，不要存在控制同一个state属性的情况
 
     getSnapshotBeforeUpdate(preProps,preState){
-      return componentDidUpdateArgument                 //替换 componentWillUpdate 返回值作为componentDidUpdate的第三个参数
-                                                        //一般在componentWillUpdate中获取渲然前的dom，用于与渲染后的dom对比
+      return componentDidUpdateArgument                 // 替换 componentWillUpdate 返回值作为componentDidUpdate的第三个参数
+                                                        // 一般在componentWillUpdate中获取渲然前的dom，用于与渲染后的dom对比
     }
+
+    
+    
