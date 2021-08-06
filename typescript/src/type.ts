@@ -26,8 +26,8 @@ const c:myTuple = [false, 1];
 console.log(c);
 
 // 普通函数类型
-type myFnType = (x:number, y:number) => boolean
-const fna:myFnType = (x,y)=>{
+type myFnType = <T>(x:T, y:T) => boolean
+const fna:myFnType = (x,y)=>{ // 你可以这么认为 myFnType只是用来约束fna变量的 它后面的箭头函数可以写自己的类型 但是要兼容myFnType 例如类型兼容性里面有demo
   return x>y;
 }
 

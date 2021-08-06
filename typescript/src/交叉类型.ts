@@ -4,11 +4,11 @@ interface Person1{
   // other: boolean
   
 }
-interface Person2{
+interface Person_2{
   age:number
   // other: undefined
 }
-type finalPerson = Person1 & Person2; // 如果两个类型中存在冲突  那么将合并成never类型
+type finalPerson = Person1 & Person_2; // 如果两个类型中存在冲突  那么将合并成never类型
 const personInstance:finalPerson = {
   name:'s',
   age:11,

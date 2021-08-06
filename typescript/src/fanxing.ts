@@ -65,7 +65,9 @@ class Fc1{
 const instance = classFactory<Fc1>(Fc1, 'haha');
 
 // 泛型的约束
-// extends
+// extends 
+// 对于对象属性 类型多的 extends 类型少的。{name:string,age:number} extends {name:string}
+// 对于联合类型 类型少的 extends 类型多的。number extends number|string
 type withLength =  {
   length: number
 } // 约束泛型必须有length属性
