@@ -44,6 +44,3 @@ class Child2 extends Ac1{
 }
 const child2 = new Child2('bang');
 child2.say();
-
-
-
