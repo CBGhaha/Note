@@ -11,12 +11,18 @@
     /**
       冒泡排序有时容易与插入排序混淆 他们都会与一侧的所有元素相比
       但冒泡右边的永远是最大的元素，将最大值一步步冒泡到右边
+      时间复杂度 O(n^2)
+      找出8个当中最大的 
+      找出7个当中最大的 
+      找出6个当中最大的
+      ...
     */
     var arr=[6,3,4,7,9,12,2,1];
-    //需要冒泡arr.length次
+    // 需要冒泡arr.length次
     for(var i=0;i<arr.length;i++){
       //每次冒泡需要比较arr.length-i次大小，因为已经有前i个最大值被冒泡出来了
-        for(var j=0;j<arr.length-i;j++){
+        for(var j=0;j<arr.length-i-1;j++){ 
+          console.log('dss:', arr[j+1])
             if(arr[j+1]<arr[j]){
                 let item =arr[j];
                 arr[j]=arr[j+1];
@@ -35,7 +41,7 @@
     let length=arr2.length;
     while(length>0){
       let index=0;
-      for(var j=0;j<length;j++){
+      for(var j=0;j<length-1;j++){
         if(arr2[j]>arr2[j+1]){
           var item=arr2[j];
           arr2[j]=arr2[j+1];

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script type="module">
+  import  {SingleList,SingListNode} from './list.js';
+  const list =  new SingleList();
+  const node1 = new SingListNode('n1', 1);
+  const node2 = new SingListNode('n2', 2);
+  const node3 = new SingListNode('n3', 3);
+  list.insertNode(node1);
+  list.insertNode(node2);
+  list.insertNode(node3);
+  console.log('单向链表：', list);
+
+
+  function reverseList(list){
+    if(list.head){
+      reverce(list.head, null)
+    }
+  }
+
+  // 链表 深度后序 从后向前依次调转node的nextNode
+  function reverce(node, preNode){  
+    if(!preNode){
+      list.last = node;
+    }
+    if(node.nextNode){
+      reverce(node.nextNode, node);
+    }else{
+      list.head = node;
+    }
+    node.nextNode = preNode;
+  }
+  reverseList(list)
+  console.log("反转后的单向链表：",list);
+</script>

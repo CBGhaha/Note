@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=s, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  var isValid = function(s) {
+    const stack = [];
+    let i = 0;
+    const leftEnum = {
+        '{':'}',
+        '(':')',
+        '[':']'
+    };
+    const rightEnum = [')','}',']'];
+    while(i<s.length){
+      
+        // debugger
+        const currentChar = s[i];
+        i++;
+        if(leftEnum[currentChar]){
+            stack.push(currentChar)
+        }else{
+            const itemInStak = stack.pop();
+            if(currentChar!==leftEnum[itemInStak]){
+              return false;
+            }
+        }
+    }
+    return stack.length === 0;
+};
+  
+
+const res = isValid('{}({)}(){}}')
+console.log(res)
+</script>

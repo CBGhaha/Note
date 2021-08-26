@@ -28,8 +28,8 @@
 */
 //假设实现
 var fs=require('fs');
-
-function myrequire(path){
+const path = require('path');
+function myrequire($path){
     class Module{
         constructor(){
     
@@ -37,12 +37,12 @@ function myrequire(path){
     }
     var module=new Module();
     var exports;
-    module.exports=exports;
+    module.exports = exports;
     //根据path读取文件内容
-    var content=fs.readFileSync(path,'utf8');
-    return new Function('exports','require','module',content+'\n return module.exports')(exports,myrequire,module)
+    var content=fs.readFileSync(path.resolve(__dirname, $path),'utf8');
+    return new Function('exports','require','module',content+'\n module.exports = exports; return module.exports')(exports,myrequire,module)
  
 }
-var a=myrequire('./a.js');
+var a = myrequire('./a.js');
 console.log('a:',a);
 console.log(module.exports===exports)

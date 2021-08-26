@@ -163,3 +163,20 @@ var arr2=[11,2,23,12,5,6,17,8];
 
 //这种排序的时间复杂度为 O(n)~O(n*n)
 </script>
+
+
+
+<script>
+  for(let i = 1; i<arr.length;i++){
+    let currentItem = arr[i];
+    let j = i-1;
+    for(; j > 0; j--){
+      if(currentItem<arr[j]){
+        arr[j+1] = arr[j];
+      }else{ // 找到第一个比currtItem小的数 那么currtItem应该在这个数的前面
+        break;
+      }
+    }
+    arr[j+1] = currentItem
+  }
+</script>

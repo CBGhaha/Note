@@ -8,44 +8,14 @@
     
 </body>
 <script>
-    class ListNode{
-        constructor(key,value){
-            this.key=key;
-            this.value=value;
-            this.nextNode=null;
-            this.preNode=null;
-        }   
-    }
-    class List{
-        constructor(){
-            this.head=null;
-
-        }
-        insertNode(node){
-            //如果链表有头部节点 那么将原头部节点的前一个节点指向node
-            if(this.head){
-                this.head.preNode=node;
-            }
-            node.nextNode=this.head;
-            node.preNode=null;
-            //插入的node为新的链表头部节点
-            this.head=node;
-
-        }
-        searchNode(key){
-            let node=this.head;
-            while(node.key!==node&&node){
-                node=node.nextNode;
-            }
-            return node;
-        }
-        delete(node){
-            const {preNode,nextNode}=node;
-            preNode&&(preNode.nextNode=nextNode);
-            nextNode&&(nextNode.preNode=preNode);
-
-        }
-
-    }
+import List , {ListNode} from './list.js';
+  const list =  new List();
+  const node1 = new ListNode('n1', 1);
+  const node2 = new ListNode('n2', 2);
+  const node3 = new ListNode('n3', 3);
+  list.insertNode(node1);
+  list.insertNode(node2);
+  list.insertNode(node3);
+  console.log('双向链表：', list);
 </script>
 </html>

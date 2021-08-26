@@ -35,4 +35,11 @@ function a(age){
 }
 var b=a.$bind({name:'bang'},25);
 b()
+
+Function.prototype.$bind = function($this, ...args){
+ $this.exe = this;
+ return function (...arguments){
+  $this.exe(...args,...arguments)
+ }
+}
 </script>
