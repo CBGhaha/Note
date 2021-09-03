@@ -20,6 +20,20 @@
       }
 
     }
+
+    function debounce(fn, delayTime){
+      let execute = null;
+      return ()=>{
+        if(execute) {
+          clearTimeout(execute);
+          execute = null;
+        }
+        execute = setTimeout(()=>{
+          fn();
+          execute = null;
+        }, delayTime)
+      }
+    }
     //节流是高频延迟事件不会同时触发 第一次事件未处理完成 后续事件不触发
     function throttle(fn,time){
       var timeOut=true;

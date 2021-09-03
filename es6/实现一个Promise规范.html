@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  class Promise{
+    constructor(executor){
+      this.status = 'panding';
+      this.value = undefined;
+      this.reason = undefined;
+
+      this.resolveCallbacks = [];
+      this.rejectCallbacks = [];
+      let resolve = (data)=>{
+        if(this.status === 'panding'){
+          this.status = 'resolve';
+          this.data = data;
+          resolveCallbacks.forEach(cb => {
+            cb(data);
+          });
+        }
+      }
+      let reject = (reason)=>{
+        this.reason = reason;
+        this.status = 'reject';
+        rejectCallbacks.forEach(cb => {
+          cb(data);
+        });
+      }
+    }
+  }
+</script>

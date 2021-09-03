@@ -6,26 +6,40 @@
     <title>BFC</title>
     <style>
       .bfc-box {
-        display: inline-block;
+        /* display: inline-block; */
+        
       }
       .bfc-child-1 {
         width: 100px;
         height: 100px;
         background: red;
         margin-bottom: 100px;
+  
       }
       .bfc-child-2 {
-        margin-top: 50px;
+        /* margin-top: 50px; */
+        width: 200px;
+        height: 200px;
+        background: yellow;
+        display: inline-block;
+        /* overflow: hidden; */
+      }
+      .bfc-child-3 {
+        /* display: flex; */
+        top: 0;
+        float: left;
         width: 100px;
         height: 100px;
-        background: yellow;
+        background: green;
+        /* display: inline-block; */
       }
     </style>
   </head>
   <body>
     <div class="bfc-box">
-      <div class="bfc-child-1"></div>
+      <!-- <div class="bfc-child-1"></div> -->
       <div class="bfc-child-2"></div>
+      <div class="bfc-child-3"></div>
     </div>
   </body>
 </html>

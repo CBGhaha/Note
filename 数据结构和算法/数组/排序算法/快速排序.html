@@ -8,22 +8,26 @@
     
 </body>
 <script>
-var arr=[6,3,4,7,9,12,2,1];
+var arr=[1,3,9,3,6,7,10,0,8];
 var resArr=[];
 var index=0;
 
 function partition(arr,startIndex,endIndex){
+    // 找到中间值
     var item=arr[Math.floor((startIndex+endIndex)/2)];
+
+    // 前后指针没有合并 则继续迭代
     while(startIndex<endIndex){
-        //从左到右找到大于基准值的数
+        // 从左到右找到大于基准值的数
         while(arr[startIndex]<item){
             startIndex++
         }
-        //从右到左找到小于基准值得数
+        // 从右到左找到小于基准值得数
         while(arr[endIndex]>item){
             endIndex--
         }
-        //找到了大于和小于基准轴的数，如果他们的位置是大的在左小的在右那么他们的位置反了 所以需要换位置 如果大的已经在右小的已经在左 就不需要换位置了
+        // 找到了大于和小于基准轴的数，如果他们的位置是大的在左小的在右那么他们的位置反了 所以需要换位置 如果大的已经在右小的已经在左 就不需要换位置了
+        // 在这里修改原数组
         if(startIndex<endIndex){
             [arr[startIndex],arr[endIndex]]=[arr[endIndex],arr[startIndex]];
             //继续往下找
@@ -34,16 +38,19 @@ function partition(arr,startIndex,endIndex){
 }
 
 function sort2(arr,start,end){
+    // 找到分组的index
     let index=partition(arr,start,end);
     console.log(arr,index,start,end);
+    // 如果左侧还可以分
     if(index-start>0){
         sort2(arr,start,index)
     }
+    // 如果右侧还可以分
     if(end-(index+1)>1){
         sort2(arr,index+1,end)
     }
 }
-sort2(arr,0,7)
+sort2(arr,0,8)
 console.log(arr);
 // function sort(arr){
 //     if(arr.length<1){

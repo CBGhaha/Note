@@ -66,6 +66,45 @@
    * 
    * 
   */
-
-
+  var longestPalindrome = function(s) {
+// 穷举
+    let maxString = '';
+    for(let i = 0; i<s.length; i++){
+        let curStr = {
+            isSingleStr: true,
+            val: s[i]
+        };
+        let leftIndex = 1;
+        let rightIndex = 1;
+        debugger
+        while(i-leftIndex>=0 || i+rightIndex<s.length){
+          
+            const curLeftChar = s[i-leftIndex];
+            const curRightChar = s[i+rightIndex];
+            if(curLeftChar===curRightChar){
+                curStr.val = `${curLeftChar}${curStr.val}${curRightChar}`;
+                if(curLeftChar!==s[i]) curStr.isSingleStr = false;
+                leftIndex++;
+                rightIndex++;
+                continue;
+            }
+            if(curLeftChar === s[i] && curStr.isSingleStr){
+                curStr.val = `${curLeftChar}${curStr.val}`;
+                leftIndex++;
+                continue
+            }else if(s[i+rightIndex] === s[i] && curStr.isSingleStr){
+                curStr.val = `${curStr.val}${curRightChar}`;
+                rightIndex++;
+                continue
+            }
+            break;
+            
+        }
+        if(maxString.length<curStr.val.length){
+            maxString = curStr.val;
+        }
+    }
+    return maxString;
+};
+longestPalindrome('bb');
 </script>

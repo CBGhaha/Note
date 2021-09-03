@@ -58,6 +58,14 @@ Person.prototype.do=function(){
         // }
         return clone;
     }
+    // Object手动实现
+    // Object.$create   = function(proto){
+    //   function Create(){
+
+    //   }
+    //   Create.prototype = proto;
+    //   return new Create()
+    // }
 //寄生组合式继承--实例属性复制给子构造的实例属性  原型属性复制给子构造函数的原型属性
 //之所以需要利用寄生式是因为需要改写子构造函数的原型对象的constructor 而不改变父构造函数原型对象的constructor
     function  P6(){
@@ -88,4 +96,28 @@ function B(){
 console.log(new A());
 console.log(new B())
 
+
+function Fathor(name){
+  this.name = name;
+}
+Fathor.prototype.say = function(){
+  console.log(this.name)
+};
+function Child(name, age){
+  Fathor.apply(this, [age]);
+  this.age = age;
+}
+Child.prototype = Object.create(Fathor.prototype);
+Child.prototype.constructor = Child;
+
+
+
+
+Object.$create   = function(proto){
+  function Create(){
+
+  }
+  Create.prototype = proto;
+  return new Create()
+}
 </script>

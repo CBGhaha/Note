@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  Array.prototype.$reduce = function(fn, init){
+    let i = 0;
+    if(init===undefined){
+      init = this[0]
+      i = 1;
+    }
+    for(;i<this.length;i++){
+      init = fn(init, this[i], i, this);
+    }
+    return init;
+  }
+  const arr = [1,2];
+  const res = arr.reduce((sum,i)=>{
+    console.log(sum, i);
+    return sum+i
+  })
+  console.log(res);
+  const res2 = arr.$reduce((sum,i)=>{
+    console.log(sum, i);
+    return sum+i
+  })
+  console.log(res2);
+  function aaa(a,b,c){
+
+  }
+  console.log(aaa.length)
+</script>

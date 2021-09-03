@@ -53,7 +53,7 @@ var man1=new Man();
 console.log(man1.name===human1.name)//这里访问的name属性 是访问的构造函数的原型对象
 console.log(man1 instanceof Man)
 console.log(man1.__proto__===human1)
-//原型链就是原型对象形成的链
+// 原型链就是原型对象形成的链
 // man1.__proto__指向human1
 // human1.__proto__指向Human的原型对象
 // human的原型对象的__proto__指向Object的原型对象（可以认为human函数创建时  new Object()创建了原型对象）

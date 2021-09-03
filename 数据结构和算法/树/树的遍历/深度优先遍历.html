@@ -42,13 +42,14 @@
       var arr = [tree]
       while (arr.length > 0) {
         var item = arr.pop()
-        console.log('遍历到了这里，对该节点访问', item.v)
+        
         var children = item.children
         if (children) {
           for (var i = children.length - 1; i >= 0; i--) {
             arr.push(children[i])
           }
         }
+        console.log('遍历到了这里，对该节点访问', item.v)
       }
     }
 
