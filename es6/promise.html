@@ -61,5 +61,42 @@ Promise.all([
   // console.log(err)
 )
 
+// 1. promise的then返回一个新的promise ，then中定义的方法的返回值 会作为promise的resolve结果
+Promise.resolve(1)
+  .then((res) => {
+    console.log(res)
+    return 2
+  })
+  .catch((err) => {
+    return 3
+  })
+  .then((res) => {
+    console.log(res)
+  })
 
+  // 2. then当中返回的错误并不会被catch捕获 (throw可以)
+  Promise.resolve()
+  .then(() => {
+    return new Error('error!!!')
+  })
+  .then((res) => {
+    console.log('then: ', res)
+  })
+  .catch((err) => {
+    console.log('catch: ', err)
+  });
+ 
+  // 3. promise   的then 不能返回promise本身
+  const promise = Promise.resolve()
+  .then(() => {
+    return promise
+  })
+  promise.catch(console.error);
+
+  // 4 promise的then或catch必须传递是函数 负责 将会被忽略。
+
+  Promise.resolve(1)
+  .then(2)
+  .then(Promise.resolve(3))
+  .then(console.log)
 </script>

@@ -16,9 +16,13 @@
   const node1 = new SingListNode('n1', 1);
   const node2 = new SingListNode('n2', 2);
   const node3 = new SingListNode('n3', 3);
+  const node4 = new SingListNode('n4', 4);
+  const node5 = new SingListNode('n5', 5);
   list.insertNode(node1);
   list.insertNode(node2);
   list.insertNode(node3);
+  list.insertNode(node4);
+  list.insertNode(node5);
   console.log('单向链表：', list);
 
 
@@ -40,9 +44,38 @@
     }
     node.nextNode = preNodet
   }
-  reverseList(list)
-  console.log("反转后的单向链表：",list);
+  // reverseList(list)
+  // console.log("反转后的单向链表：",list);
 
 
-
+  var reverseBetween = function(head, left, right) {
+    function visitNode(node, preNode, index){
+      //  debugger
+        let res;
+        if(index===right){
+            res = [node, node.next];
+        }
+        if(index<right&&node.next){
+            res = visitNode(node.next, node,  index+1);
+        }
+        
+        if(index>left&&index<=right){
+            // const next = node.next.next;
+            console.log('111',index, node, preNode)
+            node.next = preNode;
+            // preNode.next = next;
+        }
+        
+        if(index===left){
+          // debugger
+          console.log('222s',index, node, preNode, res[1])
+            node.next = res[1];
+            preNode.next = res[0];
+        }
+        return res
+    }
+    visitNode(head, null, 1);
+    return head;
+};
+console.log(reverseBetween(list.head, 2, 4))
 </script>
