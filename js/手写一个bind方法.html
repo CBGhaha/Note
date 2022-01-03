@@ -33,13 +33,36 @@ Function.prototype.$bind=function(context){
 function a(age){
   console.log("我是"+this.name+",我今年"+age+"岁")
 }
-var b=a.$bind({name:'bang'},25);
+var b=a.$bind({name:'bang'},25, 22);
 b()
 
-Function.prototype.$bind = function($this, ...args){
+Function.prototype.$bind2 = function($this, ...args){
  $this.exe = this;
  return function (...arguments){
   $this.exe(...args,...arguments)
  }
 }
+
+Function.prototype.$bind3 = function(){
+  var $this = arguments[0];
+  $this.fn  = this;
+  // const res = {
+  //   fn: this,
+  //   this :$this
+  // }
+  var args = [];
+  for(var i =1; i<arguments.length; i++){
+    args.push(arguments[i]);
+  }
+  console.log("args1:", args);
+  return function(){
+    const argStr = [];
+    arhStr = args.map((i,index)=>'args['+index+']');
+    console.log("dargs:", arhStr);
+    console.log('dargs-str:', "context.fn("+arhStr+")");
+    eval('$this.fn('+arhStr+')')
+  }
+}
+var bb=a.$bind3({name:'bang'},25, 22);
+bb()
 </script>

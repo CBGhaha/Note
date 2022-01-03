@@ -1,0 +1,27 @@
+{
+  "name": "bang-nest",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rollup -cw",
+    "dev": "nest start --watch"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^8.0.6",
+    "@nestjs/core": "^8.0.6",
+    "@nestjs/platform-express": "^8.0.6",
+    "@rollup/plugin-commonjs": "^19.0.2",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "reflect-metadata": "^0.1.13",
+    "rollup": "^2.55.1",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "rxjs": "^7.3.0",
+    "source-map-support": "^0.5.20",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.3.5"
+  }
+}

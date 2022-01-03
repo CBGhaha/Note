@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script type="module">
+  import  {SingleList,SingListNode} from './list.js';
+  const list =  new SingleList();
+  const node1 = new SingListNode('n1', 1);
+  const node2 = new SingListNode('n2', 0);
+  const node3 = new SingListNode('n3', 1);
+  // const node4 = new SingListNode('n4', 1);
+  // const node5 = new SingListNode('n5', 5);
+  list.insertNode(node1);
+  list.insertNode(node2);
+  list.insertNode(node3);
+  // list.insertNode(node4);
+  // list.insertNode(node5);
+  console.log('单向链表：', list);
+
+  var isPalindrome = function(head) {
+    if(!head) return false;
+    let totalLevel = 0;
+    let diffNode = null;
+    let res = true;
+    function visitNode(node, level){
+        if(node.next){
+            visitNode(node.next, level+1);
+            if(!res) return;
+            if(totalLevel>0){
+                if(2*level<=totalLevel){
+                  // debugger
+                    res = (node.val === diffNode.val);
+                    if(diffNode) diffNode = diffNode.next;
+                }
+           }
+           
+        }else{
+            totalLevel = level;
+        }
+        if(totalLevel>0){
+          const mid  =Math.ceil(totalLevel/2);
+          if(mid<level && mid>=level-1){
+            
+            diffNode = node;
+          }            
+        }
+    }
+    visitNode(head, 1);
+    return res;
+};
+console.log(isPalindrome(list.head))
+
+</script>

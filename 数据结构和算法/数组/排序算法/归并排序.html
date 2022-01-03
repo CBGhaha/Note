@@ -10,6 +10,8 @@
 <script>
 //合并的算法复杂度最大为 
 //lgN*N
+// 将数组递归一分为二 变成一个完全二叉树  深度优先后序遍历树 当前节点和结果等于其下所有子节点排序好后的数组
+// 再同同级兄弟节点合并 向上提交到上节点。
 function　merge(left, right){
     var　result=[];
     while(left.length>0 && right.length>0){

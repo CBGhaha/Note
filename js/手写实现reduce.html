@@ -37,4 +37,19 @@
 
   }
   console.log(aaa.length)
+
+
+  Array.prototype.$reduce = function(fn, init){
+    let i = 0;
+    if(init===undefined){
+      init = this[0];
+      i = 1;
+    }
+
+    for(;i<this.length; i++){
+      init = fn(init, this[i], i, this);
+    }
+    return init;
+  }
+
 </script>

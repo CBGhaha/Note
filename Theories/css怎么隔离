@@ -1,0 +1,4 @@
+1.可以动态加载和卸载style样式标签
+2.可以约定css的命名规范
+3.可以使用css module
+4.可以使用shadow dom

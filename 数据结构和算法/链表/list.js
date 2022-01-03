@@ -1,7 +1,7 @@
 export class ListNode{
-  constructor(key,value){
+  constructor(key,val){
       this.key=key;
-      this.value=value;
+      this.val=val;
       this.next=null;
       this.preNode=null;
   }   
@@ -50,9 +50,9 @@ export default class List{
 }
 
 export class SingListNode{
-  constructor(key,value){
+  constructor(key,val){
       this.key=key;
-      this.value=value;
+      this.val=val;
       this.next=null;
   }   
 }
