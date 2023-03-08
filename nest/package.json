@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@nestjs/common": "^8.0.6",
-    "@nestjs/core": "^8.0.6",
+    "@nestjs/core": "^9.0.5",
     "@nestjs/platform-express": "^8.0.6",
     "@rollup/plugin-commonjs": "^19.0.2",
     "@rollup/plugin-node-resolve": "^13.0.4",
